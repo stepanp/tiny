@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8C927EFC-5739-42E2-946B-5C3903B0014F}</ProjectGuid>
+    <RootNamespace>Tiny</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\lib\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\lib\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <OmitDefaultLibName>true</OmitDefaultLibName>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MinSpace</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ShowIncludes>false</ShowIncludes>
+      <OmitDefaultLibName>true</OmitDefaultLibName>
+    </ClCompile>
+    <Lib>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\tinyapp.cpp" />
+    <ClCompile Include="..\src\tinyappwnd.cpp" />
+    <ClCompile Include="..\src\tinybasewnd.cpp" />
+    <ClCompile Include="..\src\tinybuttons.cpp" />
+    <ClCompile Include="..\src\tinycombobox.cpp" />
+    <ClCompile Include="..\src\tinycontainer.cpp" />
+    <ClCompile Include="..\src\tinycontrol.cpp" />
+    <ClCompile Include="..\src\tinydesignwnd.cpp" />
+    <ClCompile Include="..\src\tinydialog.cpp" />
+    <ClCompile Include="..\src\tinyedit.cpp" />
+    <ClCompile Include="..\src\tinyevent.cpp" />
+    <ClCompile Include="..\src\tinyfiledialog.cpp" />
+    <ClCompile Include="..\src\tinygdi.cpp" />
+    <ClCompile Include="..\src\tinyheaderctrl.cpp" />
+    <ClCompile Include="..\src\tinyimagelist.cpp" />
+    <ClCompile Include="..\src\tinylayout.cpp" />
+    <ClCompile Include="..\src\tinylistbox.cpp" />
+    <ClCompile Include="..\src\tinylistview.cpp" />
+    <ClCompile Include="..\src\tinymenu.cpp" />
+    <ClCompile Include="..\src\tinymisc.cpp" />
+    <ClCompile Include="..\src\tinyprogressbar.cpp" />
+    <ClCompile Include="..\src\tinyrebar.cpp" />
+    <ClCompile Include="..\src\tinystatic.cpp" />
+    <ClCompile Include="..\src\tinystatusbar.cpp" />
+    <ClCompile Include="..\src\tinysyslink.cpp" />
+    <ClCompile Include="..\src\tinytoolbar.cpp" />
+    <ClCompile Include="..\src\tinytrackbar.cpp" />
+    <ClCompile Include="..\src\tinytrayicon.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\tinyapp.h" />
+    <ClInclude Include="..\include\tinyappwnd.h" />
+    <ClInclude Include="..\include\tinyarr.h" />
+    <ClInclude Include="..\include\tinybase.h" />
+    <ClInclude Include="..\include\tinybasewnd.h" />
+    <ClInclude Include="..\include\tinybuttons.h" />
+    <ClInclude Include="..\include\tinycombobox.h" />
+    <ClInclude Include="..\include\tinycontainer.h" />
+    <ClInclude Include="..\include\tinycontrol.h" />
+    <ClInclude Include="..\include\tinyctrls.h" />
+    <ClInclude Include="..\include\tinydesignwnd.h" />
+    <ClInclude Include="..\include\tinydialog.h" />
+    <ClInclude Include="..\include\tinyedit.h" />
+    <ClInclude Include="..\include\tinyevent.h" />
+    <ClInclude Include="..\include\tinyext.h" />
+    <ClInclude Include="..\include\tinyfiledialog.h" />
+    <ClInclude Include="..\include\tinygdi.h" />
+    <ClInclude Include="..\include\tinyheaderctrl.h" />
+    <ClInclude Include="..\include\tinyimagelist.h" />
+    <ClInclude Include="..\include\tinylayout.h" />
+    <ClInclude Include="..\include\tinylistbox.h" />
+    <ClInclude Include="..\include\tinylistview.h" />
+    <ClInclude Include="..\include\tinymenu.h" />
+    <ClInclude Include="..\include\tinymisc.h" />
+    <ClInclude Include="..\include\tinyobject.h" />
+    <ClInclude Include="..\include\tinyprogressbar.h" />
+    <ClInclude Include="..\include\tinyproperty.h" />
+    <ClInclude Include="..\include\tinyrebar.h" />
+    <ClInclude Include="..\include\tinysimple.h" />
+    <ClInclude Include="..\include\tinystatic.h" />
+    <ClInclude Include="..\include\tinystatusbar.h" />
+    <ClInclude Include="..\include\tinystr.h" />
+    <ClInclude Include="..\include\tinysyslink.h" />
+    <ClInclude Include="..\include\tinytoolbar.h" />
+    <ClInclude Include="..\include\tinytrackbar.h" />
+    <ClInclude Include="..\include\tinytrayicon.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
