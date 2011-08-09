@@ -1,7 +1,7 @@
-п»ї//----------------------------
+//----------------------------
 //tiny 2.5
-//tinyapp.h - РџСЂРёР»РѕР¶РµРЅРёРµ
-//В© 2009-2010 Stepan Prokofjev
+//tinyapp.h - Приложение
+//© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -14,11 +14,11 @@ class TINYApp: public TINYObject
 {
 public:
 	TINYApp();
-	virtual int OnInit(LPSTR cmd,int showcmd)=0;//РРЅРёС‚РёР°Р»РёР·Р°С†РёСЏ
-	int Run();//Р—Р°РїСѓСЃРє С†РёРєР»Р° СЃРѕРѕР±С‰РµРЅРёР№
-	void Quit(int code=0);//Р’С‹С…РѕРґ
+	virtual int OnInit(LPSTR cmd,int showcmd)=0;//Инитиализация
+	int Run();//Запуск цикла сообщений
+	void Quit(int code=0);//Выход
 };
 
-extern TINYApp *THIS_APP;//Р“Р»РѕР±Р°Р»СЊРЅС‹Р№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРёР»РѕР¶РµРЅРёРµ
+extern TINYApp *THIS_APP;//Глобальный указатель на приложение
 
 };

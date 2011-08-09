@@ -1,7 +1,7 @@
-п»ї//----------------------------
+//----------------------------
 //tiny 2.5
-//tinyappwnd.h - РћР±С‹С‡РЅРѕРµ РѕРєРЅРѕ
-//В© 2009-2010 Stepan Prokofjev
+//tinyappwnd.h - Обычное окно
+//© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -15,23 +15,23 @@ class TINYAppWnd: public TINYBaseWnd
 public:
 	TINYAppWnd();
 public:
-	//РЎРІРѕР№СЃС‚РІР°
-	int propmaxw,//РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР°
-		propmaxh,//РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р°
-		propminw,//РњРёРЅРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР°
-		propminh;//РњРёРЅРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р°
-	//РЎС‚РёР»Рё
-	TINYStyleProperty propcaption,//Р—Р°РіРѕР»РѕРІРѕРє
-		propsysmenu,//РЎРёСЃС‚РµРјРЅРѕРµ РјРµРЅСЋ РЅР° Р·Р°РіРѕР»РѕРІРєРµ
-		propresize,//РњРѕР¶РЅРѕ СЂРµСЃР°Р№Р·РёС‚СЊ РѕРєРЅРѕ
-		propminbox,//РљРЅРѕРїРєР° "СЃРІРµСЂРЅСѓС‚СЊ" РІ Р·Р°РіРѕР»РѕРІРєРµ
-		propmaxbox,//РљРЅРѕРїРєР° "СЂР°Р·РІРµСЂРЅСѓС‚СЊ" РІ Р·Р°РіРѕР»РѕРІРєРµ
-		proptoolwnd,//РџР»Р°РІР°СЋС‰Р°СЏ РїР°РЅРµР»СЊ
-		prophelp,//РљРЅРѕРїРєР° "?" РІ Р·Р°РіРѕР»РѕРІРєРµ
-		proptopmost;//РџРѕРІРµСЂС… РІСЃРµС… РѕРєРѕРЅ
+	//Свойства
+	int propmaxw,//Максимальная ширина
+		propmaxh,//Максимальная высота
+		propminw,//Минимальная ширина
+		propminh;//Минимальная высота
+	//Стили
+	TINYStyleProperty propcaption,//Заголовок
+		propsysmenu,//Системное меню на заголовке
+		propresize,//Можно ресайзить окно
+		propminbox,//Кнопка "свернуть" в заголовке
+		propmaxbox,//Кнопка "развернуть" в заголовке
+		proptoolwnd,//Плавающая панель
+		prophelp,//Кнопка "?" в заголовке
+		proptopmost;//Поверх всех окон
 public:
 	bool Create(TINYBaseWnd* parent);
-	LRESULT _OnCustomMsg(TINYBaseWnd* wnd,TINYParams params);//РљР°СЃС‚РѕРјРЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёР№
+	LRESULT _OnCustomMsg(TINYBaseWnd* wnd,TINYParams params);//Кастомная обработка сообщений
 };
 
 };

@@ -1,44 +1,44 @@
-п»ї//----------------------------
+//----------------------------
 //tiny 2.5
-//tinyapp.cpp - РџСЂРёР»РѕР¶РµРЅРёРµ
-//В© 2009-2010 Stepan Prokofjev
+//tinyapp.cpp - Приложение
+//© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinyapp.h"
 
 using namespace tiny;
 
-TINYApp *tiny::THIS_APP=0;//Р“Р»РѕР±Р°Р»СЊРЅС‹Р№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРёР»РѕР¶РµРЅРёРµ
+TINYApp *tiny::THIS_APP=0;//Глобальный указатель на приложение
 
-TINYApp::TINYApp() {THIS_APP=this;}//РЎРѕС…СЂР°РЅРёС‚СЊ СѓРєР·Р°С‚РµР»СЊ РЅР° СЌРєР·РµРјРїР»СЏСЂ РїСЂРёР»РѕР¶РµРЅРёСЏ РІ THIS_APP
+TINYApp::TINYApp() {THIS_APP=this;}//Сохранить укзатель на экземпляр приложения в THIS_APP
 
 //WinMain
 int APIENTRY WinMain(HINSTANCE hinst,HINSTANCE prev,LPSTR cmd,int showcmd)
 {
-	if(!THIS_APP) return 0;//РџСЂРѕРІРµСЂРєР° СѓРєР°Р·Р°С‚РµР»СЏ РЅР° РїСЂРёР»РѕР¶РµРЅРёРµ
-	InitCommonControls();//Р”Р»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РґРёР°Р»РѕРіРѕРІ РІ РҐР  СЃ РїРѕРґРєР»СЋС‡РµРЅРЅС‹Рј РјР°РЅРёС„РµСЃС‚РѕРј
-	return THIS_APP->OnInit(cmd,showcmd);//Р—Р°РїСѓСЃРє РёРЅРёС‚РёР°Р»РёР·Р°С†РёРё
+	if(!THIS_APP) return 0;//Проверка указателя на приложение
+	InitCommonControls();//Для отображения диалогов в ХР с подключенным манифестом
+	return THIS_APP->OnInit(cmd,showcmd);//Запуск инитиализации
 }
-//Р—Р°РїСѓСЃРє С†РёРєР»Р° СЃРѕРѕР±С‰РµРЅРёР№
+//Запуск цикла сообщений
 int TINYApp::Run()
 {
 	MSG msg;
-	//Р¦РёРєР» СЃРѕРѕР±С‰РµРЅРёР№
+	//Цикл сообщений
 	while(GetMessage(&msg,0,0,0)!=0)
 	{
 		TINYBaseWnd* wnd=TinyGetPointer(msg.hwnd);
-		//РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ Р°РєСЃР»РµСЂР°С‚РѕСЂС‹
+		//Преобразовать акслераторы
 		if(!wnd || !TranslateAccelerator(msg.hwnd,wnd->GetAccel(),&msg))
 		{
-			//РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ
-			//Рё РїРѕСЃР»Р°С‚СЊ РёС… РІ _WndProc
+			//Преобразовать сообщения
+			//и послать их в _WndProc
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
 	}
 	return msg.wParam;
 }
-//Р’С‹С…РѕРґ
+//Выход
 void TINYApp::Quit(int code)
 {
 	PostQuitMessage(code);
