@@ -1,25 +1,25 @@
-//-------------------------------------
+п»ї//-------------------------------------
 //tiny 2.5
-//tinybase.h - Базовые классы и функции
-//© 2009-2010 Stepan Prokofjev
+//tinybase.h - Р‘Р°Р·РѕРІС‹Рµ РєР»Р°СЃСЃС‹ Рё С„СѓРЅРєС†РёРё
+//В© 2009-2010 Stepan Prokofjev
 //-------------------------------------
 
 #pragma once
 
 #ifndef UNICODE
-#error Поддерживается только юникод
+#error РџРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ СЋРЅРёРєРѕРґ
 #endif
 
-#include "tinyobject.h"//Базовый класс
-#include "tinyarr.h"//Динамический массив
-#include "tinystr.h"//Строка
-#include "tinymisc.h"//Разные мелкие классы
-#include "tinyproperty.h"//Класс свойства
-#include "tinyevent.h"//Класс события
-#include "tinygdi.h"//Объекты GDI и DC
-#include "tinybasewnd.h"//Базовый класс окна
-#include "tinylayout.h"//Компоновщик
-#include "tinycontrol.h"//Базовые классы контролов
-#include "tinydialog.h"//Диалог
-#include "tinyappwnd.h"//Главное окно
-#include "tinyapp.h"//Приложение
+#include "tinyobject.h"//Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ
+#include "tinyarr.h"//Р”РёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ
+#include "tinystr.h"//РЎС‚СЂРѕРєР°
+#include "tinymisc.h"//Р Р°Р·РЅС‹Рµ РјРµР»РєРёРµ РєР»Р°СЃСЃС‹
+#include "tinyproperty.h"//РљР»Р°СЃСЃ СЃРІРѕР№СЃС‚РІР°
+#include "tinyevent.h"//РљР»Р°СЃСЃ СЃРѕР±С‹С‚РёСЏ
+#include "tinygdi.h"//РћР±СЉРµРєС‚С‹ GDI Рё DC
+#include "tinybasewnd.h"//Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РѕРєРЅР°
+#include "tinylayout.h"//РљРѕРјРїРѕРЅРѕРІС‰РёРє
+#include "tinycontrol.h"//Р‘Р°Р·РѕРІС‹Рµ РєР»Р°СЃСЃС‹ РєРѕРЅС‚СЂРѕР»РѕРІ
+#include "tinydialog.h"//Р”РёР°Р»РѕРі
+#include "tinyappwnd.h"//Р“Р»Р°РІРЅРѕРµ РѕРєРЅРѕ
+#include "tinyapp.h"//РџСЂРёР»РѕР¶РµРЅРёРµ
