@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinyevent.h - Класс события
-//© 2009-2010 Stepan Prokofjev
+//tinyevent.h - РљР»Р°СЃСЃ СЃРѕР±С‹С‚РёСЏ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -13,33 +13,33 @@ namespace tiny{
 
 class TINYBaseWnd;
 
-//Тип параметров
+//РўРёРї РїР°СЂР°РјРµС‚СЂРѕРІ
 typedef LPARAM TINYParams;
 
 //-------------
-//Класс события
+//РљР»Р°СЃСЃ СЃРѕР±С‹С‚РёСЏ
 //-------------
 class TINYEvent: public TINYObject
 {
-	//Типы указателей на обработчики
-	typedef LRESULT (TINYObject::*Handler)(TINYBaseWnd* /*Указатель на окно обработчика*/,TINYParams/*Параметры*/);//Обычный обработчик
-	typedef void (TINYObject::*NotifyHandler)();//Обработчик без параметов
+	//РўРёРїС‹ СѓРєР°Р·Р°С‚РµР»РµР№ РЅР° РѕР±СЂР°Р±РѕС‚С‡РёРєРё
+	typedef LRESULT (TINYObject::*Handler)(TINYBaseWnd* /*РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РѕРєРЅРѕ РѕР±СЂР°Р±РѕС‚С‡РёРєР°*/,TINYParams/*РџР°СЂР°РјРµС‚СЂС‹*/);//РћР±С‹С‡РЅС‹Р№ РѕР±СЂР°Р±РѕС‚С‡РёРє
+	typedef void (TINYObject::*NotifyHandler)();//РћР±СЂР°Р±РѕС‚С‡РёРє Р±РµР· РїР°СЂР°РјРµС‚РѕРІ
 
 public:
 	TINYEvent();
 protected:
-	TINYObject* _ptr;//Указатель на объект класса, которому принадлежит обработчик
-	Handler _handler;//Указатель на обработчик
-	NotifyHandler _ntfhandler;//Указатель на обработчик без параметров
+	TINYObject* _ptr;//РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР°, РєРѕС‚РѕСЂРѕРјСѓ РїСЂРёРЅР°РґР»РµР¶РёС‚ РѕР±СЂР°Р±РѕС‚С‡РёРє
+	Handler _handler;//РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЂР°Р±РѕС‚С‡РёРє
+	NotifyHandler _ntfhandler;//РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЂР°Р±РѕС‚С‡РёРє Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 public:
-	//Подключение обработчика к событию
+	//РџРѕРґРєР»СЋС‡РµРЅРёРµ РѕР±СЂР°Р±РѕС‚С‡РёРєР° Рє СЃРѕР±С‹С‚РёСЋ
 	template<class Class_T>
 	bool Connect(TINYObject* ptr,LRESULT (Class_T::*handler)(TINYBaseWnd*,TINYParams))
 	{
 		if(!ptr || !handler) return false;
-		//Сохранение указателей
+		//РЎРѕС…СЂР°РЅРµРЅРёРµ СѓРєР°Р·Р°С‚РµР»РµР№
 		_ptr=ptr;
-		//Преобразование Class_T::*Handler в TINYObject::*Handler
+		//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Class_T::*Handler РІ TINYObject::*Handler
 		_handler=reinterpret_cast<Handler>(handler);
 		_ntfhandler=0;
 		return true;	
@@ -48,44 +48,44 @@ public:
 	bool Connect(TINYObject* ptr,void (Class_T::*ntfhandler)())
 	{
 		if(!ptr || !ntfhandler) return false;
-		//Сохранение указателей
+		//РЎРѕС…СЂР°РЅРµРЅРёРµ СѓРєР°Р·Р°С‚РµР»РµР№
 		_ptr=ptr;
 		_handler=0;
-		//Преобразование Class_T::*NotifyHandler в TINYObject::*NotifyHandler
+		//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Class_T::*NotifyHandler РІ TINYObject::*NotifyHandler
 		_ntfhandler=reinterpret_cast<NotifyHandler>(ntfhandler);
 		return true;	
 	}	
-	void Disconnect();//Отключение обработчика
-	//Проверка, задан ли обработчик
-	//Возвращает 0 если не задан
-	//1, если задан обычный обработчик
-	//2, если задан обработчик без параметров
+	void Disconnect();//РћС‚РєР»СЋС‡РµРЅРёРµ РѕР±СЂР°Р±РѕС‚С‡РёРєР°
+	//РџСЂРѕРІРµСЂРєР°, Р·Р°РґР°РЅ Р»Рё РѕР±СЂР°Р±РѕС‚С‡РёРє
+	//Р’РѕР·РІСЂР°С‰Р°РµС‚ 0 РµСЃР»Рё РЅРµ Р·Р°РґР°РЅ
+	//1, РµСЃР»Рё Р·Р°РґР°РЅ РѕР±С‹С‡РЅС‹Р№ РѕР±СЂР°Р±РѕС‚С‡РёРє
+	//2, РµСЃР»Рё Р·Р°РґР°РЅ РѕР±СЂР°Р±РѕС‚С‡РёРє Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 	int IsConnected();
-	LRESULT operator()(TINYBaseWnd* wnd,TINYParams params);//Оператор вызова функции
+	LRESULT operator()(TINYBaseWnd* wnd,TINYParams params);//РћРїРµСЂР°С‚РѕСЂ РІС‹Р·РѕРІР° С„СѓРЅРєС†РёРё
 };
 
 //-------------------
-//Класс карты событий
+//РљР»Р°СЃСЃ РєР°СЂС‚С‹ СЃРѕР±С‹С‚РёР№
 //-------------------
 class TINYEventMap: public TINYObject
 {
 protected:
-	TINYArr<TINYEvent> _events;//Массив событий
-	TINYArr<UINT> _keys;//Массив ключей
+	TINYArr<TINYEvent> _events;//РњР°СЃСЃРёРІ СЃРѕР±С‹С‚РёР№
+	TINYArr<UINT> _keys;//РњР°СЃСЃРёРІ РєР»СЋС‡РµР№
 public:
 	template<class Class_T>
 	bool Connect(TINYObject* ptr,UINT key,LRESULT (Class_T::*handler)(TINYBaseWnd*,TINYParams))
 	{
 		if(!ptr || !handler) return false;
 
-		//Проверка наличия события с таким ключем
+		//РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ СЃРѕР±С‹С‚РёСЏ СЃ С‚Р°РєРёРј РєР»СЋС‡РµРј
 		int index=GetEventIndex(key);
-		//Если событие с таким ключем уже есть в карте, то заменить новым
+		//Р•СЃР»Рё СЃРѕР±С‹С‚РёРµ СЃ С‚Р°РєРёРј РєР»СЋС‡РµРј СѓР¶Рµ РµСЃС‚СЊ РІ РєР°СЂС‚Рµ, С‚Рѕ Р·Р°РјРµРЅРёС‚СЊ РЅРѕРІС‹Рј
 		if(index>-1) return _events[index].Connect(ptr,handler);
 
-		//Иначе добавить в карту
+		//РРЅР°С‡Рµ РґРѕР±Р°РІРёС‚СЊ РІ РєР°СЂС‚Сѓ
 		_keys.Add(key);
-		//Создание нового события
+		//РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ СЃРѕР±С‹С‚РёСЏ
 		TINYEvent nevent;
 		nevent.Connect(ptr,handler);
 		_events.Add(nevent);
@@ -96,24 +96,24 @@ public:
 	{
 		if(!ptr || !ntfhandler) return false;
 
-		//Проверка наличия события с таким ключем
+		//РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ СЃРѕР±С‹С‚РёСЏ СЃ С‚Р°РєРёРј РєР»СЋС‡РµРј
 		int index=GetEventIndex(key);
-		//Если событие с таким ключем уже есть в карте, то заменить новым
+		//Р•СЃР»Рё СЃРѕР±С‹С‚РёРµ СЃ С‚Р°РєРёРј РєР»СЋС‡РµРј СѓР¶Рµ РµСЃС‚СЊ РІ РєР°СЂС‚Рµ, С‚Рѕ Р·Р°РјРµРЅРёС‚СЊ РЅРѕРІС‹Рј
 		if(index>-1) return _events[index].Connect(ptr,ntfhandler);
 
-		//Иначе добавить в карту
+		//РРЅР°С‡Рµ РґРѕР±Р°РІРёС‚СЊ РІ РєР°СЂС‚Сѓ
 		_keys.Add(key);
-		//Создание нового события
+		//РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ СЃРѕР±С‹С‚РёСЏ
 		TINYEvent nevent;
 		nevent.Connect(ptr,ntfhandler);
 		_events.Add(nevent);
 		return true;
 	}
-	bool Disconnect(UINT key);//Отключить обработчик по ключу
-	//Получить индекс события по ключу
-	//если события с таким ключем нет, вернет -1
+	bool Disconnect(UINT key);//РћС‚РєР»СЋС‡РёС‚СЊ РѕР±СЂР°Р±РѕС‚С‡РёРє РїРѕ РєР»СЋС‡Сѓ
+	//РџРѕР»СѓС‡РёС‚СЊ РёРЅРґРµРєСЃ СЃРѕР±С‹С‚РёСЏ РїРѕ РєР»СЋС‡Сѓ
+	//РµСЃР»Рё СЃРѕР±С‹С‚РёСЏ СЃ С‚Р°РєРёРј РєР»СЋС‡РµРј РЅРµС‚, РІРµСЂРЅРµС‚ -1
 	int GetEventIndex(UINT key);
-	LRESULT operator()(TINYBaseWnd* wnd,UINT key,TINYParams params);//Операторы вызова функции по ключу
+	LRESULT operator()(TINYBaseWnd* wnd,UINT key,TINYParams params);//РћРїРµСЂР°С‚РѕСЂС‹ РІС‹Р·РѕРІР° С„СѓРЅРєС†РёРё РїРѕ РєР»СЋС‡Сѓ
 };
 
 };

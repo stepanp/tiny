@@ -1,7 +1,7 @@
-//-------------------------------
+п»ї//-------------------------------
 //tiny 2.5
-//tinyproperty.h - Класс свойства
-//© 2009-2010 Stepan Prokofjev
+//tinyproperty.h - РљР»Р°СЃСЃ СЃРІРѕР№СЃС‚РІР°
+//В© 2009-2010 Stepan Prokofjev
 //-------------------------------
 
 #pragma once
@@ -11,96 +11,96 @@
 namespace tiny{
 
 //--------------
-//Класс свойства
+//РљР»Р°СЃСЃ СЃРІРѕР№СЃС‚РІР°
 //--------------
-template<typename T/*Тип свойства*/>
+template<typename T/*РўРёРї СЃРІРѕР№СЃС‚РІР°*/>
 class TINYProperty: public TINYObject
 {
 protected:
 
-	//Типы указателей
-	typedef bool (TINYObject::*SetFunc)(T);//Сеттер
-	typedef T (TINYObject::*GetFunc)();//Геттер
+	//РўРёРїС‹ СѓРєР°Р·Р°С‚РµР»РµР№
+	typedef bool (TINYObject::*SetFunc)(T);//РЎРµС‚С‚РµСЂ
+	typedef T (TINYObject::*GetFunc)();//Р“РµС‚С‚РµСЂ
 
 protected:
-	TINYObject *_pointer;//Указатель на объект, которому принадлежат указатели на функции
-	//Указатели на функции
+	TINYObject *_pointer;//РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚, РєРѕС‚РѕСЂРѕРјСѓ РїСЂРёРЅР°РґР»РµР¶Р°С‚ СѓРєР°Р·Р°С‚РµР»Рё РЅР° С„СѓРЅРєС†РёРё
+	//РЈРєР°Р·Р°С‚РµР»Рё РЅР° С„СѓРЅРєС†РёРё
 	SetFunc _set;
 	GetFunc _get;
 public:
-	//Инициализация свойства
+	//РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃРІРѕР№СЃС‚РІР°
 	template<class Class_T>
-	void Init(TINYObject *pointer,//Указатель на объект, которому принадлежат указатели на функции
-		bool (Class_T::*set)(T),//Сеттер
-		T (Class_T::*get)()//Геттер
+	void Init(TINYObject *pointer,//РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚, РєРѕС‚РѕСЂРѕРјСѓ РїСЂРёРЅР°РґР»РµР¶Р°С‚ СѓРєР°Р·Р°С‚РµР»Рё РЅР° С„СѓРЅРєС†РёРё
+		bool (Class_T::*set)(T),//РЎРµС‚С‚РµСЂ
+		T (Class_T::*get)()//Р“РµС‚С‚РµСЂ
 		)
 	{
-		//Сохранение указателей
+		//РЎРѕС…СЂР°РЅРµРЅРёРµ СѓРєР°Р·Р°С‚РµР»РµР№
 		_pointer=pointer;
 		_set=reinterpret_cast<SetFunc>(set);
 		_get=reinterpret_cast<GetFunc>(get);
 	}
-	//Оператор присваивания
+	//РћРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
 	void operator=(const T& t)
 	{
-		//Вызов функции
+		//Р’С‹Р·РѕРІ С„СѓРЅРєС†РёРё
 		(_pointer->*_set)(t);
 	}
-	//Оператор T
+	//РћРїРµСЂР°С‚РѕСЂ T
 	operator T() const
 	{
-		//Вызов функции
+		//Р’С‹Р·РѕРІ С„СѓРЅРєС†РёРё
 		return (_pointer->*_get)();
 	}
 };
 
 
 //--------------
-//Свойство стиля
+//РЎРІРѕР№СЃС‚РІРѕ СЃС‚РёР»СЏ
 //--------------
 class TINYStyleProperty: public TINYProperty<DWORD>
 {
 protected:
-	DWORD _style;//Стиль, устанавливаемый свойством
+	DWORD _style;//РЎС‚РёР»СЊ, СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРјС‹Р№ СЃРІРѕР№СЃС‚РІРѕРј
 public:
-	//Инициализация свойства
+	//РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃРІРѕР№СЃС‚РІР°
 	template<class Class_T>
-	void Init(TINYObject *pointer,//Указатель на объект, которому принадлежат указатели на функции
-		DWORD style,//Стиль
-		bool (Class_T::*set)(DWORD),//Сеттер
-		DWORD (Class_T::*get)()//Геттер
+	void Init(TINYObject *pointer,//РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚, РєРѕС‚РѕСЂРѕРјСѓ РїСЂРёРЅР°РґР»РµР¶Р°С‚ СѓРєР°Р·Р°С‚РµР»Рё РЅР° С„СѓРЅРєС†РёРё
+		DWORD style,//РЎС‚РёР»СЊ
+		bool (Class_T::*set)(DWORD),//РЎРµС‚С‚РµСЂ
+		DWORD (Class_T::*get)()//Р“РµС‚С‚РµСЂ
 		)
 	{
-		//Сохранение стиля
+		//РЎРѕС…СЂР°РЅРµРЅРёРµ СЃС‚РёР»СЏ
 		_style=style;
 		TINYProperty<DWORD>::Init(pointer,set,get);
 	}
-	//Оператор присваивания для bool
+	//РћРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ РґР»СЏ bool
 	void operator=(const bool value)
 	{
-		//Если value true, то добавляем стиль
+		//Р•СЃР»Рё value true, С‚Рѕ РґРѕР±Р°РІР»СЏРµРј СЃС‚РёР»СЊ
 		if(value) (_pointer->*_set)((_pointer->*_get)()|_style);
-		//Иначе убираем стиль
+		//РРЅР°С‡Рµ СѓР±РёСЂР°РµРј СЃС‚РёР»СЊ
 		else (_pointer->*_set)((_pointer->*_get)()&~_style);
 	}
-	//Оператор bool
+	//РћРїРµСЂР°С‚РѕСЂ bool
 	operator bool() const
 	{
-		//Если стиль установлен вернуть true
+		//Р•СЃР»Рё СЃС‚РёР»СЊ СѓСЃС‚Р°РЅРѕРІР»РµРЅ РІРµСЂРЅСѓС‚СЊ true
 		if((_pointer->*_get)()&_style) return true;
 		else return false;
 	}
 private:
-	//Закрываем операторы для DWORD
+	//Р—Р°РєСЂС‹РІР°РµРј РѕРїРµСЂР°С‚РѕСЂС‹ РґР»СЏ DWORD
 	void operator=(const DWORD& value) {}
 	operator DWORD() const {return 0;}
 };
 
-//Основные типы свойств
+//РћСЃРЅРѕРІРЅС‹Рµ С‚РёРїС‹ СЃРІРѕР№СЃС‚РІ
 typedef TINYProperty<bool> TINYBoolProperty;//bool
-typedef TINYProperty<TINYStr> TINYStrProperty;//TINYStr - строка
+typedef TINYProperty<TINYStr> TINYStrProperty;//TINYStr - СЃС‚СЂРѕРєР°
 typedef TINYProperty<int> TINYIntProperty;//int
-typedef TINYProperty<TINYIcon> TINYIconProperty;//TINYIcon - иконка
+typedef TINYProperty<TINYIcon> TINYIconProperty;//TINYIcon - РёРєРѕРЅРєР°
 
 
 };

@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinylistview.h - Листвью
-//© 2009-2010 Stepan Prokofjev
+//tinylistview.h - Р›РёСЃС‚РІСЊСЋ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -15,36 +15,36 @@ namespace tiny{
 class TINYListView: public TINYControlEx
 {
 protected:
-	TINYHeaderCtrl _header;//Колонки (для режима LVS_REPORT)
+	TINYHeaderCtrl _header;//РљРѕР»РѕРЅРєРё (РґР»СЏ СЂРµР¶РёРјР° LVS_REPORT)
 protected:
-	bool _AttachHeader();//Прикрепить колонки в режиме LVS_REPORT
+	bool _AttachHeader();//РџСЂРёРєСЂРµРїРёС‚СЊ РєРѕР»РѕРЅРєРё РІ СЂРµР¶РёРјРµ LVS_REPORT
 public:
 	bool Create(TINYBaseWnd *parent,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h);
 	bool Attach(HWND hwnd);
-	TINYHeaderCtrl* GetHeader();//Получить хидер(колонки)
-	bool SetExtendedStyle(DWORD style);//Установить расширенный стиль
-	int InsertColumn(int index,LPCWSTR text,int w,int fmt/*Формат*/);//Вставить колонку
-	int AddColumn(LPCWSTR text,int w,int fmt/*Формат*/);//Добавить колонку
-	bool DeleteColumn(int index);//Удалить колонку
-	bool SetColumnW(int index,int w);//Установить ширину колонки
-	int InsertItem(int index,LPCWSTR text,int image);//Вставить итем
-	int AddItem(LPCWSTR text,int image);//Добавить итем
-	bool DeleteItem(int index);//Удалить итем
-	//Установить субитем
-	//Впринципе тоже самое что и SetItemText :)
+	TINYHeaderCtrl* GetHeader();//РџРѕР»СѓС‡РёС‚СЊ С…РёРґРµСЂ(РєРѕР»РѕРЅРєРё)
+	bool SetExtendedStyle(DWORD style);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅРЅС‹Р№ СЃС‚РёР»СЊ
+	int InsertColumn(int index,LPCWSTR text,int w,int fmt/*Р¤РѕСЂРјР°С‚*/);//Р’СЃС‚Р°РІРёС‚СЊ РєРѕР»РѕРЅРєСѓ
+	int AddColumn(LPCWSTR text,int w,int fmt/*Р¤РѕСЂРјР°С‚*/);//Р”РѕР±Р°РІРёС‚СЊ РєРѕР»РѕРЅРєСѓ
+	bool DeleteColumn(int index);//РЈРґР°Р»РёС‚СЊ РєРѕР»РѕРЅРєСѓ
+	bool SetColumnW(int index,int w);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С€РёСЂРёРЅСѓ РєРѕР»РѕРЅРєРё
+	int InsertItem(int index,LPCWSTR text,int image);//Р’СЃС‚Р°РІРёС‚СЊ РёС‚РµРј
+	int AddItem(LPCWSTR text,int image);//Р”РѕР±Р°РІРёС‚СЊ РёС‚РµРј
+	bool DeleteItem(int index);//РЈРґР°Р»РёС‚СЊ РёС‚РµРј
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃСѓР±РёС‚РµРј
+	//Р’РїСЂРёРЅС†РёРїРµ С‚РѕР¶Рµ СЃР°РјРѕРµ С‡С‚Рѕ Рё SetItemText :)
 	bool SetSubItem(int index,int subitem,LPCWSTR text);
-	bool SetItemText(int index,int subitem,LPCWSTR text);//Установить текст итема
-	bool SetItemImage(int index,int subitem,int image);//Установить индекс картинки
-	bool SetItemData(int index,int subitem,LPARAM data);//Установить значение итема
-	bool SetItemState(int index,UINT state);//Установить состояние итема
-	TINYStr GetItemText(int index,int subitem);//Получить текст итема
-	int GetItemImage(int index,int subitem);//Получить индекс картинки
-	LPARAM GetItemData(int index,int subitem);//Получить значение итема
-	UINT GetItemState(int index);//Получить состояние итема
-	int GetItemCount();//Получить кол-во итемов
-	bool SetImageList(TINYImageList *list);//Установить имаджлист
-	//Установить имаджлист для маленьких иконок
+	bool SetItemText(int index,int subitem,LPCWSTR text);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
+	bool SetItemImage(int index,int subitem,int image);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРЅРґРµРєСЃ РєР°СЂС‚РёРЅРєРё
+	bool SetItemData(int index,int subitem,LPARAM data);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
+	bool SetItemState(int index,UINT state);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РёС‚РµРјР°
+	TINYStr GetItemText(int index,int subitem);//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
+	int GetItemImage(int index,int subitem);//РџРѕР»СѓС‡РёС‚СЊ РёРЅРґРµРєСЃ РєР°СЂС‚РёРЅРєРё
+	LPARAM GetItemData(int index,int subitem);//РџРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
+	UINT GetItemState(int index);//РџРѕР»СѓС‡РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РёС‚РµРјР°
+	int GetItemCount();//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РёС‚РµРјРѕРІ
+	bool SetImageList(TINYImageList *list);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚ РґР»СЏ РјР°Р»РµРЅСЊРєРёС… РёРєРѕРЅРѕРє
 	bool SetSmallImageList(TINYImageList *list);
 	
 };

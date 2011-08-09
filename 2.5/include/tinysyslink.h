@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinysyslink.h - Ссылка
-//© 2009-2010 Stepan Prokofjev
+//tinysyslink.h - РЎСЃС‹Р»РєР°
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -16,16 +16,16 @@ class TINYSysLink: public TINYControl
 public:
 	TINYSysLink();
 protected:
-	bool _visited,//Посещена ли сслыка
-		_enablevis;//Включить посещение ссылки
+	bool _visited,//РџРѕСЃРµС‰РµРЅР° Р»Рё СЃСЃР»С‹РєР°
+		_enablevis;//Р’РєР»СЋС‡РёС‚СЊ РїРѕСЃРµС‰РµРЅРёРµ СЃСЃС‹Р»РєРё
 public:
 	bool Create(TINYBaseWnd *parent,LPCWSTR text,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h);
-	bool EnableVisiting(bool enable);//Включить посещение ссылки
-	bool GetEnableVisiting();//Узнать включено ли посещение ссылки
-	bool SetVisited(bool visited);//Установить посещена ли ссылка
-	bool GetVisited();//Узнать посещена ли ссылка
-	//Обработчики сообщений
+	bool EnableVisiting(bool enable);//Р’РєР»СЋС‡РёС‚СЊ РїРѕСЃРµС‰РµРЅРёРµ СЃСЃС‹Р»РєРё
+	bool GetEnableVisiting();//РЈР·РЅР°С‚СЊ РІРєР»СЋС‡РµРЅРѕ Р»Рё РїРѕСЃРµС‰РµРЅРёРµ СЃСЃС‹Р»РєРё
+	bool SetVisited(bool visited);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕСЃРµС‰РµРЅР° Р»Рё СЃСЃС‹Р»РєР°
+	bool GetVisited();//РЈР·РЅР°С‚СЊ РїРѕСЃРµС‰РµРЅР° Р»Рё СЃСЃС‹Р»РєР°
+	//РћР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№
 	LRESULT OnColor(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPARAM lparam);//WM_CTLCOLORSTATIC
 	LRESULT OnMouseUp(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPARAM lparam);//WM_LBUTTONUP
 };

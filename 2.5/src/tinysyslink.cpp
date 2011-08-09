@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinysyslink.cpp - Ссылка
-//© 2009-2010 Stepan Prokofjev
+//tinysyslink.cpp - РЎСЃС‹Р»РєР°
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinysyslink.h"
@@ -12,83 +12,83 @@ TINYSysLink::TINYSysLink()
 {
 	//AddReflectMessage(WM_CTLCOLORSTATIC,&TINYSysLink::OnColor);//WM_CTLCOLORSTATIC
 	//AddMessage(WM_LBUTTONUP,&TINYSysLink::OnMouseUp);//WM_LBUTTONUP
-	//Настройки по-умолчанию
-	_visited=false;//Ссылка не посещена
-	_enablevis=true;//Включить посещение ссылки
+	//РќР°СЃС‚СЂРѕР№РєРё РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ
+	_visited=false;//РЎСЃС‹Р»РєР° РЅРµ РїРѕСЃРµС‰РµРЅР°
+	_enablevis=true;//Р’РєР»СЋС‡РёС‚СЊ РїРѕСЃРµС‰РµРЅРёРµ СЃСЃС‹Р»РєРё
 }
 
 bool TINYSysLink::Create(TINYBaseWnd *parent,LPCWSTR text,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h)
 {
-	//Получение класса статика
+	//РџРѕР»СѓС‡РµРЅРёРµ РєР»Р°СЃСЃР° СЃС‚Р°С‚РёРєР°
 	WNDCLASS wndc;
 	GetClassInfo(GetModuleHandle(0),L"Static",&wndc);
-	//Установить курсор в виде руки
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєСѓСЂСЃРѕСЂ РІ РІРёРґРµ СЂСѓРєРё
 	wndc.hCursor=LoadCursor(0,IDC_HAND);
 	wndc.lpszClassName=L"TINYSysLink";
-	//Зарегистрировать новый класс
+	//Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РЅРѕРІС‹Р№ РєР»Р°СЃСЃ
 	RegisterClass(&wndc);
-	//Создать контрол на основе нового класса
+	//РЎРѕР·РґР°С‚СЊ РєРѕРЅС‚СЂРѕР» РЅР° РѕСЃРЅРѕРІРµ РЅРѕРІРѕРіРѕ РєР»Р°СЃСЃР°
 	if(!TINYControl::Create(parent,L"TINYSysLink",text,exstyle,style|WS_TABSTOP
-		|SS_NOTIFY//Обрабатывать движение мыши
+		|SS_NOTIFY//РћР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ РґРІРёР¶РµРЅРёРµ РјС‹С€Рё
 		,x,y,w,h)) return false;
-	//Установить подчеркнутый шрифт
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№ С€СЂРёС„С‚
 	LOGFONT font;
-	//Получить LOGFONT стандартного шрифта
+	//РџРѕР»СѓС‡РёС‚СЊ LOGFONT СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ С€СЂРёС„С‚Р°
 	if(!GetObject(HFONT(GetStockObject(DEFAULT_GUI_FONT)),
 		sizeof(font),LPVOID(&font))) return false;
-	font.lfUnderline=TRUE;//Подчеркнутый
-	//Установить шрифт контролу
+	font.lfUnderline=TRUE;//РџРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С€СЂРёС„С‚ РєРѕРЅС‚СЂРѕР»Сѓ
 	if(!SendMessage(_hwnd,WM_SETFONT,
 		WPARAM(CreateFontIndirect(&font)),LPARAM(TRUE))) return false;
 	return true;
 }
-//Включить смену цвета при посещении
+//Р’РєР»СЋС‡РёС‚СЊ СЃРјРµРЅСѓ С†РІРµС‚Р° РїСЂРё РїРѕСЃРµС‰РµРЅРёРё
 bool TINYSysLink::EnableVisiting(bool enable)
 {
-	bool ret=_enablevis;//Запомнить предыдущее состояние
+	bool ret=_enablevis;//Р—Р°РїРѕРјРЅРёС‚СЊ РїСЂРµРґС‹РґСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 	_enablevis=enable;
-	return ret;//Вернуть предыдущее состояние
+	return ret;//Р’РµСЂРЅСѓС‚СЊ РїСЂРµРґС‹РґСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 }
-//Узнать включена ли смена цвета при посещении
+//РЈР·РЅР°С‚СЊ РІРєР»СЋС‡РµРЅР° Р»Рё СЃРјРµРЅР° С†РІРµС‚Р° РїСЂРё РїРѕСЃРµС‰РµРЅРёРё
 bool TINYSysLink::GetEnableVisiting() {return _enablevis;}
-//Установить посещена ли ссылка
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕСЃРµС‰РµРЅР° Р»Рё СЃСЃС‹Р»РєР°
 bool TINYSysLink::SetVisited(bool visited)
 {
-	bool ret=_visited;//Запомнить предыдущее состояние
+	bool ret=_visited;//Р—Р°РїРѕРјРЅРёС‚СЊ РїСЂРµРґС‹РґСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 	_visited=visited;
-	//Перерисовать окно
+	//РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ РѕРєРЅРѕ
 	RedrawWindow(_hwnd,0,0,RDW_INVALIDATE);
-	return ret;//Вернуть предыдущее состояние
+	return ret;//Р’РµСЂРЅСѓС‚СЊ РїСЂРµРґС‹РґСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 }
-//Узнать посещена ли ссылка
+//РЈР·РЅР°С‚СЊ РїРѕСЃРµС‰РµРЅР° Р»Рё СЃСЃС‹Р»РєР°
 bool TINYSysLink::GetVisited() {return _visited;}
 
-//Обработчики сообщений
+//РћР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№
 //WM_CTLCOLORSTATIC
 LRESULT TINYSysLink::OnColor(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPARAM lparam)
 {
-	if(wnd==this)//Устанавливать только для текущего контрола
+	if(wnd==this)//РЈСЃС‚Р°РЅР°РІР»РёРІР°С‚СЊ С‚РѕР»СЊРєРѕ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ РєРѕРЅС‚СЂРѕР»Р°
 	{
-		//Изменить цвет шрифта и фона для ссылки
+		//РР·РјРµРЅРёС‚СЊ С†РІРµС‚ С€СЂРёС„С‚Р° Рё С„РѕРЅР° РґР»СЏ СЃСЃС‹Р»РєРё
 		TINYDC dc;
 		dc.Attach(HDC(wparam));
-		//Цвет текста
-		if(_visited) dc.SetTextColor(RGB(128,0,128));//Цвет посещенной ссылки(purple)
-		else dc.SetTextColor(GetSysColor(COLOR_HOTLIGHT));//Обычный цвет сылки
-		dc.SetBkColor(GetSysColor(COLOR_BTNFACE));//Цвет фона текста
+		//Р¦РІРµС‚ С‚РµРєСЃС‚Р°
+		if(_visited) dc.SetTextColor(RGB(128,0,128));//Р¦РІРµС‚ РїРѕСЃРµС‰РµРЅРЅРѕР№ СЃСЃС‹Р»РєРё(purple)
+		else dc.SetTextColor(GetSysColor(COLOR_HOTLIGHT));//РћР±С‹С‡РЅС‹Р№ С†РІРµС‚ СЃС‹Р»РєРё
+		dc.SetBkColor(GetSysColor(COLOR_BTNFACE));//Р¦РІРµС‚ С„РѕРЅР° С‚РµРєСЃС‚Р°
 		TINYBrush brush;
-		brush.CreateSysColorBrush(COLOR_BTNFACE);//Цвет фона
+		brush.CreateSysColorBrush(COLOR_BTNFACE);//Р¦РІРµС‚ С„РѕРЅР°
 		return LRESULT(brush.GetHBRUSH());
 	}else return 0;
 }
 //WM_LBUTTONUP
 LRESULT TINYSysLink::OnMouseUp(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPARAM lparam)
 {
-	//Если посещение ссылки включено
-	//то изменить цвет ссылки
+	//Р•СЃР»Рё РїРѕСЃРµС‰РµРЅРёРµ СЃСЃС‹Р»РєРё РІРєР»СЋС‡РµРЅРѕ
+	//С‚Рѕ РёР·РјРµРЅРёС‚СЊ С†РІРµС‚ СЃСЃС‹Р»РєРё
 	if(_enablevis) _visited=true;
-	//Перерисовать окно
+	//РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ РѕРєРЅРѕ
 	RedrawWindow(_hwnd,0,0,RDW_INVALIDATE);
 	return 0;
 }

@@ -1,17 +1,17 @@
-//---------------------------------
+п»ї//---------------------------------
 //tiny 2.5
-//tinyctrls.h - Контролы commctrl32
-//© 2009-2010 Stepan Prokofjev
+//tinyctrls.h - РљРѕРЅС‚СЂРѕР»С‹ commctrl32
+//В© 2009-2010 Stepan Prokofjev
 //---------------------------------
 
 #pragma once
 
 #include "tinybase.h"
-#include "tinytoolbar.h"//Тулбар
-#include "tinyrebar.h"//Ребар
-#include "tinystatusbar.h"//Статусбар
-#include "tinyprogressbar.h"//Прогрессбар
-#include "tinytrackbar.h"//Трекбар
-#include "tinyheaderctrl.h"//Хидер контрол
-#include "tinylistview.h"//Листвью
-#include "tinysyslink.h"//Ссылка
+#include "tinytoolbar.h"//РўСѓР»Р±Р°СЂ
+#include "tinyrebar.h"//Р РµР±Р°СЂ
+#include "tinystatusbar.h"//РЎС‚Р°С‚СѓСЃР±Р°СЂ
+#include "tinyprogressbar.h"//РџСЂРѕРіСЂРµСЃСЃР±Р°СЂ
+#include "tinytrackbar.h"//РўСЂРµРєР±Р°СЂ
+#include "tinyheaderctrl.h"//РҐРёРґРµСЂ РєРѕРЅС‚СЂРѕР»
+#include "tinylistview.h"//Р›РёСЃС‚РІСЊСЋ
+#include "tinysyslink.h"//РЎСЃС‹Р»РєР°

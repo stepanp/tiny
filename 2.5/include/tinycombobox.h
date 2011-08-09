@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinycombobox.h - Комбобокс
-//© 2009-2010 Stepan Prokofjev
+//tinycombobox.h - РљРѕРјР±РѕР±РѕРєСЃ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -14,27 +14,27 @@ class TINYComboBox: public TINYControl
 {
 public:
 	TINYComboBox();
-	//События
-	TINYEvent oncloseup,//При закрытии списка
-		ondropdown,//При выпадении списка
-		oneditchange,//При изменении едита
-		onselchange,//При изменении выделения
-		onselect;//При выборе пункта
+	//РЎРѕР±С‹С‚РёСЏ
+	TINYEvent oncloseup,//РџСЂРё Р·Р°РєСЂС‹С‚РёРё СЃРїРёСЃРєР°
+		ondropdown,//РџСЂРё РІС‹РїР°РґРµРЅРёРё СЃРїРёСЃРєР°
+		oneditchange,//РџСЂРё РёР·РјРµРЅРµРЅРёРё РµРґРёС‚Р°
+		onselchange,//РџСЂРё РёР·РјРµРЅРµРЅРёРё РІС‹РґРµР»РµРЅРёСЏ
+		onselect;//РџСЂРё РІС‹Р±РѕСЂРµ РїСѓРЅРєС‚Р°
 public:
 	bool Create(TINYBaseWnd *parent);
-	bool InsertItem(int index,LPCWSTR text);//Вставить итем
-	bool AddItem(LPCWSTR text);//Добавить итем
-	bool DeleteItem(int index);//Удалить итем
-	int GetCount();//Получить кол-во итемов
-	bool SetSel(int index);//Выделить итем
-	int GetSel();//Получить текущий выделенный итем
-	bool SetItemData(int index,LPARAM data);//Установить дополнительное значение
-	LPARAM GetItemData(int index);//Получить дополнительное значение
-	bool Clear();//Очистить
-	TINYStr GetItemText(int index);//Получить текст итема
-	int GetItemTextLength(int index);//Получить длину текста итема
+	bool InsertItem(int index,LPCWSTR text);//Р’СЃС‚Р°РІРёС‚СЊ РёС‚РµРј
+	bool AddItem(LPCWSTR text);//Р”РѕР±Р°РІРёС‚СЊ РёС‚РµРј
+	bool DeleteItem(int index);//РЈРґР°Р»РёС‚СЊ РёС‚РµРј
+	int GetCount();//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РёС‚РµРјРѕРІ
+	bool SetSel(int index);//Р’С‹РґРµР»РёС‚СЊ РёС‚РµРј
+	int GetSel();//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСѓС‰РёР№ РІС‹РґРµР»РµРЅРЅС‹Р№ РёС‚РµРј
+	bool SetItemData(int index,LPARAM data);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
+	LPARAM GetItemData(int index);//РџРѕР»СѓС‡РёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
+	bool Clear();//РћС‡РёСЃС‚РёС‚СЊ
+	TINYStr GetItemText(int index);//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
+	int GetItemTextLength(int index);//РџРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ С‚РµРєСЃС‚Р° РёС‚РµРјР°
 protected:
-	LRESULT _OnCustomCmd(TINYBaseWnd* wnd,TINYParams params);//Кастомная обработка команд
+	LRESULT _OnCustomCmd(TINYBaseWnd* wnd,TINYParams params);//РљР°СЃС‚РѕРјРЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґ
 
 };
 

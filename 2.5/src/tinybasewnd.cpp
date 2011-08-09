@@ -1,7 +1,7 @@
-//------------------------------------
+п»ї//------------------------------------
 //tiny 2.5
-//tinybasewnd.cpp - Базовой класс окон
-//© 2009-2010 Stepan Prokofjev
+//tinybasewnd.cpp - Р‘Р°Р·РѕРІРѕР№ РєР»Р°СЃСЃ РѕРєРѕРЅ
+//В© 2009-2010 Stepan Prokofjev
 //------------------------------------
 
 #include "tinybasewnd.h"
@@ -10,7 +10,7 @@ using namespace tiny;
 
 TINYBaseWnd::TINYBaseWnd()
 {
-	//Инитиализация свойств
+	//РРЅРёС‚РёР°Р»РёР·Р°С†РёСЏ СЃРІРѕР№СЃС‚РІ
 	proptext.Init(this,&TINYBaseWnd::SetText,&TINYBaseWnd::GetText);
 	propx.Init(this,&TINYBaseWnd::SetX,&TINYBaseWnd::GetX);
 	propy.Init(this,&TINYBaseWnd::SetY,&TINYBaseWnd::GetY);
@@ -18,7 +18,7 @@ TINYBaseWnd::TINYBaseWnd()
 	proph.Init(this,&TINYBaseWnd::SetH,&TINYBaseWnd::GetH);
 	propicon.Init(this,&TINYBaseWnd::SetIcon,&TINYBaseWnd::GetIcon);
 	propsmicon.Init(this,&TINYBaseWnd::SetSmallIcon,&TINYBaseWnd::GetSmallIcon);
-	//Стили
+	//РЎС‚РёР»Рё
 	proptabstop.Init(this,WS_TABSTOP,&TINYBaseWnd::SetStyle,&TINYBaseWnd::GetStyle);
 	propvscroll.Init(this,WS_VSCROLL,&TINYBaseWnd::SetStyle,&TINYBaseWnd::GetStyle);
 	prophscroll.Init(this,WS_HSCROLL,&TINYBaseWnd::SetStyle,&TINYBaseWnd::GetStyle);
@@ -27,106 +27,106 @@ TINYBaseWnd::TINYBaseWnd()
 	propwindowedge.Init(this,WS_EX_WINDOWEDGE,&TINYBaseWnd::SetExStyle,&TINYBaseWnd::GetExStyle);
 	proptransparent.Init(this,WS_EX_TRANSPARENT,&TINYBaseWnd::SetExStyle,&TINYBaseWnd::GetExStyle);
 	propacceptfiles.Init(this,WS_EX_ACCEPTFILES,&TINYBaseWnd::SetExStyle,&TINYBaseWnd::GetExStyle);
-	//Стандартный цвет окна
+	//РЎС‚Р°РЅРґР°СЂС‚РЅС‹Р№ С†РІРµС‚ РѕРєРЅР°
 	propbkcolor=GetSysColor(COLOR_BTNFACE);
 
-	_isctrl=false;//Не отнаследован от TINYControl
+	_isctrl=false;//РќРµ РѕС‚РЅР°СЃР»РµРґРѕРІР°РЅ РѕС‚ TINYControl
 }
 
-//Получить HWND окна
+//РџРѕР»СѓС‡РёС‚СЊ HWND РѕРєРЅР°
 HWND TINYBaseWnd::GetHWND() {return _hwnd;}
-//Получить акселератор
+//РџРѕР»СѓС‡РёС‚СЊ Р°РєСЃРµР»РµСЂР°С‚РѕСЂ
 HACCEL TINYBaseWnd::GetAccel() {return _acc;}
-//Установить акселератор
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р°РєСЃРµР»РµСЂР°С‚РѕСЂ
 bool TINYBaseWnd::SetAccel(HACCEL acc)
 {
 	if(!acc) return false;
 	_acc=acc;
 	return true;
 }
-//Создание окна
+//РЎРѕР·РґР°РЅРёРµ РѕРєРЅР°
 bool TINYBaseWnd::Create(TINYBaseWnd *parent,LPCWSTR classname,LPCWSTR text,
 				HICON icon,HCURSOR cursor,DWORD exstyle,DWORD style,UINT wndstyle,
 				int x,int y,int w,int h)
 {
 	WNDCLASSEX wndc;
-	wndc.lpszClassName=classname;//Название класса
+	wndc.lpszClassName=classname;//РќР°Р·РІР°РЅРёРµ РєР»Р°СЃСЃР°
 	wndc.cbSize=sizeof(WNDCLASSEX);
-	wndc.lpfnWndProc=WNDPROC(_WndProc);//Оконная процедура
+	wndc.lpfnWndProc=WNDPROC(_WndProc);//РћРєРѕРЅРЅР°СЏ РїСЂРѕС†РµРґСѓСЂР°
 	wndc.cbClsExtra=0;
 	wndc.cbWndExtra=0;
 	wndc.hbrBackground=0;
 	wndc.hInstance=GetModuleHandle(0);
-	wndc.hCursor=cursor;//Курсор
-	wndc.style=wndstyle;//Стиль окна
-	//Установка иконки
+	wndc.hCursor=cursor;//РљСѓСЂСЃРѕСЂ
+	wndc.style=wndstyle;//РЎС‚РёР»СЊ РѕРєРЅР°
+	//РЈСЃС‚Р°РЅРѕРІРєР° РёРєРѕРЅРєРё
 	wndc.hIcon=icon;
 	wndc.hIconSm=0;
-	//Установка меню
+	//РЈСЃС‚Р°РЅРѕРІРєР° РјРµРЅСЋ
 	wndc.lpszMenuName=0;
-	//Регистрация класса окна
+	//Р РµРіРёСЃС‚СЂР°С†РёСЏ РєР»Р°СЃСЃР° РѕРєРЅР°
 	RegisterClassEx(&wndc);
-	//Проверка указателя на класс родительского окна
+	//РџСЂРѕРІРµСЂРєР° СѓРєР°Р·Р°С‚РµР»СЏ РЅР° РєР»Р°СЃСЃ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РѕРєРЅР°
 	HWND hparent=0;
 	if(parent) hparent=parent->GetHWND();
-	//Создание окна
+	//РЎРѕР·РґР°РЅРёРµ РѕРєРЅР°
 	_hwnd=CreateWindowEx(exstyle,classname,text,
 	style|WS_CLIPCHILDREN,x,y,w,h,
 	hparent,0,GetModuleHandle(0),
-	this/*Передача указателя на экземпляр класса в оконную функцию*/);
+	this/*РџРµСЂРµРґР°С‡Р° СѓРєР°Р·Р°С‚РµР»СЏ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РІ РѕРєРѕРЅРЅСѓСЋ С„СѓРЅРєС†РёСЋ*/);
 	if(!_hwnd) return false;
 	return true;
 }
-//Связать с HWND
+//РЎРІСЏР·Р°С‚СЊ СЃ HWND
 bool TINYBaseWnd::Attach(HWND hwnd)
 {
 	if(!hwnd) return false;
 	_hwnd=hwnd;
-	//Сохранение указателя на экземпляр класса
+	//РЎРѕС…СЂР°РЅРµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
 	SetWindowLong(_hwnd,GWL_USERDATA,LONG(this));
 	return true;
 }
-//Если класс отнаследован от TINYControl возврващает true, иначе false
+//Р•СЃР»Рё РєР»Р°СЃСЃ РѕС‚РЅР°СЃР»РµРґРѕРІР°РЅ РѕС‚ TINYControl РІРѕР·РІСЂРІР°С‰Р°РµС‚ true, РёРЅР°С‡Рµ false
 bool TINYBaseWnd::IsCtrl() {return _isctrl;}
 
-//Функции окна
-//Уничтожить окно
+//Р¤СѓРЅРєС†РёРё РѕРєРЅР°
+//РЈРЅРёС‡С‚РѕР¶РёС‚СЊ РѕРєРЅРѕ
 bool TINYBaseWnd::Destroy()
 {
 	if(!DestroyWindow(_hwnd)) return false;
 	return true;
 }
-//Показать окно
+//РџРѕРєР°Р·Р°С‚СЊ РѕРєРЅРѕ
 bool TINYBaseWnd::Show(int ncmd)
 {
 	if(!ShowWindow(_hwnd,ncmd)) return false;
 	return true;
 }
-//Обновить размеры клиентской области
+//РћР±РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂС‹ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё
 bool TINYBaseWnd::Update()
 {
 	if(!UpdateWindow(_hwnd)) return false;
 	return true;
 }
-//Обновить окно
+//РћР±РЅРѕРІРёС‚СЊ РѕРєРЅРѕ
 bool TINYBaseWnd::Redraw(UINT flags)
 {
 	return Redraw(0,0,flags);
 }
-bool TINYBaseWnd::Redraw(RECT *uprect,//Область для обновления
-		HRGN uprgn,//Регион для обновления
+bool TINYBaseWnd::Redraw(RECT *uprect,//РћР±Р»Р°СЃС‚СЊ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ
+		HRGN uprgn,//Р РµРіРёРѕРЅ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ
 		UINT flags)
 {
 	if(!RedrawWindow(_hwnd,uprect,uprgn,flags)) return false;
 	return true;
 }
-//Установить текст окна
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ РѕРєРЅР°
 bool TINYBaseWnd::SetText(TINYStr text)
 {
 	if(!SetWindowText(_hwnd,text)) return false;
 	return true;
 }
-//Получить текст окна
+//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РѕРєРЅР°
 TINYStr TINYBaseWnd::GetText()
 {
 	wchar_t *text=new wchar_t[GetTextLen()+1];
@@ -135,17 +135,17 @@ TINYStr TINYBaseWnd::GetText()
 	delete[] text;
 	return str;
 }
-//Получить длину текста окна
+//РџРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ С‚РµРєСЃС‚Р° РѕРєРЅР°
 int TINYBaseWnd::GetTextLen()
 {
 	return GetWindowTextLength(_hwnd);	
 }
-//Получить указатель на класс родительского окна
+//РџРѕР»СѓС‡РёС‚СЊ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РєР»Р°СЃСЃ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РѕРєРЅР°
 TINYBaseWnd* TINYBaseWnd::GetParent()
 {
 	return TinyGetPointer(::GetParent(_hwnd));
 }
-//Установить родительское окно
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРµ РѕРєРЅРѕ
 bool TINYBaseWnd::SetParent(TINYBaseWnd* parent)
 {
 	HWND hparent;
@@ -154,106 +154,106 @@ bool TINYBaseWnd::SetParent(TINYBaseWnd* parent)
 	if(!::SetParent(_hwnd,hparent)) return false;
 	return true;
 }
-//Получить название класса
+//РџРѕР»СѓС‡РёС‚СЊ РЅР°Р·РІР°РЅРёРµ РєР»Р°СЃСЃР°
 TINYStr TINYBaseWnd::GetClassName()
 {
 	wchar_t* text=new wchar_t[MAX_PATH];
-	//Получить название класса
+	//РџРѕР»СѓС‡РёС‚СЊ РЅР°Р·РІР°РЅРёРµ РєР»Р°СЃСЃР°
 	::GetClassName(_hwnd,text,MAX_PATH);
 	TINYStr str=text;
 	delete[] text;
 	return str;
 }
 
-//Функции для работы со стилями
-//Добавить стиль
+//Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚РёР»СЏРјРё
+//Р”РѕР±Р°РІРёС‚СЊ СЃС‚РёР»СЊ
 bool TINYBaseWnd::AddStyle(DWORD style)
 {
 	return SetStyle(GetStyle()|style);
 }
-//Удалить стиль
+//РЈРґР°Р»РёС‚СЊ СЃС‚РёР»СЊ
 bool TINYBaseWnd::DelStyle(DWORD style)
 {
 	return SetStyle(GetStyle()&~style);
 }
-//Добавить расширеный стиль
+//Р”РѕР±Р°РІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅС‹Р№ СЃС‚РёР»СЊ
 bool TINYBaseWnd::AddExStyle(DWORD style)
 {
 	return SetExStyle(GetExStyle()|style);
 }
-//Удалить расширеный стиль
+//РЈРґР°Р»РёС‚СЊ СЂР°СЃС€РёСЂРµРЅС‹Р№ СЃС‚РёР»СЊ
 bool TINYBaseWnd::DelExStyle(DWORD style)
 {
 	return SetExStyle(GetExStyle()&~style);
 }
-//Установить стиль
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃС‚РёР»СЊ
 bool TINYBaseWnd::SetStyle(DWORD style)
 {
 	if(!SetWindowLong(_hwnd,GWL_STYLE,style)) return false;
 	return true;
 }
-//Получить стиль
+//РџРѕР»СѓС‡РёС‚СЊ СЃС‚РёР»СЊ
 DWORD TINYBaseWnd::GetStyle()
 {
 	return GetWindowLong(_hwnd,GWL_STYLE);
 }
-//Установить расширеный стиль
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅС‹Р№ СЃС‚РёР»СЊ
 bool TINYBaseWnd::SetExStyle(DWORD style)
 {
 	if(!SetWindowLong(_hwnd,GWL_EXSTYLE,style)) return false;
 	return true;
 }
-//Получить расширеный стиль
+//РџРѕР»СѓС‡РёС‚СЊ СЂР°СЃС€РёСЂРµРЅС‹Р№ СЃС‚РёР»СЊ
 DWORD TINYBaseWnd::GetExStyle()
 {
 	return GetWindowLong(_hwnd,GWL_EXSTYLE);
 }
 
-//Функции для работы с иконкам
-//Установить большую иконку
+//Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РёРєРѕРЅРєР°Рј
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р±РѕР»СЊС€СѓСЋ РёРєРѕРЅРєСѓ
 bool TINYBaseWnd::SetIcon(TINYIcon icon)
 {
-	//Устанавливаем большую иконку
+	//РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р±РѕР»СЊС€СѓСЋ РёРєРѕРЅРєСѓ
 	SendMessage(_hwnd,WM_SETICON,ICON_BIG,LPARAM(icon.GetHICON()));
 	return true;
 }
-//Установить маленькую иконку
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РјР°Р»РµРЅСЊРєСѓСЋ РёРєРѕРЅРєСѓ
 bool TINYBaseWnd::SetSmallIcon(TINYIcon icon)
 {
-	//Устанавливаем маленькую иконку
+	//РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РјР°Р»РµРЅСЊРєСѓСЋ РёРєРѕРЅРєСѓ
 	SendMessage(_hwnd,WM_SETICON,ICON_SMALL,LPARAM(icon.GetHICON()));
 	return true;
 }
-//Получить большую иконку
+//РџРѕР»СѓС‡РёС‚СЊ Р±РѕР»СЊС€СѓСЋ РёРєРѕРЅРєСѓ
 TINYIcon TINYBaseWnd::GetIcon()
 {
-	//Получение иконки
+	//РџРѕР»СѓС‡РµРЅРёРµ РёРєРѕРЅРєРё
 	HICON hicon=HICON(SendMessage(_hwnd,WM_GETICON,ICON_BIG,0));
-	//Если иконки нет, то получение иконки из класса окна
+	//Р•СЃР»Рё РёРєРѕРЅРєРё РЅРµС‚, С‚Рѕ РїРѕР»СѓС‡РµРЅРёРµ РёРєРѕРЅРєРё РёР· РєР»Р°СЃСЃР° РѕРєРЅР°
 	if(!hicon)
 	{
-		//Получение информации о классе
+		//РџРѕР»СѓС‡РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєР»Р°СЃСЃРµ
 		WNDCLASSEX wndc;
 		GetClassInfoEx(GetModuleHandle(0),GetClassName(),&wndc);
-		//Получение иконки
+		//РџРѕР»СѓС‡РµРЅРёРµ РёРєРѕРЅРєРё
 		hicon=wndc.hIcon;
 	}
 	TINYIcon icon;
 	icon.Attach(hicon);
 	return icon;
 }
-//Получить маленькую иконку
+//РџРѕР»СѓС‡РёС‚СЊ РјР°Р»РµРЅСЊРєСѓСЋ РёРєРѕРЅРєСѓ
 TINYIcon TINYBaseWnd::GetSmallIcon()
 {
-	//Получение иконки
+	//РџРѕР»СѓС‡РµРЅРёРµ РёРєРѕРЅРєРё
 	HICON hicon=HICON(SendMessage(_hwnd,WM_GETICON,ICON_SMALL,0));
-	//Если иконки нет, то получение иконки из класса окна
+	//Р•СЃР»Рё РёРєРѕРЅРєРё РЅРµС‚, С‚Рѕ РїРѕР»СѓС‡РµРЅРёРµ РёРєРѕРЅРєРё РёР· РєР»Р°СЃСЃР° РѕРєРЅР°
 	if(!hicon)
 	{
-		//Получение информации о классе
+		//РџРѕР»СѓС‡РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєР»Р°СЃСЃРµ
 		WNDCLASSEX wndc;
 		GetClassInfoEx(GetModuleHandle(0),GetClassName(),&wndc);
-		//Получение иконки
+		//РџРѕР»СѓС‡РµРЅРёРµ РёРєРѕРЅРєРё
 		hicon=wndc.hIconSm;
 	}
 	TINYIcon icon;
@@ -261,74 +261,74 @@ TINYIcon TINYBaseWnd::GetSmallIcon()
 	return icon;
 }
 
-//Функции для работы с положением и размерами окна
-//Получить область окна
+//Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїРѕР»РѕР¶РµРЅРёРµРј Рё СЂР°Р·РјРµСЂР°РјРё РѕРєРЅР°
+//РџРѕР»СѓС‡РёС‚СЊ РѕР±Р»Р°СЃС‚СЊ РѕРєРЅР°
 TINYRect TINYBaseWnd::GetRect()
 {
 	return TINYRect(GetX(),GetY(),GetW(),GetH());
 }
-//Получить клиентскую область окна
+//РџРѕР»СѓС‡РёС‚СЊ РєР»РёРµРЅС‚СЃРєСѓСЋ РѕР±Р»Р°СЃС‚СЊ РѕРєРЅР°
 TINYRect TINYBaseWnd::GetClientRect()
 {
 	RECT rect;
 	::GetClientRect(_hwnd,&rect);
 	return rect;
 }
-//Установить размеры окна
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂС‹ РѕРєРЅР°
 bool TINYBaseWnd::SetSize(int w,int h)
 {
 	if(!SetWindowPos(_hwnd,0,0,0,w,h,
 		SWP_NOMOVE|SWP_NOZORDER)) return false;
 	return true;
 }
-//Установить ширину
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С€РёСЂРёРЅСѓ
 bool TINYBaseWnd::SetW(int w)
 {
 	return SetSize(w,GetH());
 }
-//Установить высоту
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РІС‹СЃРѕС‚Сѓ
 bool TINYBaseWnd::SetH(int h)
 {
 	return SetSize(GetW(),h);
 }
-//Получить ширину
+//РџРѕР»СѓС‡РёС‚СЊ С€РёСЂРёРЅСѓ
 int TINYBaseWnd::GetW()
 {
 	RECT rect;
 	GetWindowRect(this->GetHWND(),&rect);
 	return rect.right-rect.left;
 }
-//Получить высоту
+//РџРѕР»СѓС‡РёС‚СЊ РІС‹СЃРѕС‚Сѓ
 int TINYBaseWnd::GetH()
 {
 	RECT rect;
 	GetWindowRect(this->GetHWND(),&rect);
 	return rect.bottom-rect.top;
 }
-//Передвинуть окно
+//РџРµСЂРµРґРІРёРЅСѓС‚СЊ РѕРєРЅРѕ
 bool TINYBaseWnd::Move(int x,int y)
 {
 	if(!SetWindowPos(_hwnd,0,x,y,0,0,
 		SWP_NOSIZE|SWP_NOZORDER)) return false;
 	return true;
 }
-//Установить X
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ X
 bool TINYBaseWnd::SetX(int x)
 {
 	return Move(x,GetY());
 }
-//Установить Y
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Y
 bool TINYBaseWnd::SetY(int y)
 {
 	return Move(GetX(),y);
 }
-//Получить Х
+//РџРѕР»СѓС‡РёС‚СЊ РҐ
 int TINYBaseWnd::GetX()
 {
 	RECT rect;
 	GetWindowRect(this->GetHWND(),&rect);
-	//Если у окна есть родитель,
-	//то преобразовать координаты
+	//Р•СЃР»Рё Сѓ РѕРєРЅР° РµСЃС‚СЊ СЂРѕРґРёС‚РµР»СЊ,
+	//С‚Рѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РєРѕРѕСЂРґРёРЅР°С‚С‹
 	TINYBaseWnd* parent=GetParent();
 	if(parent)
 	{
@@ -340,13 +340,13 @@ int TINYBaseWnd::GetX()
 	}
 	return rect.left;
 }
-//Получить Y
+//РџРѕР»СѓС‡РёС‚СЊ Y
 int TINYBaseWnd::GetY()
 {
 	RECT rect;
 	GetWindowRect(this->GetHWND(),&rect);
-	//Если у окна есть родитель,
-	//то преобразовать координаты
+	//Р•СЃР»Рё Сѓ РѕРєРЅР° РµСЃС‚СЊ СЂРѕРґРёС‚РµР»СЊ,
+	//С‚Рѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РєРѕРѕСЂРґРёРЅР°С‚С‹
 	TINYBaseWnd* parent=GetParent();
 	if(parent)
 	{
@@ -359,32 +359,32 @@ int TINYBaseWnd::GetY()
 	return rect.top;
 }
 
-//При срабатывании таймера окну приходит сообщение WM_TIMER
-//Запустить таймер
+//РџСЂРё СЃСЂР°Р±Р°С‚С‹РІР°РЅРёРё С‚Р°Р№РјРµСЂР° РѕРєРЅСѓ РїСЂРёС…РѕРґРёС‚ СЃРѕРѕР±С‰РµРЅРёРµ WM_TIMER
+//Р—Р°РїСѓСЃС‚РёС‚СЊ С‚Р°Р№РјРµСЂ
 bool TINYBaseWnd::StartTimer(UINT id,UINT time)
 {
 	if(!SetTimer(_hwnd,id,time,0)) return false;
 	return true;
 }
-//Остановить таймер
+//РћСЃС‚Р°РЅРѕРІРёС‚СЊ С‚Р°Р№РјРµСЂ
 bool TINYBaseWnd::StopTimer(UINT id)
 {
 	if(!KillTimer(_hwnd,id)) return false;
 	return true;
 }
-//На передний план
+//РќР° РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ
 bool TINYBaseWnd::Top()
 {
 	if(!SetWindowPos(_hwnd,HWND_TOP,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE)) return false;
 	return true;
 }
-//На задний план
+//РќР° Р·Р°РґРЅРёР№ РїР»Р°РЅ
 bool TINYBaseWnd::Bottom()
 {
 	if(!SetWindowPos(_hwnd,HWND_BOTTOM,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE)) return false;
 	return true;
 }
-//Установить z-положение
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ z-РїРѕР»РѕР¶РµРЅРёРµ
 bool TINYBaseWnd::SetZOrder(TINYBaseWnd* wndafter)
 {
 	if(!wndafter) return false;
@@ -395,50 +395,50 @@ bool TINYBaseWnd::SetZOrder(TINYBaseWnd* wndafter)
 
 TINYBaseWnd::operator HWND() {return GetHWND();}
 
-//Оконная функция
+//РћРєРѕРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ
 LRESULT CALLBACK TINYBaseWnd::_WndProc(HWND hwnd,UINT message,WPARAM wparam,LPARAM lparam)
 {
 	TINYBaseWnd *wnd=0;
 	if(message==WM_NCCREATE)
 	{
-		//Получение указателя на экземпляр класса из LPCREATESTRUCT
+		//РџРѕР»СѓС‡РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РёР· LPCREATESTRUCT
 		wnd=(TINYBaseWnd*)LPCREATESTRUCT(lparam)->lpCreateParams;
 		if(wnd)
 		{
-			wnd->_hwnd=hwnd;//Сохранение HWND
-			//Сохранение указателя на экземпляр класса в GWL_USERDATA окна
+			wnd->_hwnd=hwnd;//РЎРѕС…СЂР°РЅРµРЅРёРµ HWND
+			//РЎРѕС…СЂР°РЅРµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РІ GWL_USERDATA РѕРєРЅР°
 			SetWindowLong(hwnd,GWL_USERDATA,LONG(wnd));
-			//Запуск функции обработки сообщений
+			//Р—Р°РїСѓСЃРє С„СѓРЅРєС†РёРё РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёР№
 			wnd->_OnMessage(wnd,message,wparam,lparam);
 		}
 	}
-	//Получение указателя на экземпляр класса из GWL_USERDATA
+	//РџРѕР»СѓС‡РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РёР· GWL_USERDATA
 	wnd=TinyGetPointer(hwnd);
-	if(wnd)//Проверка указателя
+	if(wnd)//РџСЂРѕРІРµСЂРєР° СѓРєР°Р·Р°С‚РµР»СЏ
 	{
-		//Запуск функции обработки сообщений
+		//Р—Р°РїСѓСЃРє С„СѓРЅРєС†РёРё РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёР№
 		LRESULT result=wnd->_OnMessage(wnd,message,wparam,lparam);
-		//Если result не равен 0 то вернуть result
+		//Р•СЃР»Рё result РЅРµ СЂР°РІРµРЅ 0 С‚Рѕ РІРµСЂРЅСѓС‚СЊ result
 		if(result) return result;
 	}
 	return DefWindowProc(hwnd,message,wparam,lparam);
 }
 
-//Функция обработки сообщений
+//Р¤СѓРЅРєС†РёСЏ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёР№
 LRESULT TINYBaseWnd::_OnMessage(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPARAM lparam)
 {
-	//Параметры сообщения
+	//РџР°СЂР°РјРµС‚СЂС‹ СЃРѕРѕР±С‰РµРЅРёСЏ
 	TINYMSGPARAMS msg;
 	msg.code=message;
 	msg.wparam=wparam;
 	msg.lparam=lparam;
-	//Возвращаемое значение
+	//Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ
 	LRESULT ret=0;
 
 	//---------------------------
-	//Обработка reflect-сообщений
+	//РћР±СЂР°Р±РѕС‚РєР° reflect-СЃРѕРѕР±С‰РµРЅРёР№
 	//---------------------------
-	TINYBaseWnd* rwnd=0;//Указатель на окно, от которого пришло reflect-сообщение
+	TINYBaseWnd* rwnd=0;//РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РѕРєРЅРѕ, РѕС‚ РєРѕС‚РѕСЂРѕРіРѕ РїСЂРёС€Р»Рѕ reflect-СЃРѕРѕР±С‰РµРЅРёРµ
 	switch(message)
 	{
 	case WM_CTLCOLORBTN:
@@ -451,45 +451,45 @@ LRESULT TINYBaseWnd::_OnMessage(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPAR
 	case WM_CHARTOITEM:
 	case WM_HSCROLL:
 	case WM_VSCROLL:
-		//Получить указатель из lparam
+		//РџРѕР»СѓС‡РёС‚СЊ СѓРєР°Р·Р°С‚РµР»СЊ РёР· lparam
 		rwnd=TinyGetPointer(HWND(lparam));
 		break;
 	case WM_DRAWITEM:
 	case WM_MEASUREITEM:
 	case WM_COMPAREITEM:
 	case WM_DELETEITEM:
-		//Получить указатель по id из wparam
+		//РџРѕР»СѓС‡РёС‚СЊ СѓРєР°Р·Р°С‚РµР»СЊ РїРѕ id РёР· wparam
 		if(wparam) rwnd=TinyGetPointer(GetDlgItem(*wnd,wparam));
 		break;
 	case WM_PARENTNOTIFY:
-		//Получить указатель из lparam
-		//если wparam равен WM_CREATE или WM_DESTROY
+		//РџРѕР»СѓС‡РёС‚СЊ СѓРєР°Р·Р°С‚РµР»СЊ РёР· lparam
+		//РµСЃР»Рё wparam СЂР°РІРµРЅ WM_CREATE РёР»Рё WM_DESTROY
 		if(LOWORD(wparam)==WM_CREATE||WM_DESTROY) rwnd=TinyGetPointer(HWND(lparam));
 		break;
 	}
 
 	if(rwnd)
 	{
-		//Вызов обработчика кастомной обработки сообщений
+		//Р’С‹Р·РѕРІ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєР°СЃС‚РѕРјРЅРѕР№ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёР№
 		ret=rwnd->_oncustommsg(rwnd,TINYParams(&msg));
-		//Если вернул не 0, вернуть значение
+		//Р•СЃР»Рё РІРµСЂРЅСѓР» РЅРµ 0, РІРµСЂРЅСѓС‚СЊ Р·РЅР°С‡РµРЅРёРµ
 		if(ret) return ret;
 
-		//Вызов обработчика сообщения из карты
+		//Р’С‹Р·РѕРІ РѕР±СЂР°Р±РѕС‚С‡РёРєР° СЃРѕРѕР±С‰РµРЅРёСЏ РёР· РєР°СЂС‚С‹
 		return rwnd->onmessage(rwnd,message,TINYParams(&msg));	
 	}
 
-	//Вызов обработчика кастомной обработки сообщений
+	//Р’С‹Р·РѕРІ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєР°СЃС‚РѕРјРЅРѕР№ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёР№
 	ret=_oncustommsg(wnd,TINYParams(&msg));
-	//Если вернул не 0, вернуть значение
+	//Р•СЃР»Рё РІРµСЂРЅСѓР» РЅРµ 0, РІРµСЂРЅСѓС‚СЊ Р·РЅР°С‡РµРЅРёРµ
 	if(ret) return ret;
 
-	//Вызов обработчика сообщения из карты
+	//Р’С‹Р·РѕРІ РѕР±СЂР°Р±РѕС‚С‡РёРєР° СЃРѕРѕР±С‰РµРЅРёСЏ РёР· РєР°СЂС‚С‹
 	ret=onmessage(wnd,message,TINYParams(&msg));
 	if(ret) return ret;
 
 	//----------------------------
-	//Обработка основных сообщений
+	//РћР±СЂР°Р±РѕС‚РєР° РѕСЃРЅРѕРІРЅС‹С… СЃРѕРѕР±С‰РµРЅРёР№
 	//----------------------------
 	switch(message)
 	{
@@ -503,62 +503,62 @@ LRESULT TINYBaseWnd::_OnMessage(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPAR
 	case WM_PAINT:
 	{
 		//-------------------
-		//Обработка отрисовки
+		//РћР±СЂР°Р±РѕС‚РєР° РѕС‚СЂРёСЃРѕРІРєРё
 		//-------------------
 
-		//Если обработчик onpaint не задан - не обрабатывать
+		//Р•СЃР»Рё РѕР±СЂР°Р±РѕС‚С‡РёРє onpaint РЅРµ Р·Р°РґР°РЅ - РЅРµ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ
 		if(!onpaint.IsConnected()) return 0;
 
 		TINYDBDC dc;
-		//Если в wparam пришло HDC, то приаттачить его к dc
+		//Р•СЃР»Рё РІ wparam РїСЂРёС€Р»Рѕ HDC, С‚Рѕ РїСЂРёР°С‚С‚Р°С‡РёС‚СЊ РµРіРѕ Рє dc
 		if(wparam) dc.Attach(HDC(wparam));
-		//Иначе вызвать BeginPaint
+		//РРЅР°С‡Рµ РІС‹Р·РІР°С‚СЊ BeginPaint
 		else dc.BeginPaint(*wnd);
 
-		LRESULT ret=0;//Возвращаемое значение
+		LRESULT ret=0;//Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ
 
-		//Если двойная буферизция включена
+		//Р•СЃР»Рё РґРІРѕР№РЅР°СЏ Р±СѓС„РµСЂРёР·С†РёСЏ РІРєР»СЋС‡РµРЅР°
 		if(propdoublebuf)
 		{
-			//Включить двойную буферизацию
+			//Р’РєР»СЋС‡РёС‚СЊ РґРІРѕР№РЅСѓСЋ Р±СѓС„РµСЂРёР·Р°С†РёСЋ
 			dc.InitDoubleBuffer();
 
-			//Вызвать обработчик onpaint
-			ret=onpaint(wnd,TINYParams(dc.GetMemDC())/*Указатель на задний буффер*/);
+			//Р’С‹Р·РІР°С‚СЊ РѕР±СЂР°Р±РѕС‚С‡РёРє onpaint
+			ret=onpaint(wnd,TINYParams(dc.GetMemDC())/*РЈРєР°Р·Р°С‚РµР»СЊ РЅР° Р·Р°РґРЅРёР№ Р±СѓС„С„РµСЂ*/);
 
-			//Нарисовать задний буфер		
+			//РќР°СЂРёСЃРѕРІР°С‚СЊ Р·Р°РґРЅРёР№ Р±СѓС„РµСЂ		
 			dc.DrawDoubleBuffer();
 		}else{
-			//Если не включена
+			//Р•СЃР»Рё РЅРµ РІРєР»СЋС‡РµРЅР°
 
-			//Вызвать обработчик onpaint
-			ret=onpaint(wnd,TINYParams(&dc)/*Укзатель на DC*/);
+			//Р’С‹Р·РІР°С‚СЊ РѕР±СЂР°Р±РѕС‚С‡РёРє onpaint
+			ret=onpaint(wnd,TINYParams(&dc)/*РЈРєР·Р°С‚РµР»СЊ РЅР° DC*/);
 		}
 		
-		//Если вызван BeginPaint, закончить рисование
+		//Р•СЃР»Рё РІС‹Р·РІР°РЅ BeginPaint, Р·Р°РєРѕРЅС‡РёС‚СЊ СЂРёСЃРѕРІР°РЅРёРµ
 		if(wparam) dc.EndPaint();
-		//Отпустить DC
+		//РћС‚РїСѓСЃС‚РёС‚СЊ DC
 		else dc.Release(*this);
 
 		return ret;
 	}
 	case WM_ERASEBKGND:
 	{
-		//Если это контрол, то фон по умолчанию
+		//Р•СЃР»Рё СЌС‚Рѕ РєРѕРЅС‚СЂРѕР», С‚Рѕ С„РѕРЅ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 		if(wnd->IsCtrl()) return 0;
 
-		//Если обработчик onpaint задан, то не закрашивать фон
+		//Р•СЃР»Рё РѕР±СЂР°Р±РѕС‚С‡РёРє onpaint Р·Р°РґР°РЅ, С‚Рѕ РЅРµ Р·Р°РєСЂР°С€РёРІР°С‚СЊ С„РѕРЅ
 		if(onpaint.IsConnected()) return TRUE;
 
 		TINYDC dc;
-		//Получить DC
+		//РџРѕР»СѓС‡РёС‚СЊ DC
 		dc.Attach(HDC(wparam));
 
-		//Закрасить фон цветом propbkcolor
+		//Р—Р°РєСЂР°СЃРёС‚СЊ С„РѕРЅ С†РІРµС‚РѕРј propbkcolor
 		TINYBrush brush(propbkcolor);
 		dc.FillRect(GetClientRect(),&brush);
 
-		//Очистка
+		//РћС‡РёСЃС‚РєР°
 		dc.Release(*wnd);
 		brush.Delete();
 		return TRUE;
@@ -574,44 +574,44 @@ LRESULT TINYBaseWnd::_OnMessage(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPAR
 	case WM_COMMAND:
 	{
 		//----------------
-		//Обработка команд
+		//РћР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґ
 		//----------------
 
-		UINT code=HIWORD(wparam);//Код команды
-		UINT id=LOWORD(wparam);//Id контрола
+		UINT code=HIWORD(wparam);//РљРѕРґ РєРѕРјР°РЅРґС‹
+		UINT id=LOWORD(wparam);//Id РєРѕРЅС‚СЂРѕР»Р°
 
 		if(lparam==0)
 		{
 			//---------------------
-			//Обработка команд меню
+			//РћР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґ РјРµРЅСЋ
 			//---------------------
 			if(HIWORD(wparam)==0) onmenu(wnd,id,0);
 
 			//------------------------------
-			//Обработка команд акселераторов
+			//РћР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґ Р°РєСЃРµР»РµСЂР°С‚РѕСЂРѕРІ
 			//------------------------------
 			if(HIWORD(wparam)==1) onacc(wnd,id,0);
 
 		}else{
 			//--------------------------
-			//Обработка остальных команд
+			//РћР±СЂР°Р±РѕС‚РєР° РѕСЃС‚Р°Р»СЊРЅС‹С… РєРѕРјР°РЅРґ
 			//--------------------------
 
-			//Получение указателя на контрол, от которого пришла команда
+			//РџРѕР»СѓС‡РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° РєРѕРЅС‚СЂРѕР», РѕС‚ РєРѕС‚РѕСЂРѕРіРѕ РїСЂРёС€Р»Р° РєРѕРјР°РЅРґР°
 			TINYBaseWnd* ctrl=TinyGetPointer(HWND(lparam));
 
 			if(ctrl)
 			{
-				//Параметры команды
+				//РџР°СЂР°РјРµС‚СЂС‹ РєРѕРјР°РЅРґС‹
 				TINYMSGPARAMS cmd;
-				cmd.code=code;//Код команды
+				cmd.code=code;//РљРѕРґ РєРѕРјР°РЅРґС‹
 				cmd.wparam=0;
 				cmd.lparam=0;
 
-				//Вызов обработчика кастомной обработки команд
+				//Р’С‹Р·РѕРІ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєР°СЃС‚РѕРјРЅРѕР№ РѕР±СЂР°Р±РѕС‚РєРё РєРѕРјР°РЅРґ
 				ctrl->_oncustomcmd(ctrl,TINYParams(&cmd));
 
-				//Вызов обработчика команды из карты
+				//Р’С‹Р·РѕРІ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєРѕРјР°РЅРґС‹ РёР· РєР°СЂС‚С‹
 				ctrl->oncommand(ctrl,code,0);
 			}
 		}		
@@ -620,26 +620,26 @@ LRESULT TINYBaseWnd::_OnMessage(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPAR
 	case WM_NOTIFY:
 	{
 		//---------------------
-		//Обработка нотификаций
+		//РћР±СЂР°Р±РѕС‚РєР° РЅРѕС‚РёС„РёРєР°С†РёР№
 		//---------------------
 
-		//Указатель на контрол, от которого пришла нотификация
+		//РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РєРѕРЅС‚СЂРѕР», РѕС‚ РєРѕС‚РѕСЂРѕРіРѕ РїСЂРёС€Р»Р° РЅРѕС‚РёС„РёРєР°С†РёСЏ
 		TINYBaseWnd* ctrl=TinyGetPointer(LPNMHDR(lparam)->hwndFrom);
-		UINT code=LPNMHDR(lparam)->code;//Код нотификации
+		UINT code=LPNMHDR(lparam)->code;//РљРѕРґ РЅРѕС‚РёС„РёРєР°С†РёРё
 
 		if(ctrl) 
 		{
-			//Параметры нотификации
+			//РџР°СЂР°РјРµС‚СЂС‹ РЅРѕС‚РёС„РёРєР°С†РёРё
 			TINYMSGPARAMS ntf;
-			ntf.code=code;//Код нотификации
+			ntf.code=code;//РљРѕРґ РЅРѕС‚РёС„РёРєР°С†РёРё
 			ntf.wparam=0;
 			ntf.lparam=lparam;
 
-			//Вызов обработчика кастомной обработки нотификаций
+			//Р’С‹Р·РѕРІ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєР°СЃС‚РѕРјРЅРѕР№ РѕР±СЂР°Р±РѕС‚РєРё РЅРѕС‚РёС„РёРєР°С†РёР№
 			ret=ctrl->_oncustomntf(ctrl,TINYParams(&ntf));
 			if(ret) return ret;
 
-			//Вызов обработчика нотификации из карты
+			//Р’С‹Р·РѕРІ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РЅРѕС‚РёС„РёРєР°С†РёРё РёР· РєР°СЂС‚С‹
 			return ctrl->onnotify(ctrl,code,TINYParams(lparam));
 		}
 	}
@@ -647,10 +647,10 @@ LRESULT TINYBaseWnd::_OnMessage(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPAR
 	return 0;
 }
 
-//Получить TINYBaseWnd* из HWND
+//РџРѕР»СѓС‡РёС‚СЊ TINYBaseWnd* РёР· HWND
 TINYBaseWnd* tiny::TinyGetPointer(HWND hwnd)
 {
 	if(!hwnd) return 0;
-	//Получение TINYBaseWnd* из поля UserData окна
+	//РџРѕР»СѓС‡РµРЅРёРµ TINYBaseWnd* РёР· РїРѕР»СЏ UserData РѕРєРЅР°
 	return (TINYBaseWnd*)GetWindowLong(hwnd,GWL_USERDATA);
 }

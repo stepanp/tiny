@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinymenu.cpp - Меню
-//© 2009-2010 Stepan Prokofjev
+//tinymenu.cpp - РњРµРЅСЋ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinymenu.h"
@@ -9,7 +9,7 @@
 using namespace tiny;
 
 //----
-//Меню
+//РњРµРЅСЋ
 //----
 bool TINYMenu::Create() {return Attach(CreateMenu());}
 bool TINYMenu::Create(UINT menu)
@@ -17,7 +17,7 @@ bool TINYMenu::Create(UINT menu)
 	if(!menu) return false;
 	return Attach(LoadMenu(GetModuleHandle(0),MAKEINTRESOURCE(menu)));	
 }
-//Создать из HMENU
+//РЎРѕР·РґР°С‚СЊ РёР· HMENU
 bool TINYMenu::Attach(HMENU menu)
 {
 	if(!menu) return false;
@@ -25,20 +25,20 @@ bool TINYMenu::Attach(HMENU menu)
 	MENUINFO mi;
 	mi.cbSize=sizeof(MENUINFO);
 	mi.fMask=MIM_MENUDATA;
-	mi.dwMenuData=ULONG_PTR(this);//Сохранение указателя на объект класса
+	mi.dwMenuData=ULONG_PTR(this);//РЎРѕС…СЂР°РЅРµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР°
 	if(!SetMenuInfo(_menu,&mi)) return false;
 	return true;
 }
-//Получить HMENU
+//РџРѕР»СѓС‡РёС‚СЊ HMENU
 HMENU TINYMenu::GetHMENU() {return _menu;}
-//Установить меню окну
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РјРµРЅСЋ РѕРєРЅСѓ
 bool TINYMenu::SetToWindow(TINYBaseWnd *wnd)
 {
 	if(!wnd) return false;
 	if(!SetMenu(wnd->GetHWND(),_menu)) return false;
 	return true;
 }
-//Вставить пункт меню
+//Р’СЃС‚Р°РІРёС‚СЊ РїСѓРЅРєС‚ РјРµРЅСЋ
 bool TINYMenu::InsertItem(int index,LPCWSTR text,UINT id,TINYMenu* submenu)
 {
 	MENUITEMINFO mi;
@@ -46,23 +46,23 @@ bool TINYMenu::InsertItem(int index,LPCWSTR text,UINT id,TINYMenu* submenu)
 	mi.fMask=MIIM_STRING|MIIM_ID|MIIM_SUBMENU;
 	mi.dwTypeData=LPWSTR(text);
 	mi.wID=id;
-	if(submenu) mi.hSubMenu=submenu->GetHMENU();//Получить HMENU для подменю
+	if(submenu) mi.hSubMenu=submenu->GetHMENU();//РџРѕР»СѓС‡РёС‚СЊ HMENU РґР»СЏ РїРѕРґРјРµРЅСЋ
 	else mi.hSubMenu=0;
 	if(!InsertMenuItem(_menu,index,TRUE,&mi)) return false;
 	return true;
 }
-//Добавить пункт меню
+//Р”РѕР±Р°РІРёС‚СЊ РїСѓРЅРєС‚ РјРµРЅСЋ
 bool TINYMenu::AddItem(LPCWSTR text,UINT id,TINYMenu* submenu)
 {
 	return InsertItem(-1,text,id,submenu);
 }
-//Удалить пункт меню
+//РЈРґР°Р»РёС‚СЊ РїСѓРЅРєС‚ РјРµРЅСЋ
 bool TINYMenu::DeleteItem(int index)
 {
 	if(!DeleteMenu(_menu,index,MF_BYPOSITION)) return false;
 	return true;
 }
-//Получить субменю
+//РџРѕР»СѓС‡РёС‚СЊ СЃСѓР±РјРµРЅСЋ
 TINYMenu* TINYMenu::GetSubMenu(int index)
 {
 	MENUITEMINFO mi;
@@ -70,25 +70,25 @@ TINYMenu* TINYMenu::GetSubMenu(int index)
 	mi.fMask=MIIM_SUBMENU;
 	GetMenuItemInfo(_menu,index,TRUE,&mi);
 	HMENU menu=mi.hSubMenu;
-	//Получение TINYMenu* из HMENU
+	//РџРѕР»СѓС‡РµРЅРёРµ TINYMenu* РёР· HMENU
 	MENUINFO mni;
 	mni.cbSize=sizeof(MENUINFO);
 	mni.fMask=MIM_MENUDATA;
 	GetMenuInfo(menu,&mni);
 	return (TINYMenu*)(mni.dwMenuData);
 }
-//Установить субменю
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃСѓР±РјРµРЅСЋ
 bool TINYMenu::SetSubMenu(int index,TINYMenu* submenu)
 {
 	MENUITEMINFO mi;
 	mi.cbSize=sizeof(MENUITEMINFO);
 	mi.fMask=MIIM_SUBMENU;
-	if(submenu)	mi.hSubMenu=submenu->GetHMENU();//Получить HMENU для подменю
+	if(submenu)	mi.hSubMenu=submenu->GetHMENU();//РџРѕР»СѓС‡РёС‚СЊ HMENU РґР»СЏ РїРѕРґРјРµРЅСЋ
 	else mi.hSubMenu=0;
 	if(!SetMenuItemInfo(_menu,index,TRUE,&mi)) return false;
 	return true;
 }
-//Получить состояние
+//РџРѕР»СѓС‡РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ
 DWORD TINYMenu::GetItemState(int index)
 {
 	MENUITEMINFO mi;
@@ -97,7 +97,7 @@ DWORD TINYMenu::GetItemState(int index)
 	GetMenuItemInfo(_menu,index,TRUE,&mi);
 	return mi.fState;
 }
-//Установить состояние
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ
 bool TINYMenu::SetItemState(int index,DWORD state)
 {
 	MENUITEMINFO mi;
@@ -107,7 +107,7 @@ bool TINYMenu::SetItemState(int index,DWORD state)
 	if(!SetMenuItemInfo(_menu,index,TRUE,&mi)) return false;
 	return true;	
 }
-//Установить дополнительное значение
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
 bool TINYMenu::SetItemData(int index,LPARAM data)
 {
 	MENUITEMINFO mi;
@@ -118,7 +118,7 @@ bool TINYMenu::SetItemData(int index,LPARAM data)
 	if(!SetMenuItemInfo(_menu,index,TRUE,&mi)) return false;
 	return true;
 }
-//Получить дополнительное значение
+//РџРѕР»СѓС‡РёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
 LPARAM TINYMenu::GetItemData(int index)
 {
 	MENUITEMINFO mi;
@@ -130,19 +130,19 @@ LPARAM TINYMenu::GetItemData(int index)
 
 
 //----------------
-//Всплывающее меню
+//Р’СЃРїР»С‹РІР°СЋС‰РµРµ РјРµРЅСЋ
 //----------------
 bool TINYPopupMenu::Create() {return Attach(CreatePopupMenu());}
-//Создать из ресурсов
+//РЎРѕР·РґР°С‚СЊ РёР· СЂРµСЃСѓСЂСЃРѕРІ
 bool TINYPopupMenu::Create(UINT menu)
 {
 	if(!menu) return false;
 	HMENU tmenu;
 	tmenu=LoadMenu(GetModuleHandle(0),MAKEINTRESOURCE(menu));
-	tmenu=::GetSubMenu(tmenu,0);//Получить субменю	
+	tmenu=::GetSubMenu(tmenu,0);//РџРѕР»СѓС‡РёС‚СЊ СЃСѓР±РјРµРЅСЋ	
 	return Attach(tmenu);
 }
-//Вставить сепаратор
+//Р’СЃС‚Р°РІРёС‚СЊ СЃРµРїР°СЂР°С‚РѕСЂ
 bool TINYPopupMenu::InsertSeparator(int index)
 {
 	MENUITEMINFO mi;
@@ -152,9 +152,9 @@ bool TINYPopupMenu::InsertSeparator(int index)
 	if(!InsertMenuItem(_menu,index,TRUE,&mi)) return false;
 	return true;
 }
-//Добавить сепаратор
+//Р”РѕР±Р°РІРёС‚СЊ СЃРµРїР°СЂР°С‚РѕСЂ
 bool TINYPopupMenu::AddSeparator() {return InsertSeparator(-1);}
-//Задизейблить меню
+//Р—Р°РґРёР·РµР№Р±Р»РёС‚СЊ РјРµРЅСЋ
 bool TINYPopupMenu::EnableItem(int index,bool enable)
 {
 	DWORD state;
@@ -162,13 +162,13 @@ bool TINYPopupMenu::EnableItem(int index,bool enable)
 	else state=MFS_DISABLED|MFS_GRAYED;
 	return SetItemState(index,state);
 }
-//Проверить задизейблен ли пункт меню
+//РџСЂРѕРІРµСЂРёС‚СЊ Р·Р°РґРёР·РµР№Р±Р»РµРЅ Р»Рё РїСѓРЅРєС‚ РјРµРЅСЋ
 bool TINYPopupMenu::GetEnableItem(int index)
 {
 	if(GetItemState(index)&MFS_ENABLED) return true;
 	return false;
 }
-//Поставить галочку
+//РџРѕСЃС‚Р°РІРёС‚СЊ РіР°Р»РѕС‡РєСѓ
 bool TINYPopupMenu::CheckItem(int index,bool check)
 {
 	DWORD state;
@@ -176,21 +176,21 @@ bool TINYPopupMenu::CheckItem(int index,bool check)
 	else state=MFS_UNCHECKED;
 	return SetItemState(index,state);
 }
-//Проверить галочку
+//РџСЂРѕРІРµСЂРёС‚СЊ РіР°Р»РѕС‡РєСѓ
 bool TINYPopupMenu::GetCheckItem(int index)
 {
 	if(GetItemState(index)&MFS_CHECKED) return true;
 	return false;
 }
-//Показать меню
+//РџРѕРєР°Р·Р°С‚СЊ РјРµРЅСЋ
 bool TINYPopupMenu::Track(TINYBaseWnd *parent,int x,int y)
 {
 	int nx,ny;
-	//Если x и y равны -1
-	//То показать меню в позиции курсора
+	//Р•СЃР»Рё x Рё y СЂР°РІРЅС‹ -1
+	//РўРѕ РїРѕРєР°Р·Р°С‚СЊ РјРµРЅСЋ РІ РїРѕР·РёС†РёРё РєСѓСЂСЃРѕСЂР°
 	if((x==-1)&&(y==-1))
 	{
-		//Получении позиции курсора 
+		//РџРѕР»СѓС‡РµРЅРёРё РїРѕР·РёС†РёРё РєСѓСЂСЃРѕСЂР° 
 		POINT point;
 		GetCursorPos(&point);
 		nx=point.x;

@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinytrackbar.cpp - Трекбар
-//© 2009-2010 Stepan Prokofjev
+//tinytrackbar.cpp - РўСЂРµРєР±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinytrackbar.h"
@@ -12,71 +12,71 @@ bool TINYTrackBar::Create(TINYBaseWnd *parent,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h)
 {
 	if(!TINYControlEx::Create(parent,0,TRACKBAR_CLASS,0,exstyle,style,x,y,w,h)) return false;
-	//Удалить стиль TBS_BOTH, если он не указан при создании
+	//РЈРґР°Р»РёС‚СЊ СЃС‚РёР»СЊ TBS_BOTH, РµСЃР»Рё РѕРЅ РЅРµ СѓРєР°Р·Р°РЅ РїСЂРё СЃРѕР·РґР°РЅРёРё
 	if(style!=(style|TBS_BOTH)) DelStyle(TBS_BOTH);
 	return true;
 }
-//Установить позицию
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР·РёС†РёСЋ
 bool TINYTrackBar::SetPos(int pos)
 {
 	if(!SendMessage(_hwnd,TBM_SETPOS,WPARAM(TRUE),LPARAM(pos))) return false;
 	return true;
 }
-//Получить позицию
+//РџРѕР»СѓС‡РёС‚СЊ РїРѕР·РёС†РёСЋ
 int TINYTrackBar::GetPos()
 {
 	return SendMessage(_hwnd,TBM_GETPOS,0,0);
 }
-//Установить минимальную и максимальную позиции
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РјРёРЅРёРјР°Р»СЊРЅСѓСЋ Рё РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёРё
 void TINYTrackBar::SetRange(int min,int max)
 {
 	SendMessage(_hwnd,TBM_SETRANGE,WPARAM(TRUE),MAKELPARAM(min,max));
 }
-//Получить минимальную позицию
+//РџРѕР»СѓС‡РёС‚СЊ РјРёРЅРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ
 int TINYTrackBar::GetMinRange()
 {
 	return SendMessage(_hwnd,TBM_GETRANGEMIN,0,0);
 }
-//Получить максимальную позицию
+//РџРѕР»СѓС‡РёС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ
 int TINYTrackBar::GetMaxRange()
 {
 	return SendMessage(_hwnd,TBM_GETRANGEMAX,0,0);
 }
-//Установить риску
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂРёСЃРєСѓ
 bool TINYTrackBar::SetTick(int pos)
 {
 	if(!SendMessage(_hwnd,TBM_SETTIC,0,LPARAM(pos))) return false;
 	return true;
 }
-//Получить позицию риски
+//РџРѕР»СѓС‡РёС‚СЊ РїРѕР·РёС†РёСЋ СЂРёСЃРєРё
 int TINYTrackBar::GetTick(int index)
 {
 	return SendMessage(_hwnd,TBM_GETTIC,WPARAM(index),0);
 }
-//Установить частоту рисок на трекбаре
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‡Р°СЃС‚РѕС‚Сѓ СЂРёСЃРѕРє РЅР° С‚СЂРµРєР±Р°СЂРµ
 bool TINYTrackBar::SetTickFrequency(int freq)
 {
 	if(!SendMessage(_hwnd,TBM_SETTICFREQ,WPARAM(freq),0)) return false;
 	return true;
 }
-//Установить боковые контролы
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р±РѕРєРѕРІС‹Рµ РєРѕРЅС‚СЂРѕР»С‹
 bool TINYTrackBar::SetBuddies(TINYBaseWnd *left,TINYBaseWnd *right)
 {
 	if((!left)||(!right)) return false;
-	//Установить левый контрол
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р»РµРІС‹Р№ РєРѕРЅС‚СЂРѕР»
 	SendMessage(_hwnd,TBM_SETBUDDY,WPARAM(TRUE),LPARAM(left->GetHWND()));
-	//Установить правый контрол
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїСЂР°РІС‹Р№ РєРѕРЅС‚СЂРѕР»
 	SendMessage(_hwnd,TBM_SETBUDDY,WPARAM(FALSE),LPARAM(right->GetHWND()));
 	return true;
 }
-//Получить левый контрол
+//РџРѕР»СѓС‡РёС‚СЊ Р»РµРІС‹Р№ РєРѕРЅС‚СЂРѕР»
 TINYBaseWnd* TINYTrackBar::GetLeftBuddy()
 {
 	HWND hwnd=HWND(SendMessage(_hwnd,TBM_GETBUDDY,WPARAM(TRUE),0));
 	if(!hwnd) return 0;
 	return TinyGetPointer(hwnd);
 }
-//Получить правый контрол
+//РџРѕР»СѓС‡РёС‚СЊ РїСЂР°РІС‹Р№ РєРѕРЅС‚СЂРѕР»
 TINYBaseWnd* TINYTrackBar::GetRightBuddy()
 {
 	HWND hwnd=HWND(SendMessage(_hwnd,TBM_GETBUDDY,WPARAM(FALSE),0));

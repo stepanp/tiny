@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinylistbox.cpp - Листбокс
-//© 2009-2010 Stepan Prokofjev
+//tinylistbox.cpp - Р›РёСЃС‚Р±РѕРєСЃ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinylistbox.h"
@@ -15,66 +15,66 @@ bool TINYListBox::Create(TINYBaseWnd *parent,DWORD exstyle,DWORD style,
 		exstyle,LBS_HASSTRINGS|LBS_NOTIFY|LBS_NOINTEGRALHEIGHT|style,
 		x,y,w,h);
 }
-//Вставить итем
+//Р’СЃС‚Р°РІРёС‚СЊ РёС‚РµРј
 int TINYListBox::InsertItem(int index,LPCWSTR text)
 {
 	if(!SendMessage(_hwnd,LB_INSERTSTRING,WPARAM(index),LPARAM(text))) return false;
 	return true;
 }
-//Добавить итем
+//Р”РѕР±Р°РІРёС‚СЊ РёС‚РµРј
 int TINYListBox::AddItem(LPCWSTR text)
 {
 	return InsertItem(-1,text);
 }
-//Удалить итем
+//РЈРґР°Р»РёС‚СЊ РёС‚РµРј
 bool TINYListBox::DeleteItem(int index)
 {
 	if(!SendMessage(_hwnd,LB_DELETESTRING,WPARAM(index),0)) return false;
 	return true;
 }
-//Получить кол-во итемов
+//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РёС‚РµРјРѕРІ
 int TINYListBox::GetCount()
 {
 	return SendMessage(_hwnd,LB_GETCOUNT,0,0);
 }
-//Выделить итем
+//Р’С‹РґРµР»РёС‚СЊ РёС‚РµРј
 bool TINYListBox::SetSel(int index)
 {
 	if(!SendMessage(_hwnd,LB_SETCURSEL,WPARAM(index),0)) return false;
 	return true;
 }
-//Получить текущий выделенный итем
+//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСѓС‰РёР№ РІС‹РґРµР»РµРЅРЅС‹Р№ РёС‚РµРј
 int TINYListBox::GetSel()
 {
 	return SendMessage(_hwnd,LB_GETCURSEL,0,0);
 }
-//Установить дополнительное значение
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
 bool TINYListBox::SetItemData(int index,LPARAM data)
 {
 	if(!SendMessage(_hwnd,LB_SETITEMDATA,WPARAM(index),data)) return false;
 	return true;
 }
-//Получить дополнительное значение
+//РџРѕР»СѓС‡РёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
 LPARAM TINYListBox::GetItemData(int index)
 {
 	return SendMessage(_hwnd,LB_GETITEMDATA,WPARAM(index),0);
 }
-//Очистить
+//РћС‡РёСЃС‚РёС‚СЊ
 bool TINYListBox::Clear()
 {
 	if(!SendMessage(_hwnd,LB_RESETCONTENT,0,0)) return false;
 	return true;
 }
-//Установить текст итема
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
 bool TINYListBox::SetItemText(int index,LPCWSTR text)
 {
-	LPARAM data=GetItemData(index);//Сохранить дополнительное значение итема
-	if(!DeleteItem(index)) return false;//Удалить итем
-	if(!InsertItem(index,text)) return false;//Вставить новый итем
-	//Установить дополнительное значение итема
+	LPARAM data=GetItemData(index);//РЎРѕС…СЂР°РЅРёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
+	if(!DeleteItem(index)) return false;//РЈРґР°Р»РёС‚СЊ РёС‚РµРј
+	if(!InsertItem(index,text)) return false;//Р’СЃС‚Р°РІРёС‚СЊ РЅРѕРІС‹Р№ РёС‚РµРј
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
 	return SetItemData(index,data);
 }
-//Получить текст итема
+//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
 TINYStr TINYListBox::GetItemText(int index)
 {
 	wchar_t *text=new wchar_t[GetItemTextLen(index)];
@@ -83,47 +83,47 @@ TINYStr TINYListBox::GetItemText(int index)
 	delete[] text;
 	return str;
 }
-//Получить длину текста итема
+//РџРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ С‚РµРєСЃС‚Р° РёС‚РµРјР°
 int TINYListBox::GetItemTextLen(int index)
 {
 	return SendMessage(_hwnd,LB_GETTEXTLEN,WPARAM(index),0);
 }
-//Получить индекс итема по координатам
+//РџРѕР»СѓС‡РёС‚СЊ РёРЅРґРµРєСЃ РёС‚РµРјР° РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј
 int TINYListBox::GetItemFromPoint(int x,int y)
 {
 	return SendMessage(_hwnd,LB_ITEMFROMPOINT,0,MAKELPARAM(x,y));
 }
 
-//Функции выделения нескольких итемов (LBS_MULTIPLESEL)
-//Получить кол-во выделенных итемов 
+//Р¤СѓРЅРєС†РёРё РІС‹РґРµР»РµРЅРёСЏ РЅРµСЃРєРѕР»СЊРєРёС… РёС‚РµРјРѕРІ (LBS_MULTIPLESEL)
+//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РІС‹РґРµР»РµРЅРЅС‹С… РёС‚РµРјРѕРІ 
 int TINYListBox::GetMultiSelCount()
 {
 	return SendMessage(_hwnd,LB_GETSELCOUNT,0,0);
 }
-//Выделить итем
-bool TINYListBox::SetMultiSel(int index,bool sel/*Выделить/Снять выдление*/)
+//Р’С‹РґРµР»РёС‚СЊ РёС‚РµРј
+bool TINYListBox::SetMultiSel(int index,bool sel/*Р’С‹РґРµР»РёС‚СЊ/РЎРЅСЏС‚СЊ РІС‹РґР»РµРЅРёРµ*/)
 {
 	if(!SendMessage(_hwnd,LB_SETSEL,WPARAM(sel),LPARAM(index))) return false;
 	return true;
 }
-//Проверить выделен ли итем
+//РџСЂРѕРІРµСЂРёС‚СЊ РІС‹РґРµР»РµРЅ Р»Рё РёС‚РµРј
 bool TINYListBox::CheckMultiSel(int index)
 {
 	if(!SendMessage(_hwnd,LB_GETSEL,WPARAM(index),0)) return false;	
 	return true;
 }
-//Получить массив индексов выделенных итемов
+//РџРѕР»СѓС‡РёС‚СЊ РјР°СЃСЃРёРІ РёРЅРґРµРєСЃРѕРІ РІС‹РґРµР»РµРЅРЅС‹С… РёС‚РµРјРѕРІ
 TINYArr<int> TINYListBox::GetMultiSel()
 {
-	int count=GetMultiSelCount();//Кол-во выделенных итемов
-	//Создание массива размером по кол-ву итемов
+	int count=GetMultiSelCount();//РљРѕР»-РІРѕ РІС‹РґРµР»РµРЅРЅС‹С… РёС‚РµРјРѕРІ
+	//РЎРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР° СЂР°Р·РјРµСЂРѕРј РїРѕ РєРѕР»-РІСѓ РёС‚РµРјРѕРІ
 	TINYArr<int> items(count);
-	//Заполнить массив индексами выделенных итемов
+	//Р—Р°РїРѕР»РЅРёС‚СЊ РјР°СЃСЃРёРІ РёРЅРґРµРєСЃР°РјРё РІС‹РґРµР»РµРЅРЅС‹С… РёС‚РµРјРѕРІ
 	SendMessage(_hwnd,LB_GETSELITEMS,
 		WPARAM(count),LPARAM(items.GetPointer()));
 	return items;
 }
-//Снять выделение
+//РЎРЅСЏС‚СЊ РІС‹РґРµР»РµРЅРёРµ
 bool TINYListBox::ClearMultiSel()
 {
 	return SetMultiSel(-1,false);

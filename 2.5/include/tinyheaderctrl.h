@@ -1,7 +1,7 @@
-//-----------------------------
+п»ї//-----------------------------
 //tiny 2.5
-//tinybuttons.h - Хидер контрол
-//© 2009-2010 Stepan Prokofjev
+//tinybuttons.h - РҐРёРґРµСЂ РєРѕРЅС‚СЂРѕР»
+//В© 2009-2010 Stepan Prokofjev
 //-----------------------------
 
 #pragma once
@@ -16,18 +16,18 @@ class TINYHeaderCtrl: public TINYControlEx
 public:
 	bool Create(TINYBaseWnd *parent,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h);
-	int InsertItem(int index,LPCWSTR text,int w,int fmt);//Вставить итем
-	int AddItem(LPCWSTR text,int w,int fmt);//Добавить итем
-	bool SetItemText(int index,LPCWSTR text);//Установить текст
-	bool SetItemImage(int index,int image);//Установить индекс картинки
-	bool SetItemData(int index,LPARAM data);//Установить значение итема
-	bool SetItemFormat(int index,int fmt);//Установить формат итема
-	TINYStr GetItemText(int index);//Получить текст итема
-	int GetItemImage(int index);//Получить индекс картинки
-	LPARAM GetItemData(int index);//Получить значение итема
-	int GetItemFormat(int index);//Получить формат итема
-	int GetItemCount();//Получить кол-во итемов
-	bool SetImageList(TINYImageList *list);//Установить имаджлист
+	int InsertItem(int index,LPCWSTR text,int w,int fmt);//Р’СЃС‚Р°РІРёС‚СЊ РёС‚РµРј
+	int AddItem(LPCWSTR text,int w,int fmt);//Р”РѕР±Р°РІРёС‚СЊ РёС‚РµРј
+	bool SetItemText(int index,LPCWSTR text);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚
+	bool SetItemImage(int index,int image);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРЅРґРµРєСЃ РєР°СЂС‚РёРЅРєРё
+	bool SetItemData(int index,LPARAM data);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
+	bool SetItemFormat(int index,int fmt);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С„РѕСЂРјР°С‚ РёС‚РµРјР°
+	TINYStr GetItemText(int index);//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
+	int GetItemImage(int index);//РџРѕР»СѓС‡РёС‚СЊ РёРЅРґРµРєСЃ РєР°СЂС‚РёРЅРєРё
+	LPARAM GetItemData(int index);//РџРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
+	int GetItemFormat(int index);//РџРѕР»СѓС‡РёС‚СЊ С„РѕСЂРјР°С‚ РёС‚РµРјР°
+	int GetItemCount();//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РёС‚РµРјРѕРІ
+	bool SetImageList(TINYImageList *list);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚
 	
 };
 

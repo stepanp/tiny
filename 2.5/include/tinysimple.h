@@ -1,15 +1,15 @@
-//-------------------------------
+п»ї//-------------------------------
 //tiny 2.5
-//tinysimple.h - простые контролы
-//© 2009-2010 Stepan Prokofjev
+//tinysimple.h - РїСЂРѕСЃС‚С‹Рµ РєРѕРЅС‚СЂРѕР»С‹
+//В© 2009-2010 Stepan Prokofjev
 //-------------------------------
 
 #pragma once
 
 #include "tinybase.h"
-#include "tinybuttons.h"//Кнопка, чекбокс и т.п.
-#include "tinyedit.h"//Едит
-#include "tinycombobox.h"//Комбобокс
-#include "tinylistbox.h"//Листбокс
-#include "tinystatic.h"//Статик
-#include "tinycontainer.h"//Окно-контейнер
+#include "tinybuttons.h"//РљРЅРѕРїРєР°, С‡РµРєР±РѕРєСЃ Рё С‚.Рї.
+#include "tinyedit.h"//Р•РґРёС‚
+#include "tinycombobox.h"//РљРѕРјР±РѕР±РѕРєСЃ
+#include "tinylistbox.h"//Р›РёСЃС‚Р±РѕРєСЃ
+#include "tinystatic.h"//РЎС‚Р°С‚РёРє
+#include "tinycontainer.h"//РћРєРЅРѕ-РєРѕРЅС‚РµР№РЅРµСЂ

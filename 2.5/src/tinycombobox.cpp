@@ -1,7 +1,7 @@
-//----------------------------
+ï»¿//----------------------------
 //tiny 2.5
-//tinycombobox.cpp - Êîìáîáîêñ
-//© 2009-2010 Stepan Prokofjev
+//tinycombobox.cpp - ÐšÐ¾Ð¼Ð±Ð¾Ð±Ð¾ÐºÑ
+//Â© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinycombobox.h"
@@ -10,64 +10,64 @@ using namespace tiny;
 
 TINYComboBox::TINYComboBox()
 {
-	_oncustomcmd.Connect(this,&TINYComboBox::_OnCustomCmd);//Êàñòîìíàÿ îáðàáîòêà êîìàíä
+	_oncustomcmd.Connect(this,&TINYComboBox::_OnCustomCmd);//ÐšÐ°ÑÑ‚Ð¾Ð¼Ð½Ð°Ñ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° ÐºÐ¾Ð¼Ð°Ð½Ð´
 }
 
 bool TINYComboBox::Create(TINYBaseWnd *parent)
 {
 	return TINYControl::Create(parent,L"COMBOBOX",0,0,CBS_HASSTRINGS,0,0,100,21);
 }
-//Âñòàâèòü èòåì
+//Ð’ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ð¸Ñ‚ÐµÐ¼
 bool TINYComboBox::InsertItem(int index,LPCWSTR text)
 {
 	if(!SendMessage(_hwnd,CB_INSERTSTRING,WPARAM(index),LPARAM(text))) return false;
 	return true;
 }
-//Äîáàâèòü èòåì
+//Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¸Ñ‚ÐµÐ¼
 bool TINYComboBox::AddItem(LPCWSTR text)
 {
 	return InsertItem(-1,text);
 }
-//Óäàëèòü èòåì
+//Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¸Ñ‚ÐµÐ¼
 bool TINYComboBox::DeleteItem(int index)
 {
 	if(!SendMessage(_hwnd,CB_DELETESTRING,WPARAM(index),0)) return false;
 	return true;
 }
-//Ïîëó÷èòü êîë-âî èòåìîâ
+//ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ ÐºÐ¾Ð»-Ð²Ð¾ Ð¸Ñ‚ÐµÐ¼Ð¾Ð²
 int TINYComboBox::GetCount()
 {
 	return SendMessage(_hwnd,CB_GETCOUNT,0,0);
 }
-//Âûäåëèòü èòåì
+//Ð’Ñ‹Ð´ÐµÐ»Ð¸Ñ‚ÑŒ Ð¸Ñ‚ÐµÐ¼
 bool TINYComboBox::SetSel(int index)
 {
 	if(!SendMessage(_hwnd,CB_SETCURSEL,WPARAM(index),0)) return false;
 	return true;
 }
-//Ïîëó÷èòü òåêóùèé âûäåëåííûé èòåì
+//ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ñ‚ÐµÐ¼
 int TINYComboBox::GetSel()
 {
 	return SendMessage(_hwnd,CB_GETCURSEL,0,0);
 }
-//Óñòàíîâèòü äîïîëíèòåëüíîå çíà÷åíèå
+//Ð£ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ
 bool TINYComboBox::SetItemData(int index,LPARAM data)
 {
 	if(!SendMessage(_hwnd,CB_SETITEMDATA,WPARAM(index),data)) return false;
 	return true;
 }
-//Ïîëó÷èòü äîïîëíèòåëüíîå çíà÷åíèå
+//ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ
 LPARAM TINYComboBox::GetItemData(int index)
 {
 	return SendMessage(_hwnd,CB_GETITEMDATA,WPARAM(index),0);
 }
-//Î÷èñòèòü
+//ÐžÑ‡Ð¸ÑÑ‚Ð¸Ñ‚ÑŒ
 bool TINYComboBox::Clear()
 {
 	if(!SendMessage(_hwnd,CB_RESETCONTENT,0,0)) return false;
 	return true;
 }
-//Ïîëó÷èòü òåêñò èòåìà
+//ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ñ‚ÐµÐºÑÑ‚ Ð¸Ñ‚ÐµÐ¼Ð°
 TINYStr TINYComboBox::GetItemText(int index)
 {
 	wchar_t *text=new wchar_t[GetItemTextLength(index)];
@@ -76,18 +76,18 @@ TINYStr TINYComboBox::GetItemText(int index)
 	delete[] text;
 	return str;
 }
-//Ïîëó÷èòü äëèíó òåêñòà èòåìà
+//ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð»Ð¸Ð½Ñƒ Ñ‚ÐµÐºÑÑ‚Ð° Ð¸Ñ‚ÐµÐ¼Ð°
 int TINYComboBox::GetItemTextLength(int index)
 {
 	return SendMessage(_hwnd,CB_GETLBTEXTLEN,WPARAM(index),0);
 }
-//Êàñòîìíàÿ îáðàáîòêà êîìàíä
+//ÐšÐ°ÑÑ‚Ð¾Ð¼Ð½Ð°Ñ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° ÐºÐ¾Ð¼Ð°Ð½Ð´
 LRESULT TINYComboBox::_OnCustomCmd(TINYBaseWnd* wnd,TINYParams params)
 {
-	//Ïàðàìåòðû êîìàíäû
+	//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹
 	TINYMSGPARAMS* cmd=(TINYMSGPARAMS*)(params);
 
-	//Âûçîâ îáðàáîò÷èêîâ ñîáûòèé
+	//Ð’Ñ‹Ð·Ð¾Ð² Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸ÐºÐ¾Ð² ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ð¹
 	switch(cmd->code)
 	{
 	case CBN_CLOSEUP:

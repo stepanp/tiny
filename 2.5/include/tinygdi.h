@@ -1,36 +1,36 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinygdi.h - Объекты GDI и DC
-//© 2009-2010 Stepan Prokofjev
+//tinygdi.h - РћР±СЉРµРєС‚С‹ GDI Рё DC
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
 
 #include "tinyobject.h"
-#pragma comment(lib,"Msimg32.lib")//Для градиента
+#pragma comment(lib,"Msimg32.lib")//Р”Р»СЏ РіСЂР°РґРёРµРЅС‚Р°
 
 namespace tiny{
 
 class TINYDC;
 
 //------------------
-//Базовый объект GDI
+//Р‘Р°Р·РѕРІС‹Р№ РѕР±СЉРµРєС‚ GDI
 //------------------
 class TINYGDIObject: public TINYObject
 {
 public:
 	TINYGDIObject();
 protected:
-	HGDIOBJ _hobj;//Объект GDI
+	HGDIOBJ _hobj;//РћР±СЉРµРєС‚ GDI
 public:
-	HGDIOBJ GetHGDIOBJ();//Получить HGDIOBJ
-	bool Attach(HGDIOBJ hobj);//Связать с HGDIOBJ
-	bool Delete();//Удалить объект GDI
+	HGDIOBJ GetHGDIOBJ();//РџРѕР»СѓС‡РёС‚СЊ HGDIOBJ
+	bool Attach(HGDIOBJ hobj);//РЎРІСЏР·Р°С‚СЊ СЃ HGDIOBJ
+	bool Delete();//РЈРґР°Р»РёС‚СЊ РѕР±СЉРµРєС‚ GDI
 	operator HGDIOBJ();	
 };
 
 //------
-//Битмап
+//Р‘РёС‚РјР°Рї
 //------
 class TINYBitmap: public TINYGDIObject
 {
@@ -39,18 +39,18 @@ public:
 	TINYBitmap(UINT bmp);
 	TINYBitmap(int w,int h,int bpp,void *bits);
 public:
-	HBITMAP GetHBITMAP();//Получить HBTIMAP
-	bool Create(int w,int h,int bpp/*Кол-во битов на пиксель*/,
-		void* bits/*Указатель на массив пикселей*/);
-	bool LoadBitmap(UINT bmp);//Загрузить битмап
-	bool CreateCompatibleBitmap(TINYDC* dc,int w,int h);//Создать совместимый битмап
-	int GetW();//Получить ширину
-	int GetH();//Получить высоту
+	HBITMAP GetHBITMAP();//РџРѕР»СѓС‡РёС‚СЊ HBTIMAP
+	bool Create(int w,int h,int bpp/*РљРѕР»-РІРѕ Р±РёС‚РѕРІ РЅР° РїРёРєСЃРµР»СЊ*/,
+		void* bits/*РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РјР°СЃСЃРёРІ РїРёРєСЃРµР»РµР№*/);
+	bool LoadBitmap(UINT bmp);//Р—Р°РіСЂСѓР·РёС‚СЊ Р±РёС‚РјР°Рї
+	bool CreateCompatibleBitmap(TINYDC* dc,int w,int h);//РЎРѕР·РґР°С‚СЊ СЃРѕРІРјРµСЃС‚РёРјС‹Р№ Р±РёС‚РјР°Рї
+	int GetW();//РџРѕР»СѓС‡РёС‚СЊ С€РёСЂРёРЅСѓ
+	int GetH();//РџРѕР»СѓС‡РёС‚СЊ РІС‹СЃРѕС‚Сѓ
 	operator HBITMAP();	
 };
 
 //-----
-//Кисть
+//РљРёСЃС‚СЊ
 //-----
 class TINYBrush: public TINYGDIObject
 {
@@ -59,15 +59,15 @@ public:
 	TINYBrush(TINYBitmap* bmp);
 	TINYBrush(COLORREF color);
 public:
-	HBRUSH GetHBRUSH();//Получить HBRUSH
-	bool CreateBitmapBrush(TINYBitmap* bmp);//Создать кисть из битмапа
-	bool CreateSolidBrush(COLORREF color);//Создать обычную кисть
-	bool CreateSysColorBrush(int color);//Создать кисть системного цвета
+	HBRUSH GetHBRUSH();//РџРѕР»СѓС‡РёС‚СЊ HBRUSH
+	bool CreateBitmapBrush(TINYBitmap* bmp);//РЎРѕР·РґР°С‚СЊ РєРёСЃС‚СЊ РёР· Р±РёС‚РјР°РїР°
+	bool CreateSolidBrush(COLORREF color);//РЎРѕР·РґР°С‚СЊ РѕР±С‹С‡РЅСѓСЋ РєРёСЃС‚СЊ
+	bool CreateSysColorBrush(int color);//РЎРѕР·РґР°С‚СЊ РєРёСЃС‚СЊ СЃРёСЃС‚РµРјРЅРѕРіРѕ С†РІРµС‚Р°
 	operator HBRUSH();	
 };
 
 //----
-//Перо
+//РџРµСЂРѕ
 //----
 class TINYPen: public TINYGDIObject
 {
@@ -75,45 +75,45 @@ public:
 	TINYPen();
 	TINYPen(int style,int w,COLORREF color);
 public:
-	HPEN GetHPEN();//Получить HPEN
-	bool Create(int style,int w,COLORREF color);//Создать перо
+	HPEN GetHPEN();//РџРѕР»СѓС‡РёС‚СЊ HPEN
+	bool Create(int style,int w,COLORREF color);//РЎРѕР·РґР°С‚СЊ РїРµСЂРѕ
 	operator HPEN();	
 };
 
 //-----
-//Шрифт
+//РЁСЂРёС„С‚
 //-----
 class TINYFont: public TINYGDIObject
 {
 public:
-	HFONT GetHFONT();//Получить HFONT
-	bool GetDefaultFont();//Получить стандартный шрифт
-	//Создать шрифт
-	bool Create(LPCWSTR name,//L"Default" - стандартный шрифт
-		int size,//0 - стандартный размер
-		bool bold,//Жирный
-		bool italic=false,//Наклонный
-		bool underline=false,//Подчеркнутый
-		bool strikeout=false);//Зачеркнутый
+	HFONT GetHFONT();//РџРѕР»СѓС‡РёС‚СЊ HFONT
+	bool GetDefaultFont();//РџРѕР»СѓС‡РёС‚СЊ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ С€СЂРёС„С‚
+	//РЎРѕР·РґР°С‚СЊ С€СЂРёС„С‚
+	bool Create(LPCWSTR name,//L"Default" - СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ С€СЂРёС„С‚
+		int size,//0 - СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ СЂР°Р·РјРµСЂ
+		bool bold,//Р–РёСЂРЅС‹Р№
+		bool italic=false,//РќР°РєР»РѕРЅРЅС‹Р№
+		bool underline=false,//РџРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№
+		bool strikeout=false);//Р—Р°С‡РµСЂРєРЅСѓС‚С‹Р№
 	operator HFONT();
 };
 
 //------
-//Регион
+//Р РµРіРёРѕРЅ
 //------
 class TINYRgn: public TINYGDIObject
 {
 public:
-	HRGN GetHRGN();//Получить HRGN
-	bool CreateRectRgn(RECT rect);//Создать регион по области
-	bool CreateEllipticRgn(RECT rect);//Создать овальный регион
-	//Создать регион с закругленными краями
+	HRGN GetHRGN();//РџРѕР»СѓС‡РёС‚СЊ HRGN
+	bool CreateRectRgn(RECT rect);//РЎРѕР·РґР°С‚СЊ СЂРµРіРёРѕРЅ РїРѕ РѕР±Р»Р°СЃС‚Рё
+	bool CreateEllipticRgn(RECT rect);//РЎРѕР·РґР°С‚СЊ РѕРІР°Р»СЊРЅС‹Р№ СЂРµРіРёРѕРЅ
+	//РЎРѕР·РґР°С‚СЊ СЂРµРіРёРѕРЅ СЃ Р·Р°РєСЂСѓРіР»РµРЅРЅС‹РјРё РєСЂР°СЏРјРё
 	bool CreateRoundRectRgn(RECT rect,
-		int corw,//Закругление угла по горизонтали
-		int corh//Закругление угла по вертикали
+		int corw,//Р—Р°РєСЂСѓРіР»РµРЅРёРµ СѓРіР»Р° РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+		int corh//Р—Р°РєСЂСѓРіР»РµРЅРёРµ СѓРіР»Р° РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 		);
-	bool CombineRgn(TINYRgn *rgn1,TINYRgn *rgn2,int mode);//Обьединить регионы 
-	//bool SetToWindow(TINYBaseWnd *wnd);//Установить регион окну
+	bool CombineRgn(TINYRgn *rgn1,TINYRgn *rgn2,int mode);//РћР±СЊРµРґРёРЅРёС‚СЊ СЂРµРіРёРѕРЅС‹ 
+	//bool SetToWindow(TINYBaseWnd *wnd);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂРµРіРёРѕРЅ РѕРєРЅСѓ
 	operator HRGN();
 };
 
@@ -125,72 +125,72 @@ class TINYDC: public TINYObject
 protected:
 	HDC _dc;//HDC
 	PAINTSTRUCT _ps;
-	HWND _parent;//Родительское окно(для Begin/EndPaint)
+	HWND _parent;//Р РѕРґРёС‚РµР»СЊСЃРєРѕРµ РѕРєРЅРѕ(РґР»СЏ Begin/EndPaint)
 public:
 
-	//Функции DC
-	HDC GetHDC();//Получить HDC
-	bool Attach(HDC hdc);//Связать с HDC
-	bool CreateCompatibleDC(TINYDC *dc);//Создать совместимый DC
-	bool Delete();//Удалить DC
-	bool Release(HWND wnd);//Освободить DC
-	bool GetDC(HWND hwnd);//Получить DC окна
-	RECT GetClipBox();//Получить размеры DC
+	//Р¤СѓРЅРєС†РёРё DC
+	HDC GetHDC();//РџРѕР»СѓС‡РёС‚СЊ HDC
+	bool Attach(HDC hdc);//РЎРІСЏР·Р°С‚СЊ СЃ HDC
+	bool CreateCompatibleDC(TINYDC *dc);//РЎРѕР·РґР°С‚СЊ СЃРѕРІРјРµСЃС‚РёРјС‹Р№ DC
+	bool Delete();//РЈРґР°Р»РёС‚СЊ DC
+	bool Release(HWND wnd);//РћСЃРІРѕР±РѕРґРёС‚СЊ DC
+	bool GetDC(HWND hwnd);//РџРѕР»СѓС‡РёС‚СЊ DC РѕРєРЅР°
+	RECT GetClipBox();//РџРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂС‹ DC
 	bool BitBlt(int x,int y,int w,int h,
-		TINYDC *src,int nx,int ny,DWORD mode);//Скопировать содержимое
-	bool BeginPaint(HWND parent/*Родительское окно*/);//Начать рисование
-	bool EndPaint();//Закончить рисование
+		TINYDC *src,int nx,int ny,DWORD mode);//РЎРєРѕРїРёСЂРѕРІР°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ
+	bool BeginPaint(HWND parent/*Р РѕРґРёС‚РµР»СЊСЃРєРѕРµ РѕРєРЅРѕ*/);//РќР°С‡Р°С‚СЊ СЂРёСЃРѕРІР°РЅРёРµ
+	bool EndPaint();//Р—Р°РєРѕРЅС‡РёС‚СЊ СЂРёСЃРѕРІР°РЅРёРµ
 
-	//Функции рисования текста
-	bool TextOut(LPCWSTR text,int x,int y);//Вывести текст
-	bool DrawText(LPCWSTR text,RECT rect,UINT format);//Отрисовать текст
-	bool SetTextColor(COLORREF color);//Установить цвет текста
+	//Р¤СѓРЅРєС†РёРё СЂРёСЃРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°
+	bool TextOut(LPCWSTR text,int x,int y);//Р’С‹РІРµСЃС‚Рё С‚РµРєСЃС‚
+	bool DrawText(LPCWSTR text,RECT rect,UINT format);//РћС‚СЂРёСЃРѕРІР°С‚СЊ С‚РµРєСЃС‚
+	bool SetTextColor(COLORREF color);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С†РІРµС‚ С‚РµРєСЃС‚Р°
 
-	//Функции рисования
-	bool FillRect(RECT rect,TINYBrush* brush);//Заполнить область
-	//Градиентная заливка
+	//Р¤СѓРЅРєС†РёРё СЂРёСЃРѕРІР°РЅРёСЏ
+	bool FillRect(RECT rect,TINYBrush* brush);//Р—Р°РїРѕР»РЅРёС‚СЊ РѕР±Р»Р°СЃС‚СЊ
+	//Р“СЂР°РґРёРµРЅС‚РЅР°СЏ Р·Р°Р»РёРІРєР°
 	bool FillGradient(RECT rect,
-		COLORREF clrbegin,//Цвет начала градиента
-		COLORREF clrend,//Цвет конца градиента
-		bool vert//Вертикально или горизонтально 
+		COLORREF clrbegin,//Р¦РІРµС‚ РЅР°С‡Р°Р»Р° РіСЂР°РґРёРµРЅС‚Р°
+		COLORREF clrend,//Р¦РІРµС‚ РєРѕРЅС†Р° РіСЂР°РґРёРµРЅС‚Р°
+		bool vert//Р’РµСЂС‚РёРєР°Р»СЊРЅРѕ РёР»Рё РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕ 
 		);
-	bool DrawRectangle(RECT rect);//Рарисовать прямоугольник
-	//Нарисовать прямоугольник с закругленными краями
+	bool DrawRectangle(RECT rect);//Р Р°СЂРёСЃРѕРІР°С‚СЊ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє
+	//РќР°СЂРёСЃРѕРІР°С‚СЊ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє СЃ Р·Р°РєСЂСѓРіР»РµРЅРЅС‹РјРё РєСЂР°СЏРјРё
 	bool DrawRoundRect(RECT rect,
-		int corw,//Закругление угла по горизонтали
-		int corh//Закругление угла по вертикали
+		int corw,//Р—Р°РєСЂСѓРіР»РµРЅРёРµ СѓРіР»Р° РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+		int corh//Р—Р°РєСЂСѓРіР»РµРЅРёРµ СѓРіР»Р° РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 		);
-	bool DrawEllipse(RECT rect);//Нарисовать эллипс
-	bool DrawFocusRect(RECT rect);//Нарисовать рамку фокуса
+	bool DrawEllipse(RECT rect);//РќР°СЂРёСЃРѕРІР°С‚СЊ СЌР»Р»РёРїСЃ
+	bool DrawFocusRect(RECT rect);//РќР°СЂРёСЃРѕРІР°С‚СЊ СЂР°РјРєСѓ С„РѕРєСѓСЃР°
 
-	//Функции рисования линий
-	bool MoveTo(int x,int y);//Текущая позиция
-	bool LineTo(int x,int y);//Нарисовать линию
+	//Р¤СѓРЅРєС†РёРё СЂРёСЃРѕРІР°РЅРёСЏ Р»РёРЅРёР№
+	bool MoveTo(int x,int y);//РўРµРєСѓС‰Р°СЏ РїРѕР·РёС†РёСЏ
+	bool LineTo(int x,int y);//РќР°СЂРёСЃРѕРІР°С‚СЊ Р»РёРЅРёСЋ
 
-	//Функции работы с фоном и т.п.
-	bool SetPixel(int x,int y,COLORREF color);//Установить цвет пикселя
-	COLORREF GetPixel(int x,int y);//Получить цвет пикселя
-	bool SetBkColor(COLORREF color);//Установить цвет фона
-	COLORREF GetBkColor();//Получить цвет фона
-	bool SetBkMode(int mode);//Установить режим фона(Прозрачный/Непрозрачный)
-	int GetBkMode();//Получить режим фона(Прозрачный/Непрозрачный)
+	//Р¤СѓРЅРєС†РёРё СЂР°Р±РѕС‚С‹ СЃ С„РѕРЅРѕРј Рё С‚.Рї.
+	bool SetPixel(int x,int y,COLORREF color);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С†РІРµС‚ РїРёРєСЃРµР»СЏ
+	COLORREF GetPixel(int x,int y);//РџРѕР»СѓС‡РёС‚СЊ С†РІРµС‚ РїРёРєСЃРµР»СЏ
+	bool SetBkColor(COLORREF color);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С†РІРµС‚ С„РѕРЅР°
+	COLORREF GetBkColor();//РџРѕР»СѓС‡РёС‚СЊ С†РІРµС‚ С„РѕРЅР°
+	bool SetBkMode(int mode);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂРµР¶РёРј С„РѕРЅР°(РџСЂРѕР·СЂР°С‡РЅС‹Р№/РќРµРїСЂРѕР·СЂР°С‡РЅС‹Р№)
+	int GetBkMode();//РџРѕР»СѓС‡РёС‚СЊ СЂРµР¶РёРј С„РѕРЅР°(РџСЂРѕР·СЂР°С‡РЅС‹Р№/РќРµРїСЂРѕР·СЂР°С‡РЅС‹Р№)
 
-	//Функции работы с объектами GDI
-	bool SelectObject(TINYGDIObject* obj);//Выбрать обьект
+	//Р¤СѓРЅРєС†РёРё СЂР°Р±РѕС‚С‹ СЃ РѕР±СЉРµРєС‚Р°РјРё GDI
+	bool SelectObject(TINYGDIObject* obj);//Р’С‹Р±СЂР°С‚СЊ РѕР±СЊРµРєС‚
 };
 
 //--------------------------
-//DC c двойной буфферизацией
+//DC c РґРІРѕР№РЅРѕР№ Р±СѓС„С„РµСЂРёР·Р°С†РёРµР№
 //--------------------------
 class TINYDBDC: public TINYDC
 {
 protected:
-	TINYDC _memdc;//Задний буффер
-	TINYBitmap _membmp;//Совместимый битмап для заднего буффера
+	TINYDC _memdc;//Р—Р°РґРЅРёР№ Р±СѓС„С„РµСЂ
+	TINYBitmap _membmp;//РЎРѕРІРјРµСЃС‚РёРјС‹Р№ Р±РёС‚РјР°Рї РґР»СЏ Р·Р°РґРЅРµРіРѕ Р±СѓС„С„РµСЂР°
 public:
-	TINYDC* GetMemDC();//Получить задний буффер
-	bool InitDoubleBuffer();//Инитиализация двойной буфферизации
-	bool DrawDoubleBuffer();//Отрисовать задний буффер
+	TINYDC* GetMemDC();//РџРѕР»СѓС‡РёС‚СЊ Р·Р°РґРЅРёР№ Р±СѓС„С„РµСЂ
+	bool InitDoubleBuffer();//РРЅРёС‚РёР°Р»РёР·Р°С†РёСЏ РґРІРѕР№РЅРѕР№ Р±СѓС„С„РµСЂРёР·Р°С†РёРё
+	bool DrawDoubleBuffer();//РћС‚СЂРёСЃРѕРІР°С‚СЊ Р·Р°РґРЅРёР№ Р±СѓС„С„РµСЂ
 };
 
 };

@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinystatusbar.h - Статусбар
-//© 2009-2010 Stepan Prokofjev
+//tinystatusbar.h - РЎС‚Р°С‚СѓСЃР±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -10,39 +10,39 @@
 
 namespace tiny{
 
-//Структура части статусбара
+//РЎС‚СЂСѓРєС‚СѓСЂР° С‡Р°СЃС‚Рё СЃС‚Р°С‚СѓСЃР±Р°СЂР°
 struct TINYSTATUS
 {
-	int w;//Ширина
-	LPCWSTR text;//Текст
-	HICON icon;//Иконка
-	bool hide;//Скрывать часть
+	int w;//РЁРёСЂРёРЅР°
+	LPCWSTR text;//РўРµРєСЃС‚
+	HICON icon;//РРєРѕРЅРєР°
+	bool hide;//РЎРєСЂС‹РІР°С‚СЊ С‡Р°СЃС‚СЊ
 };
 
 class TINYStatusBar: public TINYControlEx
 {
 protected:
-	TINYArr<TINYSTATUS> _parts;//Массив частей
-	bool _UpdateParts();//Обновить части
-	bool _CheckIndex(int index);//Проверка индекса
+	TINYArr<TINYSTATUS> _parts;//РњР°СЃСЃРёРІ С‡Р°СЃС‚РµР№
+	bool _UpdateParts();//РћР±РЅРѕРІРёС‚СЊ С‡Р°СЃС‚Рё
+	bool _CheckIndex(int index);//РџСЂРѕРІРµСЂРєР° РёРЅРґРµРєСЃР°
 public:
 	bool Attach(HWND hwnd);
 	bool Create(TINYBaseWnd *parent);
-	bool InsertPart(int index,int w,LPCWSTR text,HICON icon);//Вставить часть
-	bool AddPart(int w,LPCWSTR text,HICON icon);//Добавить часть
-	bool DeletePart(int index);//Удалить часть
-	bool MovePart(int index,int nindex);//Передвинуть часть
-	bool ShowPart(int index,bool show);//Скрыть/показать часть
-	bool GetShowPart(int index);//Проверить показана ли часть
-	bool Clear();//Удалить все части
-	int GetPartCount();//Получить кол-во частей
-	bool SetPartW(int index,int w);//Установить ширину части
-	int GetPartW(int index);//Получить ширину части
-	bool SetPartIcon(int index,HICON icon);//Установить иконку для части
-	HICON GetPartIcon(int index);//Получить иконку части
-	bool SetPartText(int index,PCWSTR text);//Установить текст части
-	int GetPartText(int index,LPWSTR text);//Получить текст части
-	int GetPartTextLen(int index);//Получить длину текста
+	bool InsertPart(int index,int w,LPCWSTR text,HICON icon);//Р’СЃС‚Р°РІРёС‚СЊ С‡Р°СЃС‚СЊ
+	bool AddPart(int w,LPCWSTR text,HICON icon);//Р”РѕР±Р°РІРёС‚СЊ С‡Р°СЃС‚СЊ
+	bool DeletePart(int index);//РЈРґР°Р»РёС‚СЊ С‡Р°СЃС‚СЊ
+	bool MovePart(int index,int nindex);//РџРµСЂРµРґРІРёРЅСѓС‚СЊ С‡Р°СЃС‚СЊ
+	bool ShowPart(int index,bool show);//РЎРєСЂС‹С‚СЊ/РїРѕРєР°Р·Р°С‚СЊ С‡Р°СЃС‚СЊ
+	bool GetShowPart(int index);//РџСЂРѕРІРµСЂРёС‚СЊ РїРѕРєР°Р·Р°РЅР° Р»Рё С‡Р°СЃС‚СЊ
+	bool Clear();//РЈРґР°Р»РёС‚СЊ РІСЃРµ С‡Р°СЃС‚Рё
+	int GetPartCount();//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ С‡Р°СЃС‚РµР№
+	bool SetPartW(int index,int w);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С€РёСЂРёРЅСѓ С‡Р°СЃС‚Рё
+	int GetPartW(int index);//РџРѕР»СѓС‡РёС‚СЊ С€РёСЂРёРЅСѓ С‡Р°СЃС‚Рё
+	bool SetPartIcon(int index,HICON icon);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРєРѕРЅРєСѓ РґР»СЏ С‡Р°СЃС‚Рё
+	HICON GetPartIcon(int index);//РџРѕР»СѓС‡РёС‚СЊ РёРєРѕРЅРєСѓ С‡Р°СЃС‚Рё
+	bool SetPartText(int index,PCWSTR text);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ С‡Р°СЃС‚Рё
+	int GetPartText(int index,LPWSTR text);//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ С‡Р°СЃС‚Рё
+	int GetPartTextLen(int index);//РџРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ С‚РµРєСЃС‚Р°
 };
 
 };

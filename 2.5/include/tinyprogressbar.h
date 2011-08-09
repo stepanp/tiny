@@ -1,7 +1,7 @@
-//-------------------------------
+п»ї//-------------------------------
 //tiny 2.5
-//tinyprogressbar.h - Прогрессбар
-//© 2009-2010 Stepan Prokofjev
+//tinyprogressbar.h - РџСЂРѕРіСЂРµСЃСЃР±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //-------------------------------
 
 #pragma once
@@ -15,18 +15,18 @@ class TINYProgressBar: public TINYControlEx
 public:
 	bool Create(TINYBaseWnd *parent,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h);
-	bool SetPos(int pos);//Установить позицию
-	int GetPos();//Получить позицию
-	int DeltaPos(int pos);//Установить позицию по кол-ву шагов
-	int SetStep(int step);//Установить шаг прогрессбара
-	int GetStep();//Получить шаг прогрессбара
-	int StepIt();//Продвинуться на 1 шаг
-	void SetRange(int min,int max);//Установить минимальную и максимальную позиции
-	int GetMinRange();//Получить минимальную позицию
-	int GetMaxRange();//Получить максимальную позицию
-	//Начиная с XP
+	bool SetPos(int pos);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР·РёС†РёСЋ
+	int GetPos();//РџРѕР»СѓС‡РёС‚СЊ РїРѕР·РёС†РёСЋ
+	int DeltaPos(int pos);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР·РёС†РёСЋ РїРѕ РєРѕР»-РІСѓ С€Р°РіРѕРІ
+	int SetStep(int step);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С€Р°Рі РїСЂРѕРіСЂРµСЃСЃР±Р°СЂР°
+	int GetStep();//РџРѕР»СѓС‡РёС‚СЊ С€Р°Рі РїСЂРѕРіСЂРµСЃСЃР±Р°СЂР°
+	int StepIt();//РџСЂРѕРґРІРёРЅСѓС‚СЊСЃСЏ РЅР° 1 С€Р°Рі
+	void SetRange(int min,int max);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РјРёРЅРёРјР°Р»СЊРЅСѓСЋ Рё РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёРё
+	int GetMinRange();//РџРѕР»СѓС‡РёС‚СЊ РјРёРЅРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ
+	int GetMaxRange();//РџРѕР»СѓС‡РёС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ
+	//РќР°С‡РёРЅР°СЏ СЃ XP
 #if(_WIN32_WINNT>=0x0501)
-	void SetMarquee(bool enable,int speed);//Вкл/выкл бегущую полоску и установить её скорость
+	void SetMarquee(bool enable,int speed);//Р’РєР»/РІС‹РєР» Р±РµРіСѓС‰СѓСЋ РїРѕР»РѕСЃРєСѓ Рё СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РµС‘ СЃРєРѕСЂРѕСЃС‚СЊ
 #endif
 };
 

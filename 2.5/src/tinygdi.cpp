@@ -1,7 +1,7 @@
-//------------------------------
+п»ї//------------------------------
 //tiny 2.5
-//tinygdi.cpp - Объекты GDI и DC
-//© 2009-2010 Stepan Prokofjev
+//tinygdi.cpp - РћР±СЉРµРєС‚С‹ GDI Рё DC
+//В© 2009-2010 Stepan Prokofjev
 //------------------------------
 
 #include "tinygdi.h"
@@ -9,22 +9,22 @@
 using namespace tiny;
 
 //------------------
-//Базовый объект GDI
+//Р‘Р°Р·РѕРІС‹Р№ РѕР±СЉРµРєС‚ GDI
 //------------------
 
 TINYGDIObject::TINYGDIObject() {_hobj=0;}
-//Получить HGDIOBJ
+//РџРѕР»СѓС‡РёС‚СЊ HGDIOBJ
 HGDIOBJ TINYGDIObject::GetHGDIOBJ() {return _hobj;}
-//Связать с HGDIOBJ
+//РЎРІСЏР·Р°С‚СЊ СЃ HGDIOBJ
 bool TINYGDIObject::Attach(HGDIOBJ hobj)
 {
 	HGDIOBJ gdiobj=hobj;
 	if(!gdiobj) return false;
-	Delete();//Удалить предыдущий объект GDI
+	Delete();//РЈРґР°Р»РёС‚СЊ РїСЂРµРґС‹РґСѓС‰РёР№ РѕР±СЉРµРєС‚ GDI
 	_hobj=gdiobj;
 	return true;
 }
-//Удалить объект GDI
+//РЈРґР°Р»РёС‚СЊ РѕР±СЉРµРєС‚ GDI
 bool TINYGDIObject::Delete()
 {
 	if(_hobj) if(!DeleteObject(_hobj)) return false;
@@ -33,67 +33,67 @@ bool TINYGDIObject::Delete()
 TINYGDIObject::operator HGDIOBJ() {return _hobj;}
 
 //------
-//Битмап
+//Р‘РёС‚РјР°Рї
 //------
 
 TINYBitmap::TINYBitmap() {}
 TINYBitmap::TINYBitmap(UINT bmp) {LoadBitmap(bmp);}
 TINYBitmap::TINYBitmap(int w,int h,int bpp,void *bits) {Create(w,h,bpp,bits);}
-//Получить HBTIMAP
+//РџРѕР»СѓС‡РёС‚СЊ HBTIMAP
 HBITMAP TINYBitmap::GetHBITMAP() {return HBITMAP(GetHGDIOBJ());}
-bool TINYBitmap::Create(int w,int h,int bpp/*Кол-во битов на пиксель*/,
-						void* bits/*Указатель на массив пикселей*/)
+bool TINYBitmap::Create(int w,int h,int bpp/*РљРѕР»-РІРѕ Р±РёС‚РѕРІ РЅР° РїРёРєСЃРµР»СЊ*/,
+						void* bits/*РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РјР°СЃСЃРёРІ РїРёРєСЃРµР»РµР№*/)
 {
 	return Attach(CreateBitmap(w,h,1,bpp,bits));
 }
-//Загрузить битмап
+//Р—Р°РіСЂСѓР·РёС‚СЊ Р±РёС‚РјР°Рї
 bool TINYBitmap::LoadBitmap(UINT bmp)
 {
 	return Attach(::LoadBitmap(GetModuleHandle(0),MAKEINTRESOURCE(bmp)));
 }
-//Создать совместимый битмап
+//РЎРѕР·РґР°С‚СЊ СЃРѕРІРјРµСЃС‚РёРјС‹Р№ Р±РёС‚РјР°Рї
 bool TINYBitmap::CreateCompatibleBitmap(TINYDC* dc,int w,int h)
 {
 	if(!dc) return false;
 	return Attach(::CreateCompatibleBitmap(dc->GetHDC(),w,h));
 }
-//Получить ширину
+//РџРѕР»СѓС‡РёС‚СЊ С€РёСЂРёРЅСѓ
 int TINYBitmap::GetW() 
 {
 	BITMAP bmp;
-	GetObject(GetHBITMAP(),sizeof(BITMAP),&bmp);//Получаем стрктуру BITMAP
+	GetObject(GetHBITMAP(),sizeof(BITMAP),&bmp);//РџРѕР»СѓС‡Р°РµРј СЃС‚СЂРєС‚СѓСЂСѓ BITMAP
 	return bmp.bmWidth;
 }
-//Получить высоту
+//РџРѕР»СѓС‡РёС‚СЊ РІС‹СЃРѕС‚Сѓ
 int TINYBitmap::GetH() 
 {
 	BITMAP bmp;
-	GetObject(GetHBITMAP(),sizeof(BITMAP),&bmp);//Получаем стрктуру BITMAP
+	GetObject(GetHBITMAP(),sizeof(BITMAP),&bmp);//РџРѕР»СѓС‡Р°РµРј СЃС‚СЂРєС‚СѓСЂСѓ BITMAP
 	return bmp.bmHeight;
 }
 TINYBitmap::operator HBITMAP() {return GetHBITMAP();}
 
 //-----
-//Кисть
+//РљРёСЃС‚СЊ
 //-----
 
-//Получить HBRUSH
+//РџРѕР»СѓС‡РёС‚СЊ HBRUSH
 TINYBrush::TINYBrush() {}
 TINYBrush::TINYBrush(TINYBitmap* bmp) {CreateBitmapBrush(bmp);}
 TINYBrush::TINYBrush(COLORREF color) {CreateSolidBrush(color);}
 HBRUSH TINYBrush::GetHBRUSH() {return HBRUSH(GetHGDIOBJ());}
-//Создать кисть из битмапа
+//РЎРѕР·РґР°С‚СЊ РєРёСЃС‚СЊ РёР· Р±РёС‚РјР°РїР°
 bool TINYBrush::CreateBitmapBrush(TINYBitmap* bmp)
 {
 	if(!bmp) return false;
 	return Attach(CreatePatternBrush(bmp->GetHBITMAP()));
 }
-//Создать обычную кисть
+//РЎРѕР·РґР°С‚СЊ РѕР±С‹С‡РЅСѓСЋ РєРёСЃС‚СЊ
 bool TINYBrush::CreateSolidBrush(COLORREF color)
 {
 	return Attach(::CreateSolidBrush(color));
 }
-//Создать кисть системного цвета
+//РЎРѕР·РґР°С‚СЊ РєРёСЃС‚СЊ СЃРёСЃС‚РµРјРЅРѕРіРѕ С†РІРµС‚Р°
 bool TINYBrush::CreateSysColorBrush(int color)
 {
 	return Attach(GetSysColorBrush(color));
@@ -101,14 +101,14 @@ bool TINYBrush::CreateSysColorBrush(int color)
 TINYBrush::operator HBRUSH() {return GetHBRUSH();}
 
 //----
-//Перо
+//РџРµСЂРѕ
 //----
 
 TINYPen::TINYPen() {}
 TINYPen::TINYPen(int style,int w,COLORREF color) {Create(style,w,color);}
-//Получить перо
+//РџРѕР»СѓС‡РёС‚СЊ РїРµСЂРѕ
 HPEN TINYPen::GetHPEN() {return HPEN(GetHGDIOBJ());}
-//Создать перо
+//РЎРѕР·РґР°С‚СЊ РїРµСЂРѕ
 bool TINYPen::Create(int style,int w,COLORREF color)
 {
 	return Attach(CreatePen(style,w,color));
@@ -116,27 +116,27 @@ bool TINYPen::Create(int style,int w,COLORREF color)
 TINYPen::operator HPEN() {return GetHPEN();}
 
 //-----
-//Шрифт
+//РЁСЂРёС„С‚
 //-----
 
-//Получить HFONT
+//РџРѕР»СѓС‡РёС‚СЊ HFONT
 HFONT TINYFont::GetHFONT() {return HFONT(GetHGDIOBJ());}
-//Получить стандартный шрифт
+//РџРѕР»СѓС‡РёС‚СЊ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ С€СЂРёС„С‚
 bool TINYFont::GetDefaultFont()
 {
 	return Attach(HFONT(GetStockObject(DEFAULT_GUI_FONT)));
 }
-//Создать шрифт
-bool TINYFont::Create(LPCWSTR name,//L"Default" - стандартный шрифт
-		int size,//0 - стандартный размер
-		bool bold,//Жирный
-		bool italic,//Наклонный
-		bool underline,//Подчеркнутый
-		bool strikeout)//Зачеркнутый
+//РЎРѕР·РґР°С‚СЊ С€СЂРёС„С‚
+bool TINYFont::Create(LPCWSTR name,//L"Default" - СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ С€СЂРёС„С‚
+		int size,//0 - СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ СЂР°Р·РјРµСЂ
+		bool bold,//Р–РёСЂРЅС‹Р№
+		bool italic,//РќР°РєР»РѕРЅРЅС‹Р№
+		bool underline,//РџРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№
+		bool strikeout)//Р—Р°С‡РµСЂРєРЅСѓС‚С‹Р№
 {
-	//Толщина шрифта
-	DWORD weight=FW_NORMAL;//Нормальный
-	if(bold) weight=FW_BOLD;//Жирный
+	//РўРѕР»С‰РёРЅР° С€СЂРёС„С‚Р°
+	DWORD weight=FW_NORMAL;//РќРѕСЂРјР°Р»СЊРЅС‹Р№
+	if(bold) weight=FW_BOLD;//Р–РёСЂРЅС‹Р№
 	return Attach(CreateFont(size,0,0,0,weight,
 		DWORD(italic),DWORD(underline),DWORD(strikeout),
 		DEFAULT_CHARSET,
@@ -149,31 +149,31 @@ bool TINYFont::Create(LPCWSTR name,//L"Default" - стандартный шрифт
 TINYFont::operator HFONT() {return GetHFONT();}
 
 //------
-//Регион
+//Р РµРіРёРѕРЅ
 //------
 
-//Получить HRGN
+//РџРѕР»СѓС‡РёС‚СЊ HRGN
 HRGN TINYRgn::GetHRGN() {return HRGN(GetHGDIOBJ());}
-//Создать регион по области
+//РЎРѕР·РґР°С‚СЊ СЂРµРіРёРѕРЅ РїРѕ РѕР±Р»Р°СЃС‚Рё
 bool TINYRgn::CreateRectRgn(RECT rect)
 {
 	return Attach(::CreateRectRgn(rect.left,rect.top,rect.right,rect.bottom));
 }
-//Создать овальный регион
+//РЎРѕР·РґР°С‚СЊ РѕРІР°Р»СЊРЅС‹Р№ СЂРµРіРёРѕРЅ
 bool TINYRgn::CreateEllipticRgn(RECT rect)
 {
 	return Attach(::CreateEllipticRgn(rect.left,rect.top,rect.right,rect.bottom));
 }
-//Создать регион с закругленными краями
+//РЎРѕР·РґР°С‚СЊ СЂРµРіРёРѕРЅ СЃ Р·Р°РєСЂСѓРіР»РµРЅРЅС‹РјРё РєСЂР°СЏРјРё
 bool TINYRgn::CreateRoundRectRgn(RECT rect,
-		int corw,//Закругление угла по горизонтали
-		int corh//Закругление угла по вертикали
+		int corw,//Р—Р°РєСЂСѓРіР»РµРЅРёРµ СѓРіР»Р° РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+		int corh//Р—Р°РєСЂСѓРіР»РµРЅРёРµ СѓРіР»Р° РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 		)
 {
 	return Attach(::CreateRoundRectRgn(rect.left,rect.top,rect.right,rect.bottom,
 		corw,corh));
 }
-//Обьединить регионы 
+//РћР±СЊРµРґРёРЅРёС‚СЊ СЂРµРіРёРѕРЅС‹ 
 bool TINYRgn::CombineRgn(TINYRgn *rgn1,TINYRgn *rgn2,int mode)
 {
 	HRGN hrgn1=0;
@@ -183,7 +183,7 @@ bool TINYRgn::CombineRgn(TINYRgn *rgn1,TINYRgn *rgn2,int mode)
 	if(::CombineRgn(GetHRGN(),hrgn1,hrgn2,mode)==ERROR) return false;
 	return true;
 }
-//Установить регион окну
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂРµРіРёРѕРЅ РѕРєРЅСѓ
 /*bool TINYRgn::SetToWindow(TINYBaseWnd *wnd)
 {
 	if(!wnd) return false;
@@ -198,52 +198,52 @@ TINYRgn::operator HRGN() {return GetHRGN();}
 //DC
 //--
 
-//Функции DC
-//Получить HDC
+//Р¤СѓРЅРєС†РёРё DC
+//РџРѕР»СѓС‡РёС‚СЊ HDC
 HDC TINYDC::GetHDC()
 {
 	return _dc;
 }
-//Связать с HDC
+//РЎРІСЏР·Р°С‚СЊ СЃ HDC
 bool TINYDC::Attach(HDC hdc)
 {
 	if(!hdc) return false;
 	_dc=hdc;
 	return true;
 }
-//Создать совместимый DC
+//РЎРѕР·РґР°С‚СЊ СЃРѕРІРјРµСЃС‚РёРјС‹Р№ DC
 bool TINYDC::CreateCompatibleDC(TINYDC *dc)
 {
 	HDC cmpdc=0;
 	if(dc) cmpdc=dc->GetHDC();
 	return Attach(::CreateCompatibleDC(cmpdc));
 }
-//Удалить DC
+//РЈРґР°Р»РёС‚СЊ DC
 bool TINYDC::Delete()
 {
 	if(!DeleteDC(_dc)) return false;
 	return true;
 }
-//Освободить DC
+//РћСЃРІРѕР±РѕРґРёС‚СЊ DC
 bool TINYDC::Release(HWND wnd)
 {
 	if(!wnd) return false;
 	if(!ReleaseDC(wnd,_dc)) return false;
 	return true;
 }
-//Получить DC окна
+//РџРѕР»СѓС‡РёС‚СЊ DC РѕРєРЅР°
 bool TINYDC::GetDC(HWND hwnd)
 {
 	return Attach(::GetDC(hwnd));
 }
-//Получить размеры DC
+//РџРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂС‹ DC
 RECT TINYDC::GetClipBox()
 {
 	RECT rect;
 	::GetClipBox(_dc,&rect);
 	return rect;
 }
-//Скопировать содержимое
+//РЎРєРѕРїРёСЂРѕРІР°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ
 bool TINYDC::BitBlt(int x,int y,int w,int h,
 		TINYDC *src,int nx,int ny,DWORD mode)
 {
@@ -251,14 +251,14 @@ bool TINYDC::BitBlt(int x,int y,int w,int h,
 	if(!::BitBlt(_dc,x,y,w,h,src->GetHDC(),nx,ny,mode)) return false;
 	return true;
 }
-//Начать рисование
-bool TINYDC::BeginPaint(HWND parent/*Родительское окно*/)
+//РќР°С‡Р°С‚СЊ СЂРёСЃРѕРІР°РЅРёРµ
+bool TINYDC::BeginPaint(HWND parent/*Р РѕРґРёС‚РµР»СЊСЃРєРѕРµ РѕРєРЅРѕ*/)
 {
 	if(!parent) return false;
-	_parent=parent;//Сохранение указателя на родительское окно(для EndPaint)
+	_parent=parent;//РЎРѕС…СЂР°РЅРµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° СЂРѕРґРёС‚РµР»СЊСЃРєРѕРµ РѕРєРЅРѕ(РґР»СЏ EndPaint)
 	return Attach(::BeginPaint(parent,&_ps));
 }
-//Закончить рисование
+//Р—Р°РєРѕРЅС‡РёС‚СЊ СЂРёСЃРѕРІР°РЅРёРµ
 bool TINYDC::EndPaint()
 {
 	if(!_parent) return false;
@@ -266,50 +266,50 @@ bool TINYDC::EndPaint()
 	return true;
 }
 
-//Функции рисования текста
-//Вывести текст
+//Р¤СѓРЅРєС†РёРё СЂРёСЃРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°
+//Р’С‹РІРµСЃС‚Рё С‚РµРєСЃС‚
 bool TINYDC::TextOut(LPCWSTR text,int x,int y)
 {
 	if(!::TextOut(_dc,x,y,text,lstrlen(text))) return false;
 	return true;
 }
-//Отрисовать текст
+//РћС‚СЂРёСЃРѕРІР°С‚СЊ С‚РµРєСЃС‚
 bool TINYDC::DrawText(LPCWSTR text,RECT rect,UINT format)
 {
 	if(!::DrawText(_dc,text,-1,&rect,format)) return false;
 	return true;
 }
-//Установить цвет текста
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С†РІРµС‚ С‚РµРєСЃС‚Р°
 bool TINYDC::SetTextColor(COLORREF color)
 {
 	if(!::SetTextColor(_dc,color)) return false;
 	return true;
 }
 
-//Функции рисования
-//Заполнить область
+//Р¤СѓРЅРєС†РёРё СЂРёСЃРѕРІР°РЅРёСЏ
+//Р—Р°РїРѕР»РЅРёС‚СЊ РѕР±Р»Р°СЃС‚СЊ
 bool TINYDC::FillRect(RECT rect,TINYBrush* brush)
 {
 	if(!brush) return false;
 	if(!::FillRect(_dc,&rect,brush->GetHBRUSH())) return false;
 	return true;
 }
-//Градиентная заливка
+//Р“СЂР°РґРёРµРЅС‚РЅР°СЏ Р·Р°Р»РёРІРєР°
 bool TINYDC::FillGradient(RECT rect,
-		COLORREF clrbegin,//Цвет начала градиента
-		COLORREF clrend,//Цвет конца градиента
-		bool vert//Вертикально или горизонтально 
+		COLORREF clrbegin,//Р¦РІРµС‚ РЅР°С‡Р°Р»Р° РіСЂР°РґРёРµРЅС‚Р°
+		COLORREF clrend,//Р¦РІРµС‚ РєРѕРЅС†Р° РіСЂР°РґРёРµРЅС‚Р°
+		bool vert//Р’РµСЂС‚РёРєР°Р»СЊРЅРѕ РёР»Рё РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕ 
 		)
 {
 	TRIVERTEX tvx[2];
-	//Начальный цвет
+	//РќР°С‡Р°Р»СЊРЅС‹Р№ С†РІРµС‚
 	tvx[0].x=rect.left;
 	tvx[0].y=rect.top;
 	tvx[0].Red=COLOR16(GetRValue(clrbegin)<<8);
 	tvx[0].Green=COLOR16(GetGValue(clrbegin)<<8);
 	tvx[0].Blue=COLOR16(GetBValue(clrbegin)<<8);
 	tvx[0].Alpha=0;
-	//Конечный цвет
+	//РљРѕРЅРµС‡РЅС‹Р№ С†РІРµС‚
 	tvx[1].x=rect.right;
 	tvx[1].y=rect.bottom;
 	tvx[1].Red=COLOR16(GetRValue(clrend)<<8);
@@ -329,37 +329,37 @@ bool TINYDC::FillGradient(RECT rect,
 	return true;
 }
 
-//Рарисовать прямоугольник
+//Р Р°СЂРёСЃРѕРІР°С‚СЊ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє
 bool TINYDC::DrawRectangle(RECT rect)
 {
 	if(!Rectangle(_dc,rect.left,rect.top,rect.right,rect.bottom)) return false;
 	return true;
 }
-//Нарисовать прямоугольник с закругленными краями
+//РќР°СЂРёСЃРѕРІР°С‚СЊ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє СЃ Р·Р°РєСЂСѓРіР»РµРЅРЅС‹РјРё РєСЂР°СЏРјРё
 bool TINYDC::DrawRoundRect(RECT rect,
-		int corw,//Закругление угла по горизонтали
-		int corh//Закругление угла по вертикали
+		int corw,//Р—Р°РєСЂСѓРіР»РµРЅРёРµ СѓРіР»Р° РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+		int corh//Р—Р°РєСЂСѓРіР»РµРЅРёРµ СѓРіР»Р° РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 		)
 {
 	if(!RoundRect(_dc,rect.left,rect.top,rect.right,rect.bottom,
 		corw,corh)) return false;
 	return true;
 }
-//Нарисовать эллипс
+//РќР°СЂРёСЃРѕРІР°С‚СЊ СЌР»Р»РёРїСЃ
 bool TINYDC::DrawEllipse(RECT rect)
 {
 	if(!Ellipse(_dc,rect.left,rect.top,rect.right,rect.bottom)) return false;
 	return true;
 }
-//Нарисовать рамку фокуса
+//РќР°СЂРёСЃРѕРІР°С‚СЊ СЂР°РјРєСѓ С„РѕРєСѓСЃР°
 bool TINYDC::DrawFocusRect(RECT rect)
 {
 	if(!::DrawFocusRect(_dc,&rect)) return false;
 	return true;
 }
 
-//Функции рисования линий
-//Нарисовать линию
+//Р¤СѓРЅРєС†РёРё СЂРёСЃРѕРІР°РЅРёСЏ Р»РёРЅРёР№
+//РќР°СЂРёСЃРѕРІР°С‚СЊ Р»РёРЅРёСЋ
 bool TINYDC::LineTo(int x,int y)
 {
 	::LineTo(_dc,x,y);
@@ -371,43 +371,43 @@ bool TINYDC::MoveTo(int x,int y)
 	return true;
 }
 
-//Функции работы с фоном и т.п.
-//Установить цвет пикселя
+//Р¤СѓРЅРєС†РёРё СЂР°Р±РѕС‚С‹ СЃ С„РѕРЅРѕРј Рё С‚.Рї.
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С†РІРµС‚ РїРёРєСЃРµР»СЏ
 bool TINYDC::SetPixel(int x,int y,COLORREF color)
 {
 	if(::SetPixel(_dc,x,y,color)==-1||ERROR_INVALID_PARAMETER) return false;
 	return true;
 }
-//Получить цвет пикселя
+//РџРѕР»СѓС‡РёС‚СЊ С†РІРµС‚ РїРёРєСЃРµР»СЏ
 COLORREF TINYDC::GetPixel(int x,int y)
 {
 	return ::GetPixel(_dc,x,y);
 }
-//Установить цвет фона
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С†РІРµС‚ С„РѕРЅР°
 bool TINYDC::SetBkColor(COLORREF color)
 {
 	if(::SetBkColor(_dc,color)==CLR_INVALID) return false;
 	return true;
 }
-//Получить цвет фона
+//РџРѕР»СѓС‡РёС‚СЊ С†РІРµС‚ С„РѕРЅР°
 COLORREF TINYDC::GetBkColor()
 {
 	return ::GetBkColor(_dc);
 }
-//Установить режим фона(Прозрачный/Непрозрачный)
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂРµР¶РёРј С„РѕРЅР°(РџСЂРѕР·СЂР°С‡РЅС‹Р№/РќРµРїСЂРѕР·СЂР°С‡РЅС‹Р№)
 bool TINYDC::SetBkMode(int mode)
 {
 	if(!::SetBkMode(_dc,mode)) return false;
 	return true;
 }
-//Получить режим фона(Прозрачный/Непрозрачный)
+//РџРѕР»СѓС‡РёС‚СЊ СЂРµР¶РёРј С„РѕРЅР°(РџСЂРѕР·СЂР°С‡РЅС‹Р№/РќРµРїСЂРѕР·СЂР°С‡РЅС‹Р№)
 int TINYDC::GetBkMode()
 {
 	return ::GetBkMode(_dc);
 }
 
-//Функции работы с объектами GDI
-//Выбрать обьект
+//Р¤СѓРЅРєС†РёРё СЂР°Р±РѕС‚С‹ СЃ РѕР±СЉРµРєС‚Р°РјРё GDI
+//Р’С‹Р±СЂР°С‚СЊ РѕР±СЊРµРєС‚
 bool TINYDC::SelectObject(TINYGDIObject* obj)
 {
 	if(!obj) return false;
@@ -416,38 +416,38 @@ bool TINYDC::SelectObject(TINYGDIObject* obj)
 }
 
 //--------------------------
-//DC c двойной буфферизацией
+//DC c РґРІРѕР№РЅРѕР№ Р±СѓС„С„РµСЂРёР·Р°С†РёРµР№
 //--------------------------
 
-//Получить задний буффер
+//РџРѕР»СѓС‡РёС‚СЊ Р·Р°РґРЅРёР№ Р±СѓС„С„РµСЂ
 TINYDC* TINYDBDC::GetMemDC()
 {
 	return &_memdc;
 }
-//Инитиализация двойной буфферизации
+//РРЅРёС‚РёР°Р»РёР·Р°С†РёСЏ РґРІРѕР№РЅРѕР№ Р±СѓС„С„РµСЂРёР·Р°С†РёРё
 bool TINYDBDC::InitDoubleBuffer()
 {
-	//Создание совместимого DC
+	//РЎРѕР·РґР°РЅРёРµ СЃРѕРІРјРµСЃС‚РёРјРѕРіРѕ DC
 	if(!_memdc.CreateCompatibleDC(this)) return false;
-	//Получение размеров DC
+	//РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂРѕРІ DC
 	RECT rect=GetClipBox();
-	//Создание совместимого битмапа
+	//РЎРѕР·РґР°РЅРёРµ СЃРѕРІРјРµСЃС‚РёРјРѕРіРѕ Р±РёС‚РјР°РїР°
 	_membmp.CreateCompatibleBitmap(this,rect.left+rect.right,rect.top+rect.bottom);
 	_memdc.SelectObject(&_membmp);
-	//Копирование содержимого переднего буфера в задний
+	//РљРѕРїРёСЂРѕРІР°РЅРёРµ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РїРµСЂРµРґРЅРµРіРѕ Р±СѓС„РµСЂР° РІ Р·Р°РґРЅРёР№
 	return _memdc.BitBlt(0,0,rect.left+rect.right,rect.top+rect.bottom,
 		this,0,0,SRCCOPY);
 }
-//Отрисовать задний буффер
+//РћС‚СЂРёСЃРѕРІР°С‚СЊ Р·Р°РґРЅРёР№ Р±СѓС„С„РµСЂ
 bool TINYDBDC::DrawDoubleBuffer()
 {
-	//Получение размеров DC
+	//РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂРѕРІ DC
 	RECT rect=GetClipBox();
-	//Копирование содержимого заднего буфера в передний
+	//РљРѕРїРёСЂРѕРІР°РЅРёРµ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ Р·Р°РґРЅРµРіРѕ Р±СѓС„РµСЂР° РІ РїРµСЂРµРґРЅРёР№
 	if(!BitBlt(0,0,rect.left+rect.right,rect.top+rect.bottom,
 		&_memdc,0,0,SRCCOPY)) return false;
-	//Удаление битмапа
+	//РЈРґР°Р»РµРЅРёРµ Р±РёС‚РјР°РїР°
 	if(!_membmp.Delete()) return false;
-	//Удаление заднего буфера
+	//РЈРґР°Р»РµРЅРёРµ Р·Р°РґРЅРµРіРѕ Р±СѓС„РµСЂР°
 	return _memdc.Delete();
 }

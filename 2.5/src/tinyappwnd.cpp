@@ -1,7 +1,7 @@
-//-----------------------------
+ï»¿//-----------------------------
 //tiny 2.5
-//tinyappwnd.cpp - Îáû÷íîå îêíî
-//© 2009-2010 Stepan Prokofjev
+//tinyappwnd.cpp - ÐžÐ±Ñ‹Ñ‡Ð½Ð¾Ðµ Ð¾ÐºÐ½Ð¾
+//Â© 2009-2010 Stepan Prokofjev
 //-----------------------------
 
 #pragma once
@@ -12,8 +12,8 @@ using namespace tiny;
 
 TINYAppWnd::TINYAppWnd()
 {
-	_oncustommsg.Connect(this,&TINYAppWnd::_OnCustomMsg);//Êàñòîìíàÿ îáðàáîòêà ñîîáùåíèé
-	//Ñòèëè
+	_oncustommsg.Connect(this,&TINYAppWnd::_OnCustomMsg);//ÐšÐ°ÑÑ‚Ð¾Ð¼Ð½Ð°Ñ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹
+	//Ð¡Ñ‚Ð¸Ð»Ð¸
 	propcaption.Init(this,WS_CAPTION,&TINYBaseWnd::SetStyle,&TINYBaseWnd::GetStyle);
 	propsysmenu.Init(this,WS_SYSMENU,&TINYBaseWnd::SetStyle,&TINYBaseWnd::GetStyle);
 	propresize.Init(this,WS_THICKFRAME,&TINYBaseWnd::SetStyle,&TINYBaseWnd::GetStyle);
@@ -23,30 +23,30 @@ TINYAppWnd::TINYAppWnd()
 	prophelp.Init(this,WS_EX_CONTEXTHELP,&TINYBaseWnd::SetExStyle,&TINYBaseWnd::GetExStyle);
 	proptopmost.Init(this,WS_EX_TOPMOST,&TINYBaseWnd::SetExStyle,&TINYBaseWnd::GetExStyle);
 }
-//Ñîçäàíèå îêíà
+//Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¾ÐºÐ½Ð°
 bool TINYAppWnd::Create(TINYBaseWnd* parent)
 {
 	return TINYBaseWnd::Create(parent,L"TINYAppWnd",0,0,
-		LoadCursor(0,IDC_ARROW),//Ñòàíäàðòíûé êóðñîð
+		LoadCursor(0,IDC_ARROW),//Ð¡Ñ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ñ‹Ð¹ ÐºÑƒÑ€ÑÐ¾Ñ€
 		0,WS_OVERLAPPEDWINDOW,0,
-		CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT);//Ðàçìåð ïî óìîë÷àíèþ
+		CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT);//Ð Ð°Ð·Ð¼ÐµÑ€ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ
 }
-//Êàñòîìíàÿ îáðàáîòêà ñîîáùåíèé
+//ÐšÐ°ÑÑ‚Ð¾Ð¼Ð½Ð°Ñ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹
 LRESULT TINYAppWnd::_OnCustomMsg(TINYBaseWnd* wnd,TINYParams params)
 {
-	//Ïàðàìåòðû ñîîáùåíèÿ
+	//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ
 	TINYMSGPARAMS* msg=(TINYMSGPARAMS*)(params);
 
-	//Óñòàíîâêà ìàêñèìàëüíîãî è ìèíèìàëüíîãî ðàçìåðà îêíà
+	//Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¸ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð° Ð¾ÐºÐ½Ð°
 	if(msg->code==WM_GETMINMAXINFO)
 	{
-		//Ïîëó÷àåì ïàðàìåòðû
+		//ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹
 		MINMAXINFO* minmax=(MINMAXINFO*)(msg->lparam);
-		//Åñëè ñâîéñòâà >0
-		//Óñòàíàâëèâàåì ìàêñèìàëüíûé ðàçìåð
+		//Ð•ÑÐ»Ð¸ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð° >0
+		//Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Ñ€Ð°Ð·Ð¼ÐµÑ€
 		if(propmaxw) minmax->ptMaxTrackSize.x=propmaxw;
 		if(propmaxh) minmax->ptMaxTrackSize.y=propmaxh;
-		//Óñòàíàâëèâàåì ìèíèìàëüíûé ðàçìåð
+		//Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Ñ€Ð°Ð·Ð¼ÐµÑ€
 		if(propminw) minmax->ptMinTrackSize.x=propminw;
 		if(propminh) minmax->ptMinTrackSize.y=propminh;
 	}

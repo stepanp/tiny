@@ -1,7 +1,7 @@
-//---------------------------------------------
+п»ї//---------------------------------------------
 //tiny 2.5
-//tinyfiledialog.h - Диалог открытия/сохранения
-//© 2009-2010 Stepan Prokofjev
+//tinyfiledialog.h - Р”РёР°Р»РѕРі РѕС‚РєСЂС‹С‚РёСЏ/СЃРѕС…СЂР°РЅРµРЅРёСЏ
+//В© 2009-2010 Stepan Prokofjev
 //---------------------------------------------
 
 #pragma once
@@ -13,13 +13,13 @@ namespace tiny{
 class TINYFileDialog: public TINYObject
 {
 protected:
-	OPENFILENAME ofn;//Структура диалога
-	wchar_t namebuf[MAX_PATH];//Буфер имени файла
+	OPENFILENAME ofn;//РЎС‚СЂСѓРєС‚СѓСЂР° РґРёР°Р»РѕРіР°
+	wchar_t namebuf[MAX_PATH];//Р‘СѓС„РµСЂ РёРјРµРЅРё С„Р°Р№Р»Р°
 public:
 	void Create(TINYBaseWnd *parent,LPCWSTR filter,DWORD flags);
-	bool DoOpen();//Создать диалог открытия
-	bool DoSave();//Создать диалог сохранения
-	TINYStr GetFilename();//Получить имя файла
+	bool DoOpen();//РЎРѕР·РґР°С‚СЊ РґРёР°Р»РѕРі РѕС‚РєСЂС‹С‚РёСЏ
+	bool DoSave();//РЎРѕР·РґР°С‚СЊ РґРёР°Р»РѕРі СЃРѕС…СЂР°РЅРµРЅРёСЏ
+	TINYStr GetFilename();//РџРѕР»СѓС‡РёС‚СЊ РёРјСЏ С„Р°Р№Р»Р°
 };
 
 

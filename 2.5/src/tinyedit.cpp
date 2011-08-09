@@ -1,7 +1,7 @@
-//----------------------------
+ï»¿//----------------------------
 //tiny 2.5
-//tinyedit.cpp - Åäèò
-//© 2009-2010 Stepan Prokofjev
+//tinyedit.cpp - Ð•Ð´Ð¸Ñ‚
+//Â© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinyedit.h"
@@ -11,7 +11,7 @@ using namespace tiny;
 TINYEdit::TINYEdit()
 {
 	_oncustomcmd.Connect(this,&TINYEdit::_OnCustomCmd);
-	//Èíèòèàëèçàöèÿ ñâîéñòâ
+	//Ð˜Ð½Ð¸Ñ‚Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²
 	propnumber.Init(this,ES_NUMBER,&TINYBaseWnd::SetStyle,&TINYBaseWnd::GetStyle);
 	proppassword.Init(this,ES_PASSWORD,&TINYBaseWnd::SetStyle,&TINYBaseWnd::GetStyle);
 	propreadonly.Init(this,ES_READONLY,&TINYBaseWnd::SetStyle,&TINYBaseWnd::GetStyle);
@@ -26,10 +26,10 @@ bool TINYEdit::Create(TINYBaseWnd *parent)
 {
 	return TINYControl::Create(parent,L"EDIT",0,WS_EX_CLIENTEDGE,0,0,0,100,25);
 }
-//Êàñòîìíàÿ îáðàáîòêà êîìàíä
+//ÐšÐ°ÑÑ‚Ð¾Ð¼Ð½Ð°Ñ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ° ÐºÐ¾Ð¼Ð°Ð½Ð´
 LRESULT TINYEdit::_OnCustomCmd(TINYBaseWnd* wnd,TINYParams params)
 {
-	//Ïàðàìåòðû êîìàíäû
+	//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹
 	TINYMSGPARAMS* cmd=(TINYMSGPARAMS*)(params);
 
 	if(cmd->code==EN_CHANGE) onchange(wnd,0);

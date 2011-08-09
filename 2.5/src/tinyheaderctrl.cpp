@@ -1,7 +1,7 @@
-//-------------------------------
+п»ї//-------------------------------
 //tiny 2.5
-//tinybuttons.cpp - Хидер контрол
-//© 2009-2010 Stepan Prokofjev
+//tinybuttons.cpp - РҐРёРґРµСЂ РєРѕРЅС‚СЂРѕР»
+//В© 2009-2010 Stepan Prokofjev
 //-------------------------------
 
 #include "tinyheaderctrl.h"
@@ -13,15 +13,15 @@ bool TINYHeaderCtrl::Create(TINYBaseWnd *parent,DWORD exstyle,DWORD style,
 {
 	return TINYControlEx::Create(parent,ICC_LISTVIEW_CLASSES,WC_HEADER,
 		0,exstyle,
-		HDS_FULLDRAG|//Плавное перетаскивание
+		HDS_FULLDRAG|//РџР»Р°РІРЅРѕРµ РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёРµ
 		style,x,y,w,h);
 
 }
-//Вставить итем
+//Р’СЃС‚Р°РІРёС‚СЊ РёС‚РµРј
 int TINYHeaderCtrl::InsertItem(int index,LPCWSTR text,int w,int fmt)
 {
 	int nindex;
-	//Определение индекса
+	//РћРїСЂРµРґРµР»РµРЅРёРµ РёРЅРґРµРєСЃР°
 	if(index==-1) nindex=GetItemCount();
 	else nindex=index;
 	HDITEM hdi;
@@ -31,12 +31,12 @@ int TINYHeaderCtrl::InsertItem(int index,LPCWSTR text,int w,int fmt)
 	hdi.fmt=fmt;
 	return Header_InsertItem(_hwnd,nindex,&hdi);
 }
-//Добавить итем
+//Р”РѕР±Р°РІРёС‚СЊ РёС‚РµРј
 int TINYHeaderCtrl::AddItem(LPCWSTR text,int w,int fmt)
 {
 	return InsertItem(-1,text,w,fmt);
 }
-//Установить текст
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚
 bool TINYHeaderCtrl::SetItemText(int index,LPCWSTR text)
 {
 	HDITEM hdi;
@@ -45,7 +45,7 @@ bool TINYHeaderCtrl::SetItemText(int index,LPCWSTR text)
 	if(!Header_SetItem(_hwnd,index,&hdi)) return false;
 	return true;
 }
-//Установить индекс картинки
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРЅРґРµРєСЃ РєР°СЂС‚РёРЅРєРё
 bool TINYHeaderCtrl::SetItemImage(int index,int image)
 {
 	HDITEM hdi;
@@ -54,7 +54,7 @@ bool TINYHeaderCtrl::SetItemImage(int index,int image)
 	if(!Header_SetItem(_hwnd,index,&hdi)) return false;
 	return true;
 }
-//Установить значение итема
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
 bool TINYHeaderCtrl::SetItemData(int index,LPARAM data)
 {
 	HDITEM hdi;
@@ -64,7 +64,7 @@ bool TINYHeaderCtrl::SetItemData(int index,LPARAM data)
 	return true;
 
 }
-//Установить формат итема
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С„РѕСЂРјР°С‚ РёС‚РµРјР°
 bool TINYHeaderCtrl::SetItemFormat(int index,int fmt)
 {
 	HDITEM hdi;
@@ -74,7 +74,7 @@ bool TINYHeaderCtrl::SetItemFormat(int index,int fmt)
 	return true;
 
 }
-//Получить текст итема
+//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
 TINYStr TINYHeaderCtrl::GetItemText(int index)
 {
 	wchar_t *text=new wchar_t[MAX_PATH];
@@ -88,7 +88,7 @@ TINYStr TINYHeaderCtrl::GetItemText(int index)
 	return str;
 
 }
-//Получить индекс картинки
+//РџРѕР»СѓС‡РёС‚СЊ РёРЅРґРµРєСЃ РєР°СЂС‚РёРЅРєРё
 int TINYHeaderCtrl::GetItemImage(int index)
 {
 	HDITEM hdi;
@@ -96,7 +96,7 @@ int TINYHeaderCtrl::GetItemImage(int index)
 	if(!Header_GetItem(_hwnd,index,&hdi)) return false;
 	return hdi.iImage;
 }
-//Получить значение итема
+//РџРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
 LPARAM TINYHeaderCtrl::GetItemData(int index)
 {
 	HDITEM hdi;
@@ -104,7 +104,7 @@ LPARAM TINYHeaderCtrl::GetItemData(int index)
 	if(!Header_GetItem(_hwnd,index,&hdi)) return false;
 	return hdi.lParam;
 }
-//Получить формат итема
+//РџРѕР»СѓС‡РёС‚СЊ С„РѕСЂРјР°С‚ РёС‚РµРјР°
 int TINYHeaderCtrl::GetItemFormat(int index)
 {
 	HDITEM hdi;
@@ -112,12 +112,12 @@ int TINYHeaderCtrl::GetItemFormat(int index)
 	if(!Header_GetItem(_hwnd,index,&hdi)) return false;
 	return hdi.fmt;
 }
-//Получить кол-во итемов
+//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РёС‚РµРјРѕРІ
 int TINYHeaderCtrl::GetItemCount()
 {
 	return Header_GetItemCount(_hwnd);
 }
-//Установить имаджлист
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚
 bool TINYHeaderCtrl::SetImageList(TINYImageList *list)
 {
 	HIMAGELIST hlist;

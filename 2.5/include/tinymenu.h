@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinymenu.h - Меню
-//© 2009-2010 Stepan Prokofjev
+//tinymenu.h - РњРµРЅСЋ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -11,7 +11,7 @@
 namespace tiny{
 
 //----
-//Меню
+//РњРµРЅСЋ
 //----
 class TINYMenu: public TINYObject
 {
@@ -19,36 +19,36 @@ protected:
 	HMENU _menu;
 public:
 	bool Create();
-	bool Create(UINT menu);//Создать из ресурсов
-	bool Attach(HMENU menu);//Создать из HMENU
-	HMENU GetHMENU();//Получить HMENU
-	bool SetToWindow(TINYBaseWnd *wnd);//Установить меню окну
-	bool InsertItem(int index,LPCWSTR text,UINT id,TINYMenu* submenu);//Вставить пункт меню
-	bool AddItem(LPCWSTR text,UINT id,TINYMenu* submenu);//Добавить пункт меню
-	bool DeleteItem(int index);//Удалить пункт меню
-	TINYMenu* GetSubMenu(int index);//Получить субменю
-	bool SetSubMenu(int index,TINYMenu* submenu);//Установить субменю	
-	DWORD GetItemState(int index);//Получить состояние
-	bool SetItemState(int index,DWORD state);//Установить состояние
-	bool SetItemData(int index,LPARAM data);//Установить дополнительное значение
-	LPARAM GetItemData(int index);//Получить дополнительное значение
+	bool Create(UINT menu);//РЎРѕР·РґР°С‚СЊ РёР· СЂРµСЃСѓСЂСЃРѕРІ
+	bool Attach(HMENU menu);//РЎРѕР·РґР°С‚СЊ РёР· HMENU
+	HMENU GetHMENU();//РџРѕР»СѓС‡РёС‚СЊ HMENU
+	bool SetToWindow(TINYBaseWnd *wnd);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РјРµРЅСЋ РѕРєРЅСѓ
+	bool InsertItem(int index,LPCWSTR text,UINT id,TINYMenu* submenu);//Р’СЃС‚Р°РІРёС‚СЊ РїСѓРЅРєС‚ РјРµРЅСЋ
+	bool AddItem(LPCWSTR text,UINT id,TINYMenu* submenu);//Р”РѕР±Р°РІРёС‚СЊ РїСѓРЅРєС‚ РјРµРЅСЋ
+	bool DeleteItem(int index);//РЈРґР°Р»РёС‚СЊ РїСѓРЅРєС‚ РјРµРЅСЋ
+	TINYMenu* GetSubMenu(int index);//РџРѕР»СѓС‡РёС‚СЊ СЃСѓР±РјРµРЅСЋ
+	bool SetSubMenu(int index,TINYMenu* submenu);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃСѓР±РјРµРЅСЋ	
+	DWORD GetItemState(int index);//РџРѕР»СѓС‡РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ
+	bool SetItemState(int index,DWORD state);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ
+	bool SetItemData(int index,LPARAM data);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
+	LPARAM GetItemData(int index);//РџРѕР»СѓС‡РёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
 };
 
 //----------------
-//Всплывающее меню
+//Р’СЃРїР»С‹РІР°СЋС‰РµРµ РјРµРЅСЋ
 //----------------
 class TINYPopupMenu: public TINYMenu
 {
 public:
 	bool Create();
-	bool Create(UINT menu);//Создать из ресурсов
-	bool InsertSeparator(int index);//Вставить сепаратор
-	bool AddSeparator();//Добавить сепаратор
-	bool EnableItem(int index,bool enable);//Задизейблить меню
-	bool GetEnableItem(int index);//Проверить задизейблен ли пункт меню
-	bool CheckItem(int index,bool check);//Поставить галочку
-	bool GetCheckItem(int item);//Проверить галочку
-	bool Track(TINYBaseWnd *parent,int x=-1,int y=-1);//Показать меню
+	bool Create(UINT menu);//РЎРѕР·РґР°С‚СЊ РёР· СЂРµСЃСѓСЂСЃРѕРІ
+	bool InsertSeparator(int index);//Р’СЃС‚Р°РІРёС‚СЊ СЃРµРїР°СЂР°С‚РѕСЂ
+	bool AddSeparator();//Р”РѕР±Р°РІРёС‚СЊ СЃРµРїР°СЂР°С‚РѕСЂ
+	bool EnableItem(int index,bool enable);//Р—Р°РґРёР·РµР№Р±Р»РёС‚СЊ РјРµРЅСЋ
+	bool GetEnableItem(int index);//РџСЂРѕРІРµСЂРёС‚СЊ Р·Р°РґРёР·РµР№Р±Р»РµРЅ Р»Рё РїСѓРЅРєС‚ РјРµРЅСЋ
+	bool CheckItem(int index,bool check);//РџРѕСЃС‚Р°РІРёС‚СЊ РіР°Р»РѕС‡РєСѓ
+	bool GetCheckItem(int item);//РџСЂРѕРІРµСЂРёС‚СЊ РіР°Р»РѕС‡РєСѓ
+	bool Track(TINYBaseWnd *parent,int x=-1,int y=-1);//РџРѕРєР°Р·Р°С‚СЊ РјРµРЅСЋ
 };
 
 };

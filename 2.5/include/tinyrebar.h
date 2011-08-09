@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinyrebar.h - Ребар
-//© 2009-2010 Stepan Prokofjev
+//tinyrebar.h - Р РµР±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -14,13 +14,13 @@ class TINYReBar: public TINYControlEx
 {
 public:
 	bool Create(TINYBaseWnd *parent);
-	//Вcтавить банд
+	//Р’cС‚Р°РІРёС‚СЊ Р±Р°РЅРґ
 	bool InsertBand(int index,TINYBaseWnd *child,DWORD style,LPCWSTR text,int w,int h);
-	bool AddBand(TINYBaseWnd *child,DWORD style,LPCWSTR text,int w,int h);//Добавить банд
-	bool DeleteBand(int index);//Удалить банд
-	bool MoveBand(int index,int nindex);//Передвинуть банд
-	bool ShowBand(int index,bool show);//Скрыть/Показать банд
-	int GetBandCount();//Получить кол-во бандов
+	bool AddBand(TINYBaseWnd *child,DWORD style,LPCWSTR text,int w,int h);//Р”РѕР±Р°РІРёС‚СЊ Р±Р°РЅРґ
+	bool DeleteBand(int index);//РЈРґР°Р»РёС‚СЊ Р±Р°РЅРґ
+	bool MoveBand(int index,int nindex);//РџРµСЂРµРґРІРёРЅСѓС‚СЊ Р±Р°РЅРґ
+	bool ShowBand(int index,bool show);//РЎРєСЂС‹С‚СЊ/РџРѕРєР°Р·Р°С‚СЊ Р±Р°РЅРґ
+	int GetBandCount();//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ Р±Р°РЅРґРѕРІ
 };
 
 };

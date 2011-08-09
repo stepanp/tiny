@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinytoolbar.cpp - Тулбар
-//© 2009-2010 Stepan Prokofjev
+//tinytoolbar.cpp - РўСѓР»Р±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinytoolbar.h"
@@ -11,87 +11,87 @@ using namespace tiny;
 
 TINYToolBar::TINYToolBar()
 {
-	//Обработчик для всплывающих подсказок
+	//РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РІСЃРїР»С‹РІР°СЋС‰РёС… РїРѕРґСЃРєР°Р·РѕРє
 	//AddMessage(WM_NOTIFY,&TINYToolBar::_OnToolTip);
 }
 
 bool TINYToolBar::Create(TINYBaseWnd *parent)
 {
 	return TINYControlEx::Create(parent,ICC_BAR_CLASSES,TOOLBARCLASSNAME,0,0,
-		CCS_NOPARENTALIGN|//Не растягивать
-		CCS_NODIVIDER|//Без полоски сверху
-		CCS_NORESIZE|//Не менять размер автоматически
-		TBSTYLE_TRANSPARENT|TBSTYLE_FLAT|//Прозрачный фон	
-		TBSTYLE_TOOLTIPS,//Всплывающие подсказки на кнопках
+		CCS_NOPARENTALIGN|//РќРµ СЂР°СЃС‚СЏРіРёРІР°С‚СЊ
+		CCS_NODIVIDER|//Р‘РµР· РїРѕР»РѕСЃРєРё СЃРІРµСЂС…Сѓ
+		CCS_NORESIZE|//РќРµ РјРµРЅСЏС‚СЊ СЂР°Р·РјРµСЂ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё
+		TBSTYLE_TRANSPARENT|TBSTYLE_FLAT|//РџСЂРѕР·СЂР°С‡РЅС‹Р№ С„РѕРЅ	
+		TBSTYLE_TOOLTIPS,//Р’СЃРїР»С‹РІР°СЋС‰РёРµ РїРѕРґСЃРєР°Р·РєРё РЅР° РєРЅРѕРїРєР°С…
 		0,0,0,25);
 }
-//Установить расширенный стиль
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅРЅС‹Р№ СЃС‚РёР»СЊ
 bool TINYToolBar::SetExtendedStyle(DWORD style)
 {
 	if(!SendMessage(_hwnd,TB_SETEXTENDEDSTYLE,0,LPARAM(style))) return false;
 	return true;
 }
-//Вставить кнопку
+//Р’СЃС‚Р°РІРёС‚СЊ РєРЅРѕРїРєСѓ
 bool TINYToolBar::InsertButton(int index,DWORD style,DWORD state,int nimage,
 							LPCWSTR text,LPCWSTR tip,UINT id)
 {
-	//Создание кнопки
+	//РЎРѕР·РґР°РЅРёРµ РєРЅРѕРїРєРё
 	TBBUTTON btn;
 	btn.fsState=BYTE(state);
 	btn.fsStyle=BYTE(style);
 	btn.iBitmap=nimage;
 	btn.iString=INT_PTR(text);
 	btn.idCommand=id;
-	btn.dwData=DWORD_PTR(tip);//Всплывающая подсказка
-	//Добавление кнопки
+	btn.dwData=DWORD_PTR(tip);//Р’СЃРїР»С‹РІР°СЋС‰Р°СЏ РїРѕРґСЃРєР°Р·РєР°
+	//Р”РѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё
 	if(!SendMessage(_hwnd,TB_INSERTBUTTON,WPARAM(index),LPARAM(&btn))) return false;
 	return true;
 }
-//Добавить кнопку
+//Р”РѕР±Р°РІРёС‚СЊ РєРЅРѕРїРєСѓ
 bool TINYToolBar::AddButton(DWORD style,DWORD state,int nimage,LPCWSTR text,LPCWSTR tip,UINT id)
 {
 	return InsertButton(-1,style,state,nimage,text,tip,id);
 }
-//Втавить сепаратор
+//Р’С‚Р°РІРёС‚СЊ СЃРµРїР°СЂР°С‚РѕСЂ
 bool TINYToolBar::InsertSeparator(int index)
 {
 	return InsertButton(index,BTNS_SEP,0,0,0,0,0);
 }
-//Добавить сепаратор
+//Р”РѕР±Р°РІРёС‚СЊ СЃРµРїР°СЂР°С‚РѕСЂ
 bool TINYToolBar::AddSeparator()
 {
 	return InsertSeparator(-1);
 }
-//Удалить кнопку
+//РЈРґР°Р»РёС‚СЊ РєРЅРѕРїРєСѓ
 bool TINYToolBar::DeleteButton(int index)
 {
 	if(!SendMessage(_hwnd,TB_DELETEBUTTON,WPARAM(index),0)) return false;
 	return true;
 }
-//Передвинуть кнопку
-bool TINYToolBar::MoveButton(int index,int nindex/*Новый индекс кнопки*/)
+//РџРµСЂРµРґРІРёРЅСѓС‚СЊ РєРЅРѕРїРєСѓ
+bool TINYToolBar::MoveButton(int index,int nindex/*РќРѕРІС‹Р№ РёРЅРґРµРєСЃ РєРЅРѕРїРєРё*/)
 {
 	if(!SendMessage(_hwnd,TB_MOVEBUTTON,WPARAM(index),LPARAM(index))) return false;
 	return true;
 }
-//Установить состояние кнопки
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РєРЅРѕРїРєРё
 bool TINYToolBar::SetButtonState(int id,DWORD state)
 {
 	if(!SendMessage(_hwnd,TB_SETSTATE,WPARAM(id),LPARAM(MAKELONG(state,0)))) return false;
 	return true;
 }
-//Получить состояние кнопки
+//РџРѕР»СѓС‡РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РєРЅРѕРїРєРё
 DWORD TINYToolBar::GetButtonState(int id)
 {
 	return SendMessage(_hwnd,TB_GETSTATE,WPARAM(id),0);
 }
-//Включить/Выключить кнопку
+//Р’РєР»СЋС‡РёС‚СЊ/Р’С‹РєР»СЋС‡РёС‚СЊ РєРЅРѕРїРєСѓ
 bool TINYToolBar::EnableButton(int id,bool enable)
 {
 	if(!SendMessage(_hwnd,TB_ENABLEBUTTON,WPARAM(id),LPARAM(enable))) return false;
 	return true;
 }
-//Показать/Скрыть кнопку
+//РџРѕРєР°Р·Р°С‚СЊ/РЎРєСЂС‹С‚СЊ РєРЅРѕРїРєСѓ
 bool TINYToolBar::ShowButton(int id,bool show)
 {
 	bool ishow=show;
@@ -100,7 +100,7 @@ bool TINYToolBar::ShowButton(int id,bool show)
 	if(!SendMessage(_hwnd,TB_HIDEBUTTON,WPARAM(id),LPARAM(ishow))) return false;
 	return true;
 }
-//Установить имаджлист
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚
 bool TINYToolBar::SetImageList(TINYImageList *list)
 {
 	HIMAGELIST hlist;
@@ -109,7 +109,7 @@ bool TINYToolBar::SetImageList(TINYImageList *list)
 	if(!SendMessage(_hwnd,TB_SETIMAGELIST,WPARAM(0),LPARAM(hlist))) return false;
 	return true;
 }
-//Установить имаджлист для подсвеченных кнопок
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚ РґР»СЏ РїРѕРґСЃРІРµС‡РµРЅРЅС‹С… РєРЅРѕРїРѕРє
 bool TINYToolBar::SetHotImageList(TINYImageList *list)
 {
 	HIMAGELIST hlist;
@@ -118,7 +118,7 @@ bool TINYToolBar::SetHotImageList(TINYImageList *list)
 	if(!SendMessage(_hwnd,TB_SETHOTIMAGELIST,WPARAM(0),LPARAM(hlist))) return false;
 	return true;
 }
-//Установить имаджлист для отключенных кнопок
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚ РґР»СЏ РѕС‚РєР»СЋС‡РµРЅРЅС‹С… РєРЅРѕРїРѕРє
 bool TINYToolBar::SetDisbaleImageList(TINYImageList *list)
 {
 	HIMAGELIST hlist;
@@ -127,17 +127,17 @@ bool TINYToolBar::SetDisbaleImageList(TINYImageList *list)
 	if(!SendMessage(_hwnd,TB_SETDISABLEDIMAGELIST,WPARAM(0),LPARAM(hlist))) return false;
 	return true;
 }
-//Установить размер автоматически
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё
 void TINYToolBar::AutoSize()
 {
 	SendMessage(_hwnd,TB_AUTOSIZE,0,0);
 }
-//Получить кол-во кнопок
+//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РєРЅРѕРїРѕРє
 int TINYToolBar::GetButtonCount()
 {
 	return SendMessage(_hwnd,TB_BUTTONCOUNT,0,0);
 }
-//Получить кнопку
+//РџРѕР»СѓС‡РёС‚СЊ РєРЅРѕРїРєСѓ
 TBBUTTON TINYToolBar::GetButton(int index)
 {
 	TBBUTTON btn;
@@ -145,21 +145,21 @@ TBBUTTON TINYToolBar::GetButton(int index)
 	return btn;
 }
 
-//Обработчик для всплывающих подсказок
+//РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РІСЃРїР»С‹РІР°СЋС‰РёС… РїРѕРґСЃРєР°Р·РѕРє
 LRESULT TINYToolBar::_OnToolTip(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPARAM lparam)
 {
 	if(LPNMHDR(lparam)->code==TTN_GETDISPINFO)
 	{
 		LPTOOLTIPTEXT tip=LPTOOLTIPTEXT(lparam);
 		tip->hinst=GetModuleHandle(0);
-		//Получение id кнопки
+		//РџРѕР»СѓС‡РµРЅРёРµ id РєРЅРѕРїРєРё
 		int id=tip->hdr.idFrom;
-		//Поиск кнопки с таким id
+		//РџРѕРёСЃРє РєРЅРѕРїРєРё СЃ С‚Р°РєРёРј id
 		for(int i=0;i<GetButtonCount();i++)
 		{
 			TBBUTTON btn=GetButton(i);
-			//Если id совпадают то показать подсказку
-			//Для этой кнопки
+			//Р•СЃР»Рё id СЃРѕРІРїР°РґР°СЋС‚ С‚Рѕ РїРѕРєР°Р·Р°С‚СЊ РїРѕРґСЃРєР°Р·РєСѓ
+			//Р”Р»СЏ СЌС‚РѕР№ РєРЅРѕРїРєРё
 			if(btn.idCommand==id)
 			{
 				tip->lpszText=LPWSTR(btn.dwData);	

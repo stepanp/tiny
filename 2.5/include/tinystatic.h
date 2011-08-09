@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinystatic.h - Статик
-//© 2009-2010 Stepan Prokofjev
+//tinystatic.h - РЎС‚Р°С‚РёРє
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -15,12 +15,12 @@ class TINYStatic: public TINYControl
 public:
 	bool Create(TINYBaseWnd *parent,LPCWSTR text,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h);
-	bool SetIcon(HICON icon);//Установить иконку
-	HICON GetIcon();//Получить иконку
-	bool SetBitmap(HBITMAP bmp);//Установить битмап
-	HBITMAP GetBitmap();//Получить битмап
-	bool SetCursor(HCURSOR cursor);//Установить курсор
-	HCURSOR GetCursor();//Получить курсор
+	bool SetIcon(HICON icon);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРєРѕРЅРєСѓ
+	HICON GetIcon();//РџРѕР»СѓС‡РёС‚СЊ РёРєРѕРЅРєСѓ
+	bool SetBitmap(HBITMAP bmp);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р±РёС‚РјР°Рї
+	HBITMAP GetBitmap();//РџРѕР»СѓС‡РёС‚СЊ Р±РёС‚РјР°Рї
+	bool SetCursor(HCURSOR cursor);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєСѓСЂСЃРѕСЂ
+	HCURSOR GetCursor();//РџРѕР»СѓС‡РёС‚СЊ РєСѓСЂСЃРѕСЂ
 };
 
 };

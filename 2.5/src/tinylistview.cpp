@@ -1,22 +1,22 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinylistview.cpp - Листвью
-//© 2009-2010 Stepan Prokofjev
+//tinylistview.cpp - Р›РёСЃС‚РІСЊСЋ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinylistview.h"
 
 using namespace tiny;
 
-//Прикрепить колонки в режиме LVS_REPORT
+//РџСЂРёРєСЂРµРїРёС‚СЊ РєРѕР»РѕРЅРєРё РІ СЂРµР¶РёРјРµ LVS_REPORT
 bool TINYListView::_AttachHeader()
 {
 	DWORD style=GetWindowLong(_hwnd,GWL_STYLE);
 	DWORD nstyle=style&~LVS_NOCOLUMNHEADER;
-	//Если есть стиль LVS_REPORT и нет стиля LVS_NOCOLUMNHEADER
+	//Р•СЃР»Рё РµСЃС‚СЊ СЃС‚РёР»СЊ LVS_REPORT Рё РЅРµС‚ СЃС‚РёР»СЏ LVS_NOCOLUMNHEADER
 	if(style==(nstyle|LVS_REPORT))
 	{
-		//Прикрепить хидер к классу TINYHeaderCtrl
+		//РџСЂРёРєСЂРµРїРёС‚СЊ С…РёРґРµСЂ Рє РєР»Р°СЃСЃСѓ TINYHeaderCtrl
 		if(!_header.Attach(ListView_GetHeader(_hwnd))) return false;
 	}
 	return true;
@@ -34,19 +34,19 @@ bool TINYListView::Attach(HWND hwnd)
 	if(!TINYControlEx::Attach(hwnd)) return false;
 	return _AttachHeader();
 }
-//Получить хидер(колонки)
+//РџРѕР»СѓС‡РёС‚СЊ С…РёРґРµСЂ(РєРѕР»РѕРЅРєРё)
 TINYHeaderCtrl* TINYListView::GetHeader() {return &_header;}
-//Установить расширенный стиль
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅРЅС‹Р№ СЃС‚РёР»СЊ
 bool TINYListView::SetExtendedStyle(DWORD style)
 {
 	if(!ListView_SetExtendedListViewStyle(_hwnd,style)) return false;
 	return true;
 }
-//Вставить колонку
-int TINYListView::InsertColumn(int index,LPCWSTR text,int w,int fmt/*Формат*/)
+//Р’СЃС‚Р°РІРёС‚СЊ РєРѕР»РѕРЅРєСѓ
+int TINYListView::InsertColumn(int index,LPCWSTR text,int w,int fmt/*Р¤РѕСЂРјР°С‚*/)
 {
 	int nindex;
-	//Получение индеса
+	//РџРѕР»СѓС‡РµРЅРёРµ РёРЅРґРµСЃР°
 	if(index==-1) nindex=_header.GetItemCount();
 	else nindex=index;	
 	LVCOLUMN col;
@@ -57,28 +57,28 @@ int TINYListView::InsertColumn(int index,LPCWSTR text,int w,int fmt/*Формат*/)
 	col.fmt=fmt;
 	return ListView_InsertColumn(_hwnd,nindex,&col);
 }
-//Добавить колонку
-int TINYListView::AddColumn(LPCWSTR text,int w,int fmt/*Формат*/)
+//Р”РѕР±Р°РІРёС‚СЊ РєРѕР»РѕРЅРєСѓ
+int TINYListView::AddColumn(LPCWSTR text,int w,int fmt/*Р¤РѕСЂРјР°С‚*/)
 {
 	return InsertColumn(-1,text,w,fmt);
 }
-//Удалить колонку
+//РЈРґР°Р»РёС‚СЊ РєРѕР»РѕРЅРєСѓ
 bool TINYListView::DeleteColumn(int index)
 {
 	if(!ListView_DeleteColumn(_hwnd,index)) return false;
 	return true;
 }
-//Установить ширину колонки
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С€РёСЂРёРЅСѓ РєРѕР»РѕРЅРєРё
 bool TINYListView::SetColumnW(int index,int w)
 {
 	if(!ListView_SetColumnWidth(_hwnd,index,w)) return false;
 	return true;
 }
-//Вставить итем
+//Р’СЃС‚Р°РІРёС‚СЊ РёС‚РµРј
 int TINYListView::InsertItem(int index,LPCWSTR text,int image)
 {
 	int nindex;
-	//Получение индекса
+	//РџРѕР»СѓС‡РµРЅРёРµ РёРЅРґРµРєСЃР°
 	if(index==-1) nindex=GetItemCount();
 	else nindex=index;
 	LVITEM lvi;
@@ -89,24 +89,24 @@ int TINYListView::InsertItem(int index,LPCWSTR text,int image)
 	lvi.iSubItem=0;
 	return ListView_InsertItem(_hwnd,&lvi);
 }
-//Добавить итем
+//Р”РѕР±Р°РІРёС‚СЊ РёС‚РµРј
 int TINYListView::AddItem(LPCWSTR text,int image)
 {
 	return InsertItem(-1,text,image);
 }
-//Удалить итем
+//РЈРґР°Р»РёС‚СЊ РёС‚РµРј
 bool TINYListView::DeleteItem(int index)
 {
 	if(!ListView_DeleteItem(_hwnd,index)) return false;
 	return true;
 }
-//Установить субитем
-//Впринципе тоже самое что и SetItemText :)
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃСѓР±РёС‚РµРј
+//Р’РїСЂРёРЅС†РёРїРµ С‚РѕР¶Рµ СЃР°РјРѕРµ С‡С‚Рѕ Рё SetItemText :)
 bool TINYListView::SetSubItem(int index,int subitem,LPCWSTR text)
 {
 	return SetItemText(index,subitem,text);
 }
-//Установить текст итема
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
 bool TINYListView::SetItemText(int index,int subitem,LPCWSTR text)
 {
 	LVITEM lvi;
@@ -117,7 +117,7 @@ bool TINYListView::SetItemText(int index,int subitem,LPCWSTR text)
 	if(ListView_SetItem(_hwnd,&lvi)==-1) return false;
 	return true;
 }
-//Установить индекс картинки
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРЅРґРµРєСЃ РєР°СЂС‚РёРЅРєРё
 bool TINYListView::SetItemImage(int index,int subitem,int image)
 {
 	LVITEM lvi;
@@ -128,7 +128,7 @@ bool TINYListView::SetItemImage(int index,int subitem,int image)
 	if(ListView_SetItem(_hwnd,&lvi)==-1) return false;
 	return true;
 }
-//Установить значение итема
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
 bool TINYListView::SetItemData(int index,int subitem,LPARAM data)
 {
 	LVITEM lvi;
@@ -139,7 +139,7 @@ bool TINYListView::SetItemData(int index,int subitem,LPARAM data)
 	if(ListView_SetItem(_hwnd,&lvi)==-1) return false;
 	return true;
 }
-//Установить состояние итема
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РёС‚РµРјР°
 bool TINYListView::SetItemState(int index,UINT state)
 {
 	LVITEM lvi;
@@ -151,7 +151,7 @@ bool TINYListView::SetItemState(int index,UINT state)
 	if(ListView_SetItem(_hwnd,&lvi)==-1) return false;
 	return true;
 }
-//Получить текст итема
+//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
 TINYStr TINYListView::GetItemText(int index,int subitem)
 {	
 	wchar_t *text=new wchar_t[MAX_PATH];
@@ -166,7 +166,7 @@ TINYStr TINYListView::GetItemText(int index,int subitem)
 	delete[] text;
 	return str;
 }
-//Получить индекс картинки
+//РџРѕР»СѓС‡РёС‚СЊ РёРЅРґРµРєСЃ РєР°СЂС‚РёРЅРєРё
 int TINYListView::GetItemImage(int index,int subitem)
 {
 	LVITEM lvi;
@@ -176,7 +176,7 @@ int TINYListView::GetItemImage(int index,int subitem)
 	ListView_GetItem(_hwnd,&lvi);
 	return lvi.iImage;
 }
-//Получить значение итема
+//РџРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёС‚РµРјР°
 LPARAM TINYListView::GetItemData(int index,int subitem)
 {
 	LVITEM lvi;
@@ -186,18 +186,18 @@ LPARAM TINYListView::GetItemData(int index,int subitem)
 	ListView_GetItem(_hwnd,&lvi);
 	return lvi.lParam;
 }
-//Получить состояние итема
+//РџРѕР»СѓС‡РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РёС‚РµРјР°
 UINT TINYListView::GetItemState(int index)
 {
 	return ListView_GetItemState(_hwnd,index,
 		LVIS_CUT|LVIS_DROPHILITED|LVIS_FOCUSED|LVIS_SELECTED);
 }
-//Получить кол-во итемов
+//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РёС‚РµРјРѕРІ
 int TINYListView::GetItemCount()
 {
 	return ListView_GetItemCount(_hwnd);
 }
-//Установить имаджлист
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚
 bool TINYListView::SetImageList(TINYImageList *list)
 {
 	HIMAGELIST hlist;
@@ -206,7 +206,7 @@ bool TINYListView::SetImageList(TINYImageList *list)
 	if(!ListView_SetImageList(_hwnd,hlist,LVSIL_NORMAL)) return false;
 	return true;
 }
-//Установить имаджлист для маленьких иконок
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚ РґР»СЏ РјР°Р»РµРЅСЊРєРёС… РёРєРѕРЅРѕРє
 bool TINYListView::SetSmallImageList(TINYImageList *list)
 {
 	HIMAGELIST hlist;

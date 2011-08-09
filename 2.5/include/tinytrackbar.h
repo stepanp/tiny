@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinytrackbar.h - Трекбар
-//© 2009-2010 Stepan Prokofjev
+//tinytrackbar.h - РўСЂРµРєР±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -15,17 +15,17 @@ class TINYTrackBar: public TINYControlEx
 public:
 	bool Create(TINYBaseWnd *parent,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h);
-	bool SetPos(int pos);//Установить позицию
-	int GetPos();//Получить позицию
-	void SetRange(int min,int max);//Установить минимальную и максимальную позиции
-	int GetMinRange();//Получить минимальную позицию
-	int GetMaxRange();//Получить максимальную позицию
-	bool SetTick(int pos);//Установить риску
-	int GetTick(int index);//Получить позицию риски
-	bool SetTickFrequency(int freq);//Установить частоту рисок
-	bool SetBuddies(TINYBaseWnd *left,TINYBaseWnd *right);//Установить боковые контролы
-	TINYBaseWnd* GetLeftBuddy();//Получить левый контрол
-	TINYBaseWnd* GetRightBuddy();//Получить правый контрол
+	bool SetPos(int pos);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР·РёС†РёСЋ
+	int GetPos();//РџРѕР»СѓС‡РёС‚СЊ РїРѕР·РёС†РёСЋ
+	void SetRange(int min,int max);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РјРёРЅРёРјР°Р»СЊРЅСѓСЋ Рё РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёРё
+	int GetMinRange();//РџРѕР»СѓС‡РёС‚СЊ РјРёРЅРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ
+	int GetMaxRange();//РџРѕР»СѓС‡РёС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ
+	bool SetTick(int pos);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂРёСЃРєСѓ
+	int GetTick(int index);//РџРѕР»СѓС‡РёС‚СЊ РїРѕР·РёС†РёСЋ СЂРёСЃРєРё
+	bool SetTickFrequency(int freq);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‡Р°СЃС‚РѕС‚Сѓ СЂРёСЃРѕРє
+	bool SetBuddies(TINYBaseWnd *left,TINYBaseWnd *right);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р±РѕРєРѕРІС‹Рµ РєРѕРЅС‚СЂРѕР»С‹
+	TINYBaseWnd* GetLeftBuddy();//РџРѕР»СѓС‡РёС‚СЊ Р»РµРІС‹Р№ РєРѕРЅС‚СЂРѕР»
+	TINYBaseWnd* GetRightBuddy();//РџРѕР»СѓС‡РёС‚СЊ РїСЂР°РІС‹Р№ РєРѕРЅС‚СЂРѕР»
 };
 
 };

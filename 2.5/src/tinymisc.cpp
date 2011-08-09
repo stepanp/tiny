@@ -1,7 +1,7 @@
-//-----------------------------------
+п»ї//-----------------------------------
 //tiny 2.5
-//tinymisc.cpp - Разные мелкие классы
-//© 2009-2010 Stepan Prokofjev
+//tinymisc.cpp - Р Р°Р·РЅС‹Рµ РјРµР»РєРёРµ РєР»Р°СЃСЃС‹
+//В© 2009-2010 Stepan Prokofjev
 //-----------------------------------
 
 #include "tinymisc.h"
@@ -9,17 +9,17 @@
 using namespace tiny;
 
 //------
-//Иконка
+//РРєРѕРЅРєР°
 //------
 
 TINYIcon::TINYIcon() {_hicon=0;}
 TINYIcon::TINYIcon(UINT icon) {LoadIcon(icon);}
 TINYIcon::TINYIcon(UINT icon,int w,int h) {LoadIconEx(icon,w,h);}
-//Получить HICON
+//РџРѕР»СѓС‡РёС‚СЊ HICON
 HICON TINYIcon::GetHICON() {return _hicon;}
-//Связать HICON
+//РЎРІСЏР·Р°С‚СЊ HICON
 void TINYIcon::Attach(HICON icon) {_hicon=icon;}
-//Загрузить иконку
+//Р—Р°РіСЂСѓР·РёС‚СЊ РёРєРѕРЅРєСѓ
 bool TINYIcon::LoadIcon(UINT icon)
 {
 	HICON hicon=::LoadIcon(GetModuleHandle(0),MAKEINTRESOURCE(icon));
@@ -27,7 +27,7 @@ bool TINYIcon::LoadIcon(UINT icon)
 	_hicon=hicon;
 	return true;
 }
-//Загрузить иконку по размеру
+//Р—Р°РіСЂСѓР·РёС‚СЊ РёРєРѕРЅРєСѓ РїРѕ СЂР°Р·РјРµСЂСѓ
 bool TINYIcon::LoadIconEx(UINT icon,int w,int h)
 {
 	HICON hicon=HICON(LoadImage(GetModuleHandle(0),MAKEINTRESOURCE(icon),
@@ -36,7 +36,7 @@ bool TINYIcon::LoadIconEx(UINT icon,int w,int h)
 	_hicon=hicon;
 	return true;
 }
-//Уничтожить иконку
+//РЈРЅРёС‡С‚РѕР¶РёС‚СЊ РёРєРѕРЅРєСѓ
 bool TINYIcon::Destroy()
 {
 	if(!DestroyIcon(_hicon)) return false;
@@ -45,7 +45,7 @@ bool TINYIcon::Destroy()
 TINYIcon::operator HICON() {return _hicon;}
 
 //----
-//Рект
+//Р РµРєС‚
 //----
 
 TINYRect::TINYRect()
@@ -63,8 +63,8 @@ TINYRect::TINYRect(RECT& rect)
 {
 	x=rect.left;
 	y=rect.top;
-	w=rect.right-rect.left;//Ширина
-	h=rect.bottom-rect.top;//Высота
+	w=rect.right-rect.left;//РЁРёСЂРёРЅР°
+	h=rect.bottom-rect.top;//Р’С‹СЃРѕС‚Р°
 }
 TINYRect::TINYRect(int x,int y,int w,int h)
 {
@@ -73,7 +73,7 @@ TINYRect::TINYRect(int x,int y,int w,int h)
 	TINYRect::w=w;
 	TINYRect::h=h;
 }
-//Операторы копирования
+//РћРїРµСЂР°С‚РѕСЂС‹ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 TINYRect& TINYRect::operator=(TINYRect& rect)
 {
 	x=rect.x;
@@ -86,8 +86,8 @@ TINYRect& TINYRect::operator=(RECT& rect)
 {
 	x=rect.left;
 	y=rect.top;
-	w=rect.right-rect.left;//Ширина
-	h=rect.bottom-rect.top;//Высота
+	w=rect.right-rect.left;//РЁРёСЂРёРЅР°
+	h=rect.bottom-rect.top;//Р’С‹СЃРѕС‚Р°
 	return *this;
 }
 TINYRect::operator RECT()

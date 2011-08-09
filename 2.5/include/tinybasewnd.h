@@ -1,7 +1,7 @@
-//----------------------------------
+п»ї//----------------------------------
 //tiny 2.5
-//tinybasewnd.h - Базовой класс окон
-//© 2009-2010 Stepan Prokofjev
+//tinybasewnd.h - Р‘Р°Р·РѕРІРѕР№ РєР»Р°СЃСЃ РѕРєРѕРЅ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------------
 
 #pragma once
@@ -20,20 +20,20 @@ namespace tiny{
 
 class TINYBaseWnd;
 
-//Структура параметров сообщения
+//РЎС‚СЂСѓРєС‚СѓСЂР° РїР°СЂР°РјРµС‚СЂРѕРІ СЃРѕРѕР±С‰РµРЅРёСЏ
 struct TINYMSGPARAMS
 {
-	UINT code;//Сообщение
+	UINT code;//РЎРѕРѕР±С‰РµРЅРёРµ
 	WPARAM wparam;
 	LPARAM lparam;
 };
 
-//Структура для полей
+//РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ РїРѕР»РµР№
 struct TINYPADDING
 {
 	TINYPADDING()
 	{
-		//Обнуление полей
+		//РћР±РЅСѓР»РµРЅРёРµ РїРѕР»РµР№
 		left=top=right=bottom=0;
 	}
 	TINYPADDING(int _left,int _top,int _right,int _bottom)
@@ -43,7 +43,7 @@ struct TINYPADDING
 		right=_right;
 		bottom=_bottom;
 	}
-	//Размеры полей
+	//Р Р°Р·РјРµСЂС‹ РїРѕР»РµР№
 	int left,top,right,bottom;
 };
 
@@ -52,124 +52,124 @@ class TINYBaseWnd: public TINYObject
 public:
 	TINYBaseWnd();
 protected:
-	HWND _hwnd;//HWND окна
-	bool _isctrl;//Если класс отнаследован от TINYControl = true, иначе false
-	HACCEL _acc;//Акселератор (горячие клавиши)
+	HWND _hwnd;//HWND РѕРєРЅР°
+	bool _isctrl;//Р•СЃР»Рё РєР»Р°СЃСЃ РѕС‚РЅР°СЃР»РµРґРѕРІР°РЅ РѕС‚ TINYControl = true, РёРЅР°С‡Рµ false
+	HACCEL _acc;//РђРєСЃРµР»РµСЂР°С‚РѕСЂ (РіРѕСЂСЏС‡РёРµ РєР»Р°РІРёС€Рё)
 public:
-	//Свойства
-	TINYStrProperty proptext;//Текст
-	TINYIntProperty propx;//Х
+	//РЎРІРѕР№СЃС‚РІР°
+	TINYStrProperty proptext;//РўРµРєСЃС‚
+	TINYIntProperty propx;//РҐ
 	TINYIntProperty propy;//Y
-	TINYIntProperty propw;//Ширина
-	TINYIntProperty proph;//Высота
-	TINYIconProperty propicon;//Большая иконка
-	TINYIconProperty propsmicon;//Маленькая иконка (16х16)
-	//Стили
-	TINYStyleProperty proptabstop,//Для этого окна можно перемещать фокус по Tab
-		propvscroll,//Вертикальный скролл
-		prophscroll,//Горизонтальный скролл
-		propclientedge,//Вдавленная рамка
-		propstaticedge,//Статичная рамка
-		propwindowedge,//Выпуклая рамка
-		proptransparent,//Прозрачное окно
-		propacceptfiles;//Принимает файлы через Drag&Drop
-	bool propdoublebuf;//Двойная буферизация
-	COLORREF propbkcolor;//Цвет фона
-	//События
-	TINYEvent oncreate,//При создании
-		ondestroy,//При уничтожении
-		onsize,//При ресайзе
-		onpaint,//При отрисовке
-		onmousemove,//При движении мыши
-		onlbtndown,//При нажатии левой кнопки
-		onlbtnup,//При отпускании левй кнопки
-		ontimer;//При срабатывании таймера
-	//Карты событий
-	TINYEventMap onmessage,//Карта сообщений
-		oncommand,//Карта команд
-		onmenu,//Карта команд меню
-		onacc,//Карта команд акселераторов
-		onnotify;//Карта нотификаций
-	//События для кастомной обработки сообщений в контролах
-	TINYEvent _oncustommsg,//При приходе сообщения
-		_oncustomcmd,//При приходе комнады
-		_oncustomntf;//При приходе  нотификации
+	TINYIntProperty propw;//РЁРёСЂРёРЅР°
+	TINYIntProperty proph;//Р’С‹СЃРѕС‚Р°
+	TINYIconProperty propicon;//Р‘РѕР»СЊС€Р°СЏ РёРєРѕРЅРєР°
+	TINYIconProperty propsmicon;//РњР°Р»РµРЅСЊРєР°СЏ РёРєРѕРЅРєР° (16С…16)
+	//РЎС‚РёР»Рё
+	TINYStyleProperty proptabstop,//Р”Р»СЏ СЌС‚РѕРіРѕ РѕРєРЅР° РјРѕР¶РЅРѕ РїРµСЂРµРјРµС‰Р°С‚СЊ С„РѕРєСѓСЃ РїРѕ Tab
+		propvscroll,//Р’РµСЂС‚РёРєР°Р»СЊРЅС‹Р№ СЃРєСЂРѕР»Р»
+		prophscroll,//Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅС‹Р№ СЃРєСЂРѕР»Р»
+		propclientedge,//Р’РґР°РІР»РµРЅРЅР°СЏ СЂР°РјРєР°
+		propstaticedge,//РЎС‚Р°С‚РёС‡РЅР°СЏ СЂР°РјРєР°
+		propwindowedge,//Р’С‹РїСѓРєР»Р°СЏ СЂР°РјРєР°
+		proptransparent,//РџСЂРѕР·СЂР°С‡РЅРѕРµ РѕРєРЅРѕ
+		propacceptfiles;//РџСЂРёРЅРёРјР°РµС‚ С„Р°Р№Р»С‹ С‡РµСЂРµР· Drag&Drop
+	bool propdoublebuf;//Р”РІРѕР№РЅР°СЏ Р±СѓС„РµСЂРёР·Р°С†РёСЏ
+	COLORREF propbkcolor;//Р¦РІРµС‚ С„РѕРЅР°
+	//РЎРѕР±С‹С‚РёСЏ
+	TINYEvent oncreate,//РџСЂРё СЃРѕР·РґР°РЅРёРё
+		ondestroy,//РџСЂРё СѓРЅРёС‡С‚РѕР¶РµРЅРёРё
+		onsize,//РџСЂРё СЂРµСЃР°Р№Р·Рµ
+		onpaint,//РџСЂРё РѕС‚СЂРёСЃРѕРІРєРµ
+		onmousemove,//РџСЂРё РґРІРёР¶РµРЅРёРё РјС‹С€Рё
+		onlbtndown,//РџСЂРё РЅР°Р¶Р°С‚РёРё Р»РµРІРѕР№ РєРЅРѕРїРєРё
+		onlbtnup,//РџСЂРё РѕС‚РїСѓСЃРєР°РЅРёРё Р»РµРІР№ РєРЅРѕРїРєРё
+		ontimer;//РџСЂРё СЃСЂР°Р±Р°С‚С‹РІР°РЅРёРё С‚Р°Р№РјРµСЂР°
+	//РљР°СЂС‚С‹ СЃРѕР±С‹С‚РёР№
+	TINYEventMap onmessage,//РљР°СЂС‚Р° СЃРѕРѕР±С‰РµРЅРёР№
+		oncommand,//РљР°СЂС‚Р° РєРѕРјР°РЅРґ
+		onmenu,//РљР°СЂС‚Р° РєРѕРјР°РЅРґ РјРµРЅСЋ
+		onacc,//РљР°СЂС‚Р° РєРѕРјР°РЅРґ Р°РєСЃРµР»РµСЂР°С‚РѕСЂРѕРІ
+		onnotify;//РљР°СЂС‚Р° РЅРѕС‚РёС„РёРєР°С†РёР№
+	//РЎРѕР±С‹С‚РёСЏ РґР»СЏ РєР°СЃС‚РѕРјРЅРѕР№ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёР№ РІ РєРѕРЅС‚СЂРѕР»Р°С…
+	TINYEvent _oncustommsg,//РџСЂРё РїСЂРёС…РѕРґРµ СЃРѕРѕР±С‰РµРЅРёСЏ
+		_oncustomcmd,//РџСЂРё РїСЂРёС…РѕРґРµ РєРѕРјРЅР°РґС‹
+		_oncustomntf;//РџСЂРё РїСЂРёС…РѕРґРµ  РЅРѕС‚РёС„РёРєР°С†РёРё
 public:
-	HWND GetHWND();//Получить HWND окна
-	HACCEL GetAccel();//Получить акселератор
-	bool SetAccel(HACCEL acc);//Установить акселератор
-	//Создание окна
+	HWND GetHWND();//РџРѕР»СѓС‡РёС‚СЊ HWND РѕРєРЅР°
+	HACCEL GetAccel();//РџРѕР»СѓС‡РёС‚СЊ Р°РєСЃРµР»РµСЂР°С‚РѕСЂ
+	bool SetAccel(HACCEL acc);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р°РєСЃРµР»РµСЂР°С‚РѕСЂ
+	//РЎРѕР·РґР°РЅРёРµ РѕРєРЅР°
 	bool Create(TINYBaseWnd *parent,LPCWSTR classname,LPCWSTR text,
 		HICON icon,HCURSOR cursor,DWORD exstyle,DWORD style,UINT wndstyle,
 		int x,int y,int w,int h);
-	bool Attach(HWND hwnd);//Связать с HWND
-	bool IsCtrl();//Если класс отнаследован от TINYControl возврващает true, иначе false
+	bool Attach(HWND hwnd);//РЎРІСЏР·Р°С‚СЊ СЃ HWND
+	bool IsCtrl();//Р•СЃР»Рё РєР»Р°СЃСЃ РѕС‚РЅР°СЃР»РµРґРѕРІР°РЅ РѕС‚ TINYControl РІРѕР·РІСЂРІР°С‰Р°РµС‚ true, РёРЅР°С‡Рµ false
 
-	//Функции окна
-	bool Destroy();//Уничтожить окно
-	bool Show(int ncmd);//Показать окно
-	bool Update();//Обновить размеры клиентской области
-	//Обновить окно
+	//Р¤СѓРЅРєС†РёРё РѕРєРЅР°
+	bool Destroy();//РЈРЅРёС‡С‚РѕР¶РёС‚СЊ РѕРєРЅРѕ
+	bool Show(int ncmd);//РџРѕРєР°Р·Р°С‚СЊ РѕРєРЅРѕ
+	bool Update();//РћР±РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂС‹ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё
+	//РћР±РЅРѕРІРёС‚СЊ РѕРєРЅРѕ
 	bool Redraw(UINT flags);
-	bool Redraw(RECT *uprect,//Область для обновления
-		HRGN uprgn,//Регион для обновления
+	bool Redraw(RECT *uprect,//РћР±Р»Р°СЃС‚СЊ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ
+		HRGN uprgn,//Р РµРіРёРѕРЅ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ
 		UINT flags);
-	bool SetText(TINYStr text);//Установить текст окна
-	TINYStr GetText();//Получить текст окна
-	int GetTextLen();//Получить длину текста окна
-	TINYBaseWnd* GetParent();//Получить указатель на класс родительского окна
-	bool SetParent(TINYBaseWnd* parent);//Установить родительское окно
-	TINYStr GetClassName();//Получить название класса
+	bool SetText(TINYStr text);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ РѕРєРЅР°
+	TINYStr GetText();//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РѕРєРЅР°
+	int GetTextLen();//РџРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ С‚РµРєСЃС‚Р° РѕРєРЅР°
+	TINYBaseWnd* GetParent();//РџРѕР»СѓС‡РёС‚СЊ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РєР»Р°СЃСЃ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РѕРєРЅР°
+	bool SetParent(TINYBaseWnd* parent);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРµ РѕРєРЅРѕ
+	TINYStr GetClassName();//РџРѕР»СѓС‡РёС‚СЊ РЅР°Р·РІР°РЅРёРµ РєР»Р°СЃСЃР°
 
-	//Функции для работы со стилями
-	bool AddStyle(DWORD style);//Добавить стиль
-	bool DelStyle(DWORD style);//Удалить стиль
-	bool AddExStyle(DWORD style);//Добавить расширеный стиль
-	bool DelExStyle(DWORD style);//Удалить расширеный стиль
-	bool SetStyle(DWORD style);//Установить стиль
-	DWORD GetStyle();//Получить стиль
-	bool SetExStyle(DWORD style);//Установить расширеный стиль
-	DWORD GetExStyle();//Получить расширеный стиль
+	//Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚РёР»СЏРјРё
+	bool AddStyle(DWORD style);//Р”РѕР±Р°РІРёС‚СЊ СЃС‚РёР»СЊ
+	bool DelStyle(DWORD style);//РЈРґР°Р»РёС‚СЊ СЃС‚РёР»СЊ
+	bool AddExStyle(DWORD style);//Р”РѕР±Р°РІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅС‹Р№ СЃС‚РёР»СЊ
+	bool DelExStyle(DWORD style);//РЈРґР°Р»РёС‚СЊ СЂР°СЃС€РёСЂРµРЅС‹Р№ СЃС‚РёР»СЊ
+	bool SetStyle(DWORD style);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃС‚РёР»СЊ
+	DWORD GetStyle();//РџРѕР»СѓС‡РёС‚СЊ СЃС‚РёР»СЊ
+	bool SetExStyle(DWORD style);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅС‹Р№ СЃС‚РёР»СЊ
+	DWORD GetExStyle();//РџРѕР»СѓС‡РёС‚СЊ СЂР°СЃС€РёСЂРµРЅС‹Р№ СЃС‚РёР»СЊ
 
-	//Функции для работы с иконкам
-	bool SetIcon(TINYIcon icon);//Установить большую иконку
-	bool SetSmallIcon(TINYIcon icon);//Установить большую иконку
-	TINYIcon GetIcon();//Получить большую иконку
-	TINYIcon GetSmallIcon();//Получить маленькую иконку
+	//Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РёРєРѕРЅРєР°Рј
+	bool SetIcon(TINYIcon icon);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р±РѕР»СЊС€СѓСЋ РёРєРѕРЅРєСѓ
+	bool SetSmallIcon(TINYIcon icon);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р±РѕР»СЊС€СѓСЋ РёРєРѕРЅРєСѓ
+	TINYIcon GetIcon();//РџРѕР»СѓС‡РёС‚СЊ Р±РѕР»СЊС€СѓСЋ РёРєРѕРЅРєСѓ
+	TINYIcon GetSmallIcon();//РџРѕР»СѓС‡РёС‚СЊ РјР°Р»РµРЅСЊРєСѓСЋ РёРєРѕРЅРєСѓ
 
-	//Функции для работы с положением и размерами окна
-	TINYRect GetRect();//Получить область окна
-	TINYRect GetClientRect();//Получить клиентскую область окна
-	bool SetSize(int w,int h);//Установить размеры окна
-	bool SetW(int w);//Установить ширину
-	bool SetH(int h);//Установить высоту
-	int GetW();//Получить ширину
-	int GetH();//Получить высоту
-	bool Move(int x,int y);	//Передвинуть окно
-	bool SetX(int x);//Установить X
-	bool SetY(int y);//Установить Y
-	int GetX();//Получить Х
-	int GetY();//Получить Y
+	//Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїРѕР»РѕР¶РµРЅРёРµРј Рё СЂР°Р·РјРµСЂР°РјРё РѕРєРЅР°
+	TINYRect GetRect();//РџРѕР»СѓС‡РёС‚СЊ РѕР±Р»Р°СЃС‚СЊ РѕРєРЅР°
+	TINYRect GetClientRect();//РџРѕР»СѓС‡РёС‚СЊ РєР»РёРµРЅС‚СЃРєСѓСЋ РѕР±Р»Р°СЃС‚СЊ РѕРєРЅР°
+	bool SetSize(int w,int h);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂС‹ РѕРєРЅР°
+	bool SetW(int w);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С€РёСЂРёРЅСѓ
+	bool SetH(int h);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РІС‹СЃРѕС‚Сѓ
+	int GetW();//РџРѕР»СѓС‡РёС‚СЊ С€РёСЂРёРЅСѓ
+	int GetH();//РџРѕР»СѓС‡РёС‚СЊ РІС‹СЃРѕС‚Сѓ
+	bool Move(int x,int y);	//РџРµСЂРµРґРІРёРЅСѓС‚СЊ РѕРєРЅРѕ
+	bool SetX(int x);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ X
+	bool SetY(int y);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Y
+	int GetX();//РџРѕР»СѓС‡РёС‚СЊ РҐ
+	int GetY();//РџРѕР»СѓС‡РёС‚СЊ Y
 
-	//При срабатывании таймера окну приходит сообщение WM_TIMER
-	bool StartTimer(UINT id,UINT time);//Запустить таймер
-	bool StopTimer(UINT id);//Остановить таймер
+	//РџСЂРё СЃСЂР°Р±Р°С‚С‹РІР°РЅРёРё С‚Р°Р№РјРµСЂР° РѕРєРЅСѓ РїСЂРёС…РѕРґРёС‚ СЃРѕРѕР±С‰РµРЅРёРµ WM_TIMER
+	bool StartTimer(UINT id,UINT time);//Р—Р°РїСѓСЃС‚РёС‚СЊ С‚Р°Р№РјРµСЂ
+	bool StopTimer(UINT id);//РћСЃС‚Р°РЅРѕРІРёС‚СЊ С‚Р°Р№РјРµСЂ
 
-	bool Top();//На передний план
-	bool Bottom();//На задний план
-	bool SetZOrder(TINYBaseWnd* wndafter);//Установить z-положение
+	bool Top();//РќР° РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ
+	bool Bottom();//РќР° Р·Р°РґРЅРёР№ РїР»Р°РЅ
+	bool SetZOrder(TINYBaseWnd* wndafter);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ z-РїРѕР»РѕР¶РµРЅРёРµ
 
 public:
 	operator HWND();
 
 protected:
-	//Оконная функция
+	//РћРєРѕРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ
 	static LRESULT CALLBACK _WndProc(HWND hwnd,UINT message,WPARAM wparam,LPARAM lparam);
-	//Функция обработки сообщений
+	//Р¤СѓРЅРєС†РёСЏ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёР№
 	LRESULT _OnMessage(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPARAM lparam);
 
 };
 
-TINYBaseWnd* TinyGetPointer(HWND hwnd);//Получить TINYBaseWnd* из HWND
+TINYBaseWnd* TinyGetPointer(HWND hwnd);//РџРѕР»СѓС‡РёС‚СЊ TINYBaseWnd* РёР· HWND
 
 };

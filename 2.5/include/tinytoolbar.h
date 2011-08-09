@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinytoolbar.h - Тулбар
-//© 2009-2010 Stepan Prokofjev
+//tinytoolbar.h - РўСѓР»Р±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -17,32 +17,32 @@ public:
 	TINYToolBar();
 public:
 	bool Create(TINYBaseWnd *parent);
-	//Установить расширенный стиль
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅРЅС‹Р№ СЃС‚РёР»СЊ
 	bool SetExtendedStyle(DWORD style);
-	//Вставить кнопку
+	//Р’СЃС‚Р°РІРёС‚СЊ РєРЅРѕРїРєСѓ
 	bool InsertButton(int index,DWORD style,DWORD state,int nimage,
 							LPCWSTR text,LPCWSTR tip,UINT id);
-	//Добавить кнопку
+	//Р”РѕР±Р°РІРёС‚СЊ РєРЅРѕРїРєСѓ
 	bool AddButton(DWORD style,DWORD state,int nimage,LPCWSTR text,LPCWSTR tip,UINT id);
-	bool InsertSeparator(int index);//Втавить сепаратор
-	bool AddSeparator();//Добавить сепаратор
-	bool DeleteButton(int index);//Удалить кнопку
-	bool MoveButton(int index,int nindex/*Новый индекс кнопки*/);//Передвинуть кнопку
-	bool SetButtonState(int id,DWORD state);//Установить состояние кнопки
-	DWORD GetButtonState(int id);//Получить состояние кнопки
-	bool EnableButton(int id,bool enable);//Включить/Выключить кнопку
-	bool ShowButton(int id,bool show);//Показать/Скрыть кнопку
-	bool SetImageList(TINYImageList *list);//Установить имаджлист
-	//Установить имаджлист для подсвеченных кнопок
+	bool InsertSeparator(int index);//Р’С‚Р°РІРёС‚СЊ СЃРµРїР°СЂР°С‚РѕСЂ
+	bool AddSeparator();//Р”РѕР±Р°РІРёС‚СЊ СЃРµРїР°СЂР°С‚РѕСЂ
+	bool DeleteButton(int index);//РЈРґР°Р»РёС‚СЊ РєРЅРѕРїРєСѓ
+	bool MoveButton(int index,int nindex/*РќРѕРІС‹Р№ РёРЅРґРµРєСЃ РєРЅРѕРїРєРё*/);//РџРµСЂРµРґРІРёРЅСѓС‚СЊ РєРЅРѕРїРєСѓ
+	bool SetButtonState(int id,DWORD state);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РєРЅРѕРїРєРё
+	DWORD GetButtonState(int id);//РџРѕР»СѓС‡РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РєРЅРѕРїРєРё
+	bool EnableButton(int id,bool enable);//Р’РєР»СЋС‡РёС‚СЊ/Р’С‹РєР»СЋС‡РёС‚СЊ РєРЅРѕРїРєСѓ
+	bool ShowButton(int id,bool show);//РџРѕРєР°Р·Р°С‚СЊ/РЎРєСЂС‹С‚СЊ РєРЅРѕРїРєСѓ
+	bool SetImageList(TINYImageList *list);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚ РґР»СЏ РїРѕРґСЃРІРµС‡РµРЅРЅС‹С… РєРЅРѕРїРѕРє
 	bool SetHotImageList(TINYImageList *list);
-	//Установить имаджлист для отключенных кнопок
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРјР°РґР¶Р»РёСЃС‚ РґР»СЏ РѕС‚РєР»СЋС‡РµРЅРЅС‹С… РєРЅРѕРїРѕРє
 	bool SetDisbaleImageList(TINYImageList *list);
-	void AutoSize();//Установить размер автоматически
-	int GetButtonCount();//Получить кол-во кнопок
-	TBBUTTON GetButton(int index);//Получить кнопку
+	void AutoSize();//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё
+	int GetButtonCount();//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РєРЅРѕРїРѕРє
+	TBBUTTON GetButton(int index);//РџРѕР»СѓС‡РёС‚СЊ РєРЅРѕРїРєСѓ
 
 protected:
-	//Обработчик для всплывающих подсказок
+	//РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РІСЃРїР»С‹РІР°СЋС‰РёС… РїРѕРґСЃРєР°Р·РѕРє
 	LRESULT _OnToolTip(TINYBaseWnd* wnd,UINT message,WPARAM wparam,LPARAM lparam);
 };
 

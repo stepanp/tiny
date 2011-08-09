@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinydialog.h - Диалог
-//© 2009-2010 Stepan Prokofjev
+//tinydialog.h - Р”РёР°Р»РѕРі
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -14,17 +14,17 @@ class TINYDialog: public TINYBaseWnd
 {
 public:
 	bool Create(TINYBaseWnd *parent,UINT dialog);
-	HWND GetItemHWND(UINT id);//Получить HWND контрола
-	void End();//Закрыть диалог
-	TINYStr GetItemText(UINT id);//Получить текст контрола
-	bool SetItemText(LPCWSTR text,UINT id);//Установить текст контрола
-	int GetItemTextLen(UINT id);//Получить длину текста контрола
-	int GetItemCheck(UINT id);//Проверить стоит ли галочка
-	bool SetItemCheck(UINT id,int check);//Установить галочку
-	int GetItemInt(UINT id);//Получить значение контрола
-	bool SetItemInt(int value,UINT id);//Установить значение контрола
+	HWND GetItemHWND(UINT id);//РџРѕР»СѓС‡РёС‚СЊ HWND РєРѕРЅС‚СЂРѕР»Р°
+	void End();//Р—Р°РєСЂС‹С‚СЊ РґРёР°Р»РѕРі
+	TINYStr GetItemText(UINT id);//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РєРѕРЅС‚СЂРѕР»Р°
+	bool SetItemText(LPCWSTR text,UINT id);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ РєРѕРЅС‚СЂРѕР»Р°
+	int GetItemTextLen(UINT id);//РџРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ С‚РµРєСЃС‚Р° РєРѕРЅС‚СЂРѕР»Р°
+	int GetItemCheck(UINT id);//РџСЂРѕРІРµСЂРёС‚СЊ СЃС‚РѕРёС‚ Р»Рё РіР°Р»РѕС‡РєР°
+	bool SetItemCheck(UINT id,int check);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РіР°Р»РѕС‡РєСѓ
+	int GetItemInt(UINT id);//РџРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РєРѕРЅС‚СЂРѕР»Р°
+	bool SetItemInt(int value,UINT id);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РєРѕРЅС‚СЂРѕР»Р°
 protected:
-	//Оконная функция
+	//РћРєРѕРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ
 	static INT_PTR CALLBACK _WndProc(HWND hwnd,UINT message,WPARAM wparam,LPARAM lparam);
 };
 

@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinyedit.h - Едит
-//© 2009-2010 Stepan Prokofjev
+//tinyedit.h - Р•РґРёС‚
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -15,21 +15,21 @@ class TINYEdit: public TINYControl
 public:
 	TINYEdit();
 public:
-	//Свойства
-	TINYStyleProperty propnumber,//Вводить только числа
-		proppassword,//Скрывать символы звездочками
-		propreadonly,//Только чтение
-		propuppercase,//Все симолы в верхнем регистре
-		proplowercase,//Все симолы в нижнем регистре
-		propautovscroll,//Вертикальный автоскролл
-		propautohscroll,//Горизонтальный автоскролл
-		propnohidesel;//Не скрывать выделение
-	//События
-	TINYEvent onchange;//При изменении
+	//РЎРІРѕР№СЃС‚РІР°
+	TINYStyleProperty propnumber,//Р’РІРѕРґРёС‚СЊ С‚РѕР»СЊРєРѕ С‡РёСЃР»Р°
+		proppassword,//РЎРєСЂС‹РІР°С‚СЊ СЃРёРјРІРѕР»С‹ Р·РІРµР·РґРѕС‡РєР°РјРё
+		propreadonly,//РўРѕР»СЊРєРѕ С‡С‚РµРЅРёРµ
+		propuppercase,//Р’СЃРµ СЃРёРјРѕР»С‹ РІ РІРµСЂС…РЅРµРј СЂРµРіРёСЃС‚СЂРµ
+		proplowercase,//Р’СЃРµ СЃРёРјРѕР»С‹ РІ РЅРёР¶РЅРµРј СЂРµРіРёСЃС‚СЂРµ
+		propautovscroll,//Р’РµСЂС‚РёРєР°Р»СЊРЅС‹Р№ Р°РІС‚РѕСЃРєСЂРѕР»Р»
+		propautohscroll,//Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅС‹Р№ Р°РІС‚РѕСЃРєСЂРѕР»Р»
+		propnohidesel;//РќРµ СЃРєСЂС‹РІР°С‚СЊ РІС‹РґРµР»РµРЅРёРµ
+	//РЎРѕР±С‹С‚РёСЏ
+	TINYEvent onchange;//РџСЂРё РёР·РјРµРЅРµРЅРёРё
 public:
 	bool Create(TINYBaseWnd *parent);
 protected:
-	LRESULT _OnCustomCmd(TINYBaseWnd* wnd,TINYParams params);//Кастомная обработка команд
+	LRESULT _OnCustomCmd(TINYBaseWnd* wnd,TINYParams params);//РљР°СЃС‚РѕРјРЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґ
 };
 
 };

@@ -1,7 +1,7 @@
-//----------------------------------------
+п»ї//----------------------------------------
 //tiny 2.5
-//tinybuttons.cpp - Кнопка, чекбокс и т.п.
-//© 2009-2010 Stepan Prokofjev
+//tinybuttons.cpp - РљРЅРѕРїРєР°, С‡РµРєР±РѕРєСЃ Рё С‚.Рї.
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------------------
 
 #include "tinybuttons.h"
@@ -10,20 +10,20 @@ using namespace tiny;
 
 
 //------
-//Кнопка
+//РљРЅРѕРїРєР°
 //------
 TINYButton::TINYButton()
 {
-	_oncustomcmd.Connect(this,&TINYButton::_OnCustomCmd);//Кастомная обработка команд
+	_oncustomcmd.Connect(this,&TINYButton::_OnCustomCmd);//РљР°СЃС‚РѕРјРЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґ
 }
 bool TINYButton::Create(TINYBaseWnd *parent)
 {
 	return TINYControl::Create(parent,L"BUTTON",0,0,0,0,0,100,25);
 }
-//Кастомная обработка команд
+//РљР°СЃС‚РѕРјРЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґ
 LRESULT TINYButton::_OnCustomCmd(TINYBaseWnd* wnd,TINYParams params)
 {
-	//Параметры команды
+	//РџР°СЂР°РјРµС‚СЂС‹ РєРѕРјР°РЅРґС‹
 	TINYMSGPARAMS* cmd=(TINYMSGPARAMS*)(params);
 
 	if(cmd->code==BN_CLICKED) onclick(wnd,0);
@@ -31,7 +31,7 @@ LRESULT TINYButton::_OnCustomCmd(TINYBaseWnd* wnd,TINYParams params)
 }
 
 //-------
-//Чекбокс
+//Р§РµРєР±РѕРєСЃ
 //-------
 TINYCheckBox::TINYCheckBox()
 {
@@ -43,7 +43,7 @@ bool TINYCheckBox::Create(TINYBaseWnd *parent)
 	if(!TINYButton::Create(parent)) return false;
 	return AddStyle(BS_AUTOCHECKBOX);
 }
-//Установить галочку
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РіР°Р»РѕС‡РєСѓ
 bool TINYCheckBox::SetCheck(bool check)
 {
 	int value=0;
@@ -51,7 +51,7 @@ bool TINYCheckBox::SetCheck(bool check)
 	if(!SendMessage(_hwnd,BM_SETCHECK,value,0)) return false;
 	return true;
 }
-//Проверить галочку
+//РџСЂРѕРІРµСЂРёС‚СЊ РіР°Р»РѕС‡РєСѓ
 bool TINYCheckBox::GetCheck()
 {
 	if(SendMessage(_hwnd,BM_GETCHECK,0,0)==1) return true;
@@ -59,7 +59,7 @@ bool TINYCheckBox::GetCheck()
 }
 
 //-----------
-//Радиокнопка
+//Р Р°РґРёРѕРєРЅРѕРїРєР°
 //-----------
 
 bool TINYRadioButton::Create(TINYBaseWnd *parent)
@@ -69,7 +69,7 @@ bool TINYRadioButton::Create(TINYBaseWnd *parent)
 }
 
 //--------
-//Групбокс
+//Р“СЂСѓРїР±РѕРєСЃ
 //--------
 
 bool TINYGroupBox::Create(TINYBaseWnd *parent)

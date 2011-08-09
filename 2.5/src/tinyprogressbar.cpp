@@ -1,7 +1,7 @@
-//---------------------------------
+п»ї//---------------------------------
 //tiny 2.5
-//tinyprogressbar.cpp - Прогрессбар
-//© 2009-2010 Stepan Prokofjev
+//tinyprogressbar.cpp - РџСЂРѕРіСЂРµСЃСЃР±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //---------------------------------
 
 #include "tinyprogressbar.h"
@@ -12,63 +12,63 @@ bool TINYProgressBar::Create(TINYBaseWnd *parent,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h)
 {
 	if(!TINYControlEx::Create(parent,0,PROGRESS_CLASS,0,exstyle,style,x,y,w,h)) return false;
-	//Удалить стиль PBS_MARQUEE, если он не указан при создании
+	//РЈРґР°Р»РёС‚СЊ СЃС‚РёР»СЊ PBS_MARQUEE, РµСЃР»Рё РѕРЅ РЅРµ СѓРєР°Р·Р°РЅ РїСЂРё СЃРѕР·РґР°РЅРёРё
 	if(style!=(style|PBS_MARQUEE)) DelStyle(PBS_MARQUEE);
 	return true;
 }
-//Установить позицию
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР·РёС†РёСЋ
 bool TINYProgressBar::SetPos(int pos)
 {
 	if(!SendMessage(_hwnd,PBM_SETPOS,WPARAM(pos),0)) return false;
 	return true;
 }
-//Получить позицию
+//РџРѕР»СѓС‡РёС‚СЊ РїРѕР·РёС†РёСЋ
 int TINYProgressBar::GetPos()
 {
 	return SendMessage(_hwnd,PBM_GETPOS,0,0);
 }
-//Установить шаг прогрессбара
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С€Р°Рі РїСЂРѕРіСЂРµСЃСЃР±Р°СЂР°
 int TINYProgressBar::SetStep(int step)
 {
 	return SendMessage(_hwnd,PBM_SETSTEP,WPARAM(step),0);
 }
-//Получить шаг прогрессбара
+//РџРѕР»СѓС‡РёС‚СЊ С€Р°Рі РїСЂРѕРіСЂРµСЃСЃР±Р°СЂР°
 int TINYProgressBar::GetStep()
 {
-	//Устанавливаем новый шаг, получаем старый
+	//РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅРѕРІС‹Р№ С€Р°Рі, РїРѕР»СѓС‡Р°РµРј СЃС‚Р°СЂС‹Р№
 	int step=SendMessage(_hwnd,PBM_SETSTEP,WPARAM(0),0);
-	//Возвращаем обратно старый
+	//Р’РѕР·РІСЂР°С‰Р°РµРј РѕР±СЂР°С‚РЅРѕ СЃС‚Р°СЂС‹Р№
 	SendMessage(_hwnd,PBM_SETSTEP,WPARAM(step),0);
 	return step;
 }
-//Установить позицию по кол-ву шагов
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР·РёС†РёСЋ РїРѕ РєРѕР»-РІСѓ С€Р°РіРѕРІ
 int TINYProgressBar::DeltaPos(int pos)
 {
 	return SendMessage(_hwnd,PBM_DELTAPOS,WPARAM(pos),0);
 }
-//Продвинуться на 1 шаг
+//РџСЂРѕРґРІРёРЅСѓС‚СЊСЃСЏ РЅР° 1 С€Р°Рі
 int TINYProgressBar::StepIt()
 {
 	return SendMessage(_hwnd,PBM_STEPIT,0,0);
 }
-//Установить минимальную и максимальную позиции
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РјРёРЅРёРјР°Р»СЊРЅСѓСЋ Рё РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёРё
 void TINYProgressBar::SetRange(int min,int max)
 {
 	SendMessage(_hwnd,PBM_SETRANGE32,WPARAM(min),LPARAM(max));
 }
-//Получить минимальную позицию
+//РџРѕР»СѓС‡РёС‚СЊ РјРёРЅРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ
 int TINYProgressBar::GetMinRange()
 {
 	return SendMessage(_hwnd,PBM_GETRANGE,WPARAM(TRUE),0);
 }
-//Получить максимальную позицию
+//РџРѕР»СѓС‡РёС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ
 int TINYProgressBar::GetMaxRange()
 {
 	return SendMessage(_hwnd,PBM_GETRANGE,WPARAM(FALSE),0);
 }
-//Начиная с XP
+//РќР°С‡РёРЅР°СЏ СЃ XP
 #if(_WIN32_WINNT>=0x0501)
-//Вкл/выкл бегущую полоску и установить её скорость
+//Р’РєР»/РІС‹РєР» Р±РµРіСѓС‰СѓСЋ РїРѕР»РѕСЃРєСѓ Рё СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РµС‘ СЃРєРѕСЂРѕСЃС‚СЊ
 void TINYProgressBar::SetMarquee(bool enable,int speed)
 {
 	SendMessage(_hwnd,PBM_SETMARQUEE,WPARAM(enable),LPARAM(speed));

@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinyimagelist.h - Имаджлист
-//© 2009-2010 Stepan Prokofjev
+//tinyimagelist.h - РРјР°РґР¶Р»РёСЃС‚
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -18,18 +18,18 @@ class TINYImageList: public TINYObject
 protected:
 	HIMAGELIST _hlist;
 public:
-	HIMAGELIST GetHIMAGELIST();//Получить HIMAGELSIT
+	HIMAGELIST GetHIMAGELIST();//РџРѕР»СѓС‡РёС‚СЊ HIMAGELSIT
 	bool Create(DWORD flags,int w,int h);
-	int AddIcon(HICON icon);//Добавить иконку
-	int AddBitmap(HBITMAP bmp);//Добавить битмап
-	//Добавить битмап с маской
+	int AddIcon(HICON icon);//Р”РѕР±Р°РІРёС‚СЊ РёРєРѕРЅРєСѓ
+	int AddBitmap(HBITMAP bmp);//Р”РѕР±Р°РІРёС‚СЊ Р±РёС‚РјР°Рї
+	//Р”РѕР±Р°РІРёС‚СЊ Р±РёС‚РјР°Рї СЃ РјР°СЃРєРѕР№
 	int AddMasked(HBITMAP bmp,
-		COLORREF mask=RGB(255,0,255)//Цвет маски(Фуксия)
+		COLORREF mask=RGB(255,0,255)//Р¦РІРµС‚ РјР°СЃРєРё(Р¤СѓРєСЃРёСЏ)
 		);
-	int GetCount();//Получить кол-во картинок
-	bool Delete(int index);//Удалить картинку
-	bool Clear();//Очистить
-	HICON GetIcon(int index);//Получит иконку
+	int GetCount();//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РєР°СЂС‚РёРЅРѕРє
+	bool Delete(int index);//РЈРґР°Р»РёС‚СЊ РєР°СЂС‚РёРЅРєСѓ
+	bool Clear();//РћС‡РёСЃС‚РёС‚СЊ
+	HICON GetIcon(int index);//РџРѕР»СѓС‡РёС‚ РёРєРѕРЅРєСѓ
 };
 
 };

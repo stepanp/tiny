@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinystatic.cpp - Статик
-//© 2009-2010 Stepan Prokofjev
+//tinystatic.cpp - РЎС‚Р°С‚РёРє
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinystatic.h"
@@ -13,35 +13,35 @@ bool TINYStatic::Create(TINYBaseWnd *parent,LPCWSTR text,DWORD exstyle,DWORD sty
 {
 	return TINYControl::Create(parent,L"Static",text,exstyle,style,x,y,w,h);
 }
-//Установить иконку
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРєРѕРЅРєСѓ
 bool TINYStatic::SetIcon(HICON icon)
 {
 	if(!SendMessage(_hwnd,STM_SETICON,WPARAM(icon),0)) return false;
 	return true;
 }
-//Получить иконку
+//РџРѕР»СѓС‡РёС‚СЊ РёРєРѕРЅРєСѓ
 HICON TINYStatic::GetIcon()
 {
 	return HICON(SendMessage(_hwnd,STM_GETICON,0,0));
 }
-//Установить битмап
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р±РёС‚РјР°Рї
 bool TINYStatic::SetBitmap(HBITMAP bmp)
 {
 	if(!SendMessage(_hwnd,STM_SETIMAGE,WPARAM(IMAGE_BITMAP),LPARAM(bmp))) return false;
 	return true;
 }
-//Получить битмап
+//РџРѕР»СѓС‡РёС‚СЊ Р±РёС‚РјР°Рї
 HBITMAP TINYStatic::GetBitmap()
 {
 	return HBITMAP(SendMessage(_hwnd,STM_GETIMAGE,WPARAM(IMAGE_BITMAP),0));
 }
-//Установить курсор
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєСѓСЂСЃРѕСЂ
 bool TINYStatic::SetCursor(HCURSOR cursor)
 {
 	if(!SendMessage(_hwnd,STM_SETIMAGE,WPARAM(IMAGE_CURSOR),LPARAM(cursor))) return false;
 	return true;
 }
-//Получить курсор
+//РџРѕР»СѓС‡РёС‚СЊ РєСѓСЂСЃРѕСЂ
 HCURSOR TINYStatic::GetCursor()
 {
 	return HCURSOR(SendMessage(_hwnd,STM_GETIMAGE,WPARAM(IMAGE_CURSOR),0));

@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinyrebar.cpp - Ребар
-//© 2009-2010 Stepan Prokofjev
+//tinyrebar.cpp - Р РµР±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinyrebar.h"
@@ -12,18 +12,18 @@ using namespace tiny;
 bool TINYReBar::Create(TINYBaseWnd *parent)
 {
 	return TINYControlEx::Create(parent,ICC_COOL_CLASSES,REBARCLASSNAME,0,0,
-		CCS_NOPARENTALIGN|//Не растягивать
-		CCS_NODIVIDER|//Без полоски сверху
-		WS_CLIPCHILDREN|//Чтобы не мерцало
-		RBS_BANDBORDERS,//Сепараторы между бандами
+		CCS_NOPARENTALIGN|//РќРµ СЂР°СЃС‚СЏРіРёРІР°С‚СЊ
+		CCS_NODIVIDER|//Р‘РµР· РїРѕР»РѕСЃРєРё СЃРІРµСЂС…Сѓ
+		WS_CLIPCHILDREN|//Р§С‚РѕР±С‹ РЅРµ РјРµСЂС†Р°Р»Рѕ
+		RBS_BANDBORDERS,//РЎРµРїР°СЂР°С‚РѕСЂС‹ РјРµР¶РґСѓ Р±Р°РЅРґР°РјРё
 		0,0,0,0);
 }
-//Вcтавить банд
+//Р’cС‚Р°РІРёС‚СЊ Р±Р°РЅРґ
 bool TINYReBar::InsertBand(int index,TINYBaseWnd *child,DWORD style,LPCWSTR text,int w,int h)
 {
-	//Создание банда
+	//РЎРѕР·РґР°РЅРёРµ Р±Р°РЅРґР°
 	REBARBANDINFO band;
-	band.cbSize=80;//Для работы ребара под ХР
+	band.cbSize=80;//Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЂРµР±Р°СЂР° РїРѕРґ РҐР 
 	band.fMask=
 		RBBIM_STYLE|
 		RBBIM_TEXT|
@@ -31,43 +31,43 @@ bool TINYReBar::InsertBand(int index,TINYBaseWnd *child,DWORD style,LPCWSTR text
 		RBBIM_CHILDSIZE|
 		RBBIM_SIZE;
 	band.fStyle=
-		RBBS_CHILDEDGE|//Рамка вокруг контрола
+		RBBS_CHILDEDGE|//Р Р°РјРєР° РІРѕРєСЂСѓРі РєРѕРЅС‚СЂРѕР»Р°
 		style;
 	band.lpText=LPWSTR(text);
-	band.cyMinChild=h;//Минимальная высота
-	band.cxMinChild=w;//Минимальная ширина
-	band.cx=w;//Ширина
+	band.cyMinChild=h;//РњРёРЅРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р°
+	band.cxMinChild=w;//РњРёРЅРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР°
+	band.cx=w;//РЁРёСЂРёРЅР°
 	HWND hchild=child->GetHWND();
 	if(!hchild) return false;
-	band.hwndChild=hchild;//Контрол в банде
-	//Добавление банда в ребар
+	band.hwndChild=hchild;//РљРѕРЅС‚СЂРѕР» РІ Р±Р°РЅРґРµ
+	//Р”РѕР±Р°РІР»РµРЅРёРµ Р±Р°РЅРґР° РІ СЂРµР±Р°СЂ
 	if(!SendMessage(_hwnd,RB_INSERTBAND,WPARAM(index),LPARAM(&band))) return false;
 	return true;
 }
-//Добавить банд
+//Р”РѕР±Р°РІРёС‚СЊ Р±Р°РЅРґ
 bool TINYReBar::AddBand(TINYBaseWnd *child,DWORD style,LPCWSTR text,int w,int h)
 {
 	return InsertBand(-1,child,style,text,w,h);
 }
-//Удалить банд
+//РЈРґР°Р»РёС‚СЊ Р±Р°РЅРґ
 bool TINYReBar::DeleteBand(int index)
 {
 	if(!SendMessage(_hwnd,RB_DELETEBAND,WPARAM(index),0)) return false;
 	return true;
 }
-//Передвинуть банд
+//РџРµСЂРµРґРІРёРЅСѓС‚СЊ Р±Р°РЅРґ
 bool TINYReBar::MoveBand(int index,int nindex)
 {
 	if(!SendMessage(_hwnd,RB_MOVEBAND,WPARAM(index),LPARAM(nindex))) return false;
 	return true;
 }
-//Скрыть/Показать банд
+//РЎРєСЂС‹С‚СЊ/РџРѕРєР°Р·Р°С‚СЊ Р±Р°РЅРґ
 bool TINYReBar::ShowBand(int index,bool show)
 {
 	if(!SendMessage(_hwnd,RB_SHOWBAND,WPARAM(index),LPARAM(show))) return false;
 	return true;
 }
-//Получить кол-во бандов
+//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ Р±Р°РЅРґРѕРІ
 int TINYReBar::GetBandCount()
 {
 	return SendMessage(_hwnd,RB_GETBANDCOUNT,0,0);

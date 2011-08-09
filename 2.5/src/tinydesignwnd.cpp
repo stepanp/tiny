@@ -1,33 +1,33 @@
-//------------------------------------
+п»ї//------------------------------------
 //tiny 2.5
-//tinydesignwnd.h - Окно для дизайнера
-//© 2009-2010 Stepan Prokofjev
+//tinydesignwnd.h - РћРєРЅРѕ РґР»СЏ РґРёР·Р°Р№РЅРµСЂР°
+//В© 2009-2010 Stepan Prokofjev
 //------------------------------------
 
 #include "tinydesignwnd.h"
 
 using namespace tiny;
 
-//Установить параметры окна
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РѕРєРЅР°
 void TINYDesignWnd::SetDesignParams(LPCWSTR text,UINT icon,
 		DWORD exstyle,DWORD style,int x,int y,int w,int h)
 {
-	SetText(text);//Установить текст
+	SetText(text);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚
 	if(icon)
 	{
-		SetIcon(TINYIcon(icon));//Установить большую иконку
-		SetSmallIcon(TINYIcon(icon,16,16));//Установить маленькую иконку
+		SetIcon(TINYIcon(icon));//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р±РѕР»СЊС€СѓСЋ РёРєРѕРЅРєСѓ
+		SetSmallIcon(TINYIcon(icon,16,16));//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РјР°Р»РµРЅСЊРєСѓСЋ РёРєРѕРЅРєСѓ
 	}
-	AddStyle(style);//Установить стиль
-	AddExStyle(exstyle);//Установить расширенный стиль
+	AddStyle(style);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЃС‚РёР»СЊ
+	AddExStyle(exstyle);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅРЅС‹Р№ СЃС‚РёР»СЊ
 	int _x,_y,_w,_h;
-	//Если параметры по умолчанию(CW_USEDEFAULT) то оставить старые, 
-	//иначе установить новые
+	//Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂС‹ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ(CW_USEDEFAULT) С‚Рѕ РѕСЃС‚Р°РІРёС‚СЊ СЃС‚Р°СЂС‹Рµ, 
+	//РёРЅР°С‡Рµ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РЅРѕРІС‹Рµ
 	if(x==CW_USEDEFAULT) _x=GetX(); else _x=x;
 	if(y==CW_USEDEFAULT) _y=GetY(); else _y=y;
 	if(w==CW_USEDEFAULT) _w=GetW(); else _w=w;
 	if(h==CW_USEDEFAULT) _h=GetH(); else _h=h;
-	//Установить размер и положение
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂ Рё РїРѕР»РѕР¶РµРЅРёРµ
 	MoveWindow(this->GetHWND(),_x,_y,_w,_h,TRUE);
-	Update();//Обновить окно
+	Update();//РћР±РЅРѕРІРёС‚СЊ РѕРєРЅРѕ
 }

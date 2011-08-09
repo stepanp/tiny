@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinylayout.cpp - Компоновщик
-//© 2009-2010 Stepan Prokofjev
+//tinylayout.cpp - РљРѕРјРїРѕРЅРѕРІС‰РёРє
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinylayout.h"
@@ -12,10 +12,10 @@ TINYLayout::TINYLayout()
 {
 	proppadding.Init(this,&TINYLayout::SetPadding,&TINYLayout::GetPadding);
 	propspacing.Init(this,&TINYLayout::SetSpacing,&TINYLayout::GetSpacing);
-	//Обнуление полей
+	//РћР±РЅСѓР»РµРЅРёРµ РїРѕР»РµР№
 	_padding=TINYPADDING(0,0,0,0);
 }
-bool TINYLayout::Create(TINYBaseWnd* parent,bool vert/*Горизонтальный или вертикальный*/) 
+bool TINYLayout::Create(TINYBaseWnd* parent,bool vert/*Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅС‹Р№ РёР»Рё РІРµСЂС‚РёРєР°Р»СЊРЅС‹Р№*/) 
 {
 	if(!parent) return false;
 	_parent=parent;
@@ -23,7 +23,7 @@ bool TINYLayout::Create(TINYBaseWnd* parent,bool vert/*Горизонтальный или вертик
 	_vert=vert;
 	return true;
 }
-bool TINYLayout::Create(TINYLayout* parent,bool vert/*Горизонтальный или вертикальный*/)
+bool TINYLayout::Create(TINYLayout* parent,bool vert/*Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅС‹Р№ РёР»Рё РІРµСЂС‚РёРєР°Р»СЊРЅС‹Р№*/)
 {
 	if(!parent) return false;
 	_parent=0;
@@ -31,7 +31,7 @@ bool TINYLayout::Create(TINYLayout* parent,bool vert/*Горизонтальный или вертика
 	_vert=vert;
 	return true;
 }
-//Добавить окно
+//Р”РѕР±Р°РІРёС‚СЊ РѕРєРЅРѕ
 int TINYLayout::AddWnd(TINYBaseWnd* wnd,int size)
 {
 	if(!wnd) return -1;
@@ -41,7 +41,7 @@ int TINYLayout::AddWnd(TINYBaseWnd* wnd,int size)
 	item.size=size;
 	return _items.Add(item);
 }
-//Добавить компоновщик
+//Р”РѕР±Р°РІРёС‚СЊ РєРѕРјРїРѕРЅРѕРІС‰РёРє
 int TINYLayout::AddLayout(TINYLayout* layout,int size)
 {
 	if(!layout) return -1;
@@ -51,7 +51,7 @@ int TINYLayout::AddLayout(TINYLayout* layout,int size)
 	item.size=size;
 	return _items.Add(item);
 }
-//Добавить разделитель
+//Р”РѕР±Р°РІРёС‚СЊ СЂР°Р·РґРµР»РёС‚РµР»СЊ
 int TINYLayout::AddSeparator(int size)
 {
 	TINYLAYOUTITEM item;
@@ -60,226 +60,226 @@ int TINYLayout::AddSeparator(int size)
 	item.size=size;
 	return _items.Add(item);
 }
-//Установить окно
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РѕРєРЅРѕ
 bool TINYLayout::SetWnd(int index,TINYBaseWnd* wnd)
 {
-	//Если индекс выходит за границы массива
+	//Р•СЃР»Рё РёРЅРґРµРєСЃ РІС‹С…РѕРґРёС‚ Р·Р° РіСЂР°РЅРёС†С‹ РјР°СЃСЃРёРІР°
 	if(index<0 && index>=_items.GetCount()) return false;
 
 	_items[index].wnd=wnd;
 	_items[index].layout=0;	
 	return true;
 }
-//Получить окно
+//РџРѕР»СѓС‡РёС‚СЊ РѕРєРЅРѕ
 TINYBaseWnd* TINYLayout::GetWnd(int index)
 {
-	//Если индекс выходит за границы массива
+	//Р•СЃР»Рё РёРЅРґРµРєСЃ РІС‹С…РѕРґРёС‚ Р·Р° РіСЂР°РЅРёС†С‹ РјР°СЃСЃРёРІР°
 	if(index<0 && index>=_items.GetCount()) return 0;
 	return _items[index].wnd;
 }
-//Установить компоновщик
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєРѕРјРїРѕРЅРѕРІС‰РёРє
 bool TINYLayout::SetLayout(int index,TINYLayout* layout)
 {
-	//Если индекс выходит за границы массива
+	//Р•СЃР»Рё РёРЅРґРµРєСЃ РІС‹С…РѕРґРёС‚ Р·Р° РіСЂР°РЅРёС†С‹ РјР°СЃСЃРёРІР°
 	if(index<0 && index>=_items.GetCount()) return false;
 
 	_items[index].wnd=0;
 	_items[index].layout=layout;	
 	return true;
 }
-//Получить компоновщик
+//РџРѕР»СѓС‡РёС‚СЊ РєРѕРјРїРѕРЅРѕРІС‰РёРє
 TINYLayout* TINYLayout::GetLayout(int index)
 {
-	//Если индекс выходит за границы массива
+	//Р•СЃР»Рё РёРЅРґРµРєСЃ РІС‹С…РѕРґРёС‚ Р·Р° РіСЂР°РЅРёС†С‹ РјР°СЃСЃРёРІР°
 	if(index<0 && index>=_items.GetCount()) return 0;
 	return _items[index].layout;
 }
-//Установить разделитель
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РґРµР»РёС‚РµР»СЊ
 bool TINYLayout::SetSeparator(int index)
 {
-	//Если индекс выходит за границы массива
+	//Р•СЃР»Рё РёРЅРґРµРєСЃ РІС‹С…РѕРґРёС‚ Р·Р° РіСЂР°РЅРёС†С‹ РјР°СЃСЃРёРІР°
 	if(index<0 && index>=_items.GetCount()) return false;
 
 	_items[index].wnd=0;
 	_items[index].layout=0;
 	return true;
 }
-//Установаить размер элемента
+//РЈСЃС‚Р°РЅРѕРІР°РёС‚СЊ СЂР°Р·РјРµСЂ СЌР»РµРјРµРЅС‚Р°
 bool TINYLayout::SetItemSize(int index,int size)
 {
-	//Если индекс выходит за границы массива
+	//Р•СЃР»Рё РёРЅРґРµРєСЃ РІС‹С…РѕРґРёС‚ Р·Р° РіСЂР°РЅРёС†С‹ РјР°СЃСЃРёРІР°
 	if(index<0 && index>=_items.GetCount()) return false;
 	_items[index].size=size;
 	return true;
 }
-//Получить размер элемента
+//РџРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ СЌР»РµРјРµРЅС‚Р°
 int TINYLayout::GetItemSize(int index)
 {
-	//Если индекс выходит за границы массива
+	//Р•СЃР»Рё РёРЅРґРµРєСЃ РІС‹С…РѕРґРёС‚ Р·Р° РіСЂР°РЅРёС†С‹ РјР°СЃСЃРёРІР°
 	if(index<0 && index>=_items.GetCount()) return -1;
 	return _items[index].size;
 }
-//Удалить элемент
+//РЈРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚
 void TINYLayout::DeleteItem(int index) {_items.Delete(index);}
-//Переместить элемент
+//РџРµСЂРµРјРµСЃС‚РёС‚СЊ СЌР»РµРјРµРЅС‚
 void TINYLayout::MoveItem(int index,int nindex) {_items.Move(index,nindex);}
-//Поменять элементы местами
+//РџРѕРјРµРЅСЏС‚СЊ СЌР»РµРјРµРЅС‚С‹ РјРµСЃС‚Р°РјРё
 void TINYLayout::SwapItems(int index,int nindex) {_items.Swap(index,nindex);}
-//Перерасположить окна
+//РџРµСЂРµСЂР°СЃРїРѕР»РѕР¶РёС‚СЊ РѕРєРЅР°
 void TINYLayout::Align(int x,int y,int w,int h)
 {
-	int count=_items.GetCount();//Кол-во элементов
-	int acount=0;//Кол-во элементов с TINY_SIZE_AUTO
-	int allsize=0;//Общий размер элементов без TINY_SIZE_AUTO
-	int alast=-1;//Индекс последнего элемента с TINY_SIZE_AUTO
+	int count=_items.GetCount();//РљРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
+	int acount=0;//РљРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ СЃ TINY_SIZE_AUTO
+	int allsize=0;//РћР±С‰РёР№ СЂР°Р·РјРµСЂ СЌР»РµРјРµРЅС‚РѕРІ Р±РµР· TINY_SIZE_AUTO
+	int alast=-1;//РРЅРґРµРєСЃ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р° СЃ TINY_SIZE_AUTO
 
-	//Получение кол-ва элементов с TINY_SIZE_AUTO
-	//и общего размера элементов без TINY_SIZE_AUTO
+	//РџРѕР»СѓС‡РµРЅРёРµ РєРѕР»-РІР° СЌР»РµРјРµРЅС‚РѕРІ СЃ TINY_SIZE_AUTO
+	//Рё РѕР±С‰РµРіРѕ СЂР°Р·РјРµСЂР° СЌР»РµРјРµРЅС‚РѕРІ Р±РµР· TINY_SIZE_AUTO
 	for(int i=0;i<count;i++)
 	{
 		if(_items[i].size==TINY_SIZE_AUTO) 
 		{
-			acount++;//Кол-во элементов с TINY_SIZE_AUTO
-			alast=i;///Сохраняем индекс последнего элемента с TINY_SIZE_AUTO
+			acount++;//РљРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ СЃ TINY_SIZE_AUTO
+			alast=i;///РЎРѕС…СЂР°РЅСЏРµРј РёРЅРґРµРєСЃ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р° СЃ TINY_SIZE_AUTO
 		}
-		else allsize+=_items[i].size;//Общий размер элементов без TINY_SIZE_AUTO
+		else allsize+=_items[i].size;//РћР±С‰РёР№ СЂР°Р·РјРµСЂ СЌР»РµРјРµРЅС‚РѕРІ Р±РµР· TINY_SIZE_AUTO
 	}
 
-	//Размер элемента с TINY_SIZE_AUTO
+	//Р Р°Р·РјРµСЂ СЌР»РµРјРµРЅС‚Р° СЃ TINY_SIZE_AUTO
 	int asize=0;
-	//Координаты и размеры элемента с учетом полей
+	//РљРѕРѕСЂРґРёРЅР°С‚С‹ Рё СЂР°Р·РјРµСЂС‹ СЌР»РµРјРµРЅС‚Р° СЃ СѓС‡РµС‚РѕРј РїРѕР»РµР№
 	int ax=x+_padding.left;
 	int ay=y+_padding.top;
 	int aw=w-_padding.right-_padding.left;
 	int ah=h-_padding.bottom-_padding.top;
-	//Расстояние между элементами
+	//Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё
 	int aspacing=_spacing*(count-1);
 
-	//Вертикальный компоновщик
+	//Р’РµСЂС‚РёРєР°Р»СЊРЅС‹Р№ РєРѕРјРїРѕРЅРѕРІС‰РёРє
 	if(_vert)
 	{
-		//Размер элемента с TINY_SIZE_AUTO
+		//Р Р°Р·РјРµСЂ СЌР»РµРјРµРЅС‚Р° СЃ TINY_SIZE_AUTO
 		if(acount) 
 		{
 			asize=(ah-allsize)/acount;
-			//Учитываем расстояние между элементами
+			//РЈС‡РёС‚С‹РІР°РµРј СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё
 			asize-=_spacing-_spacing/acount;
 		}
 
-		//Перебираем элементы
+		//РџРµСЂРµР±РёСЂР°РµРј СЌР»РµРјРµРЅС‚С‹
 		for(int i=0;i<count;i++)
 		{
 			TINYBaseWnd* wnd=_items[i].wnd;
 			TINYLayout* layout=_items[i].layout;
 
-			//Выбор размера элемента
+			//Р’С‹Р±РѕСЂ СЂР°Р·РјРµСЂР° СЌР»РµРјРµРЅС‚Р°
 			int size;
 			if(_items[i].size==TINY_SIZE_AUTO)
 			{
-				size=asize;//Автоматический размер
-				//Устраняем погрешность деления
+				size=asize;//РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ СЂР°Р·РјРµСЂ
+				//РЈСЃС‚СЂР°РЅСЏРµРј РїРѕРіСЂРµС€РЅРѕСЃС‚СЊ РґРµР»РµРЅРёСЏ
 				if(i==alast) size+=ah-allsize-(asize*acount)-aspacing;
 			}
-			else size=_items[i].size;//Заданный размер
+			else size=_items[i].size;//Р—Р°РґР°РЅРЅС‹Р№ СЂР°Р·РјРµСЂ
 
 
 
-			//Если контрол
+			//Р•СЃР»Рё РєРѕРЅС‚СЂРѕР»
 			if(wnd)
 			{
-				//Растянуть контрол
+				//Р Р°СЃС‚СЏРЅСѓС‚СЊ РєРѕРЅС‚СЂРѕР»
 				wnd->Move(ax,ay);
 				wnd->SetSize(aw,size);			
 			}
-			//Если компоновщик
+			//Р•СЃР»Рё РєРѕРјРїРѕРЅРѕРІС‰РёРє
 			if(layout)
 			{
-				//Вызвать метод Align() компоновщика
+				//Р’С‹Р·РІР°С‚СЊ РјРµС‚РѕРґ Align() РєРѕРјРїРѕРЅРѕРІС‰РёРєР°
 				layout->Align(ax,ay,aw,size);
 			}	
 
-			//Сдвинуть координаты элемента с учетом интервала
+			//РЎРґРІРёРЅСѓС‚СЊ РєРѕРѕСЂРґРёРЅР°С‚С‹ СЌР»РµРјРµРЅС‚Р° СЃ СѓС‡РµС‚РѕРј РёРЅС‚РµСЂРІР°Р»Р°
 			ay+=size+_spacing;
 		}	
 	}else{
-		//Горизонтальный компоновщик
+		//Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅС‹Р№ РєРѕРјРїРѕРЅРѕРІС‰РёРє
 	
-		//Размер элемента с TINY_SIZE_AUTO
+		//Р Р°Р·РјРµСЂ СЌР»РµРјРµРЅС‚Р° СЃ TINY_SIZE_AUTO
 		if(acount) 
 		{
 			asize=(aw-allsize)/acount;
-			//Учитываем расстояние между элементами
+			//РЈС‡РёС‚С‹РІР°РµРј СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё
 			asize-=_spacing-_spacing/acount;
 		}
 
-		//Перебираем элементы
+		//РџРµСЂРµР±РёСЂР°РµРј СЌР»РµРјРµРЅС‚С‹
 		for(int i=0;i<count;i++)
 		{
 			TINYBaseWnd* wnd=_items[i].wnd;
 			TINYLayout* layout=_items[i].layout;
 
-			//Выбор размера элемента
+			//Р’С‹Р±РѕСЂ СЂР°Р·РјРµСЂР° СЌР»РµРјРµРЅС‚Р°
 			int size;
 			if(_items[i].size==TINY_SIZE_AUTO)
 			{
-				size=asize;//Автоматический размер
-				//Устраняем погрешность деления
+				size=asize;//РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ СЂР°Р·РјРµСЂ
+				//РЈСЃС‚СЂР°РЅСЏРµРј РїРѕРіСЂРµС€РЅРѕСЃС‚СЊ РґРµР»РµРЅРёСЏ
 				if(i==alast) size+=aw-allsize-(asize*acount)-aspacing;
 			}
-			else size=_items[i].size;//Заданный размер
+			else size=_items[i].size;//Р—Р°РґР°РЅРЅС‹Р№ СЂР°Р·РјРµСЂ
 
-			//Если контрол
+			//Р•СЃР»Рё РєРѕРЅС‚СЂРѕР»
 			if(wnd)
 			{
-				//Растянуть контрол
+				//Р Р°СЃС‚СЏРЅСѓС‚СЊ РєРѕРЅС‚СЂРѕР»
 				wnd->Move(ax,ay);
 				wnd->SetSize(size,ah);			
 			}
-			//Если компоновщик
+			//Р•СЃР»Рё РєРѕРјРїРѕРЅРѕРІС‰РёРє
 			if(layout)
 			{
-				//Вызвать метод Align() компоновщика
+				//Р’С‹Р·РІР°С‚СЊ РјРµС‚РѕРґ Align() РєРѕРјРїРѕРЅРѕРІС‰РёРєР°
 				layout->Align(ax,ay,size,ah);
 			}
-			//Сдвинуть координаты элемента с учетом интервала
+			//РЎРґРІРёРЅСѓС‚СЊ РєРѕРѕСЂРґРёРЅР°С‚С‹ СЌР»РµРјРµРЅС‚Р° СЃ СѓС‡РµС‚РѕРј РёРЅС‚РµСЂРІР°Р»Р°
 			ax+=size+_spacing;
 		}	
 	}
 }
-//Обновить компоновшик
+//РћР±РЅРѕРІРёС‚СЊ РєРѕРјРїРѕРЅРѕРІС€РёРє
 bool TINYLayout::Update()
 {
 	if(!_parent) return false;
 	
-	//Если родитель является окном
+	//Р•СЃР»Рё СЂРѕРґРёС‚РµР»СЊ СЏРІР»СЏРµС‚СЃСЏ РѕРєРЅРѕРј
 	if(_parent) 
 	{
 		RECT rect=_parent->GetClientRect();
-		//Вызвать метод Align() с размерами клиентской области родительсокого окна 
+		//Р’С‹Р·РІР°С‚СЊ РјРµС‚РѕРґ Align() СЃ СЂР°Р·РјРµСЂР°РјРё РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё СЂРѕРґРёС‚РµР»СЊСЃРѕРєРѕРіРѕ РѕРєРЅР° 
 		Align(rect.left,rect.top,rect.right-rect.left,rect.bottom-rect.top);
 	}
-	//Если родитель является компоновщиком вызвать родительский метод Update()
+	//Р•СЃР»Рё СЂРѕРґРёС‚РµР»СЊ СЏРІР»СЏРµС‚СЃСЏ РєРѕРјРїРѕРЅРѕРІС‰РёРєРѕРј РІС‹Р·РІР°С‚СЊ СЂРѕРґРёС‚РµР»СЊСЃРєРёР№ РјРµС‚РѕРґ Update()
 	if(_layout) return _layout->Update();
 	return true;
 }
-//Функции для свойств
-//Установить поля
+//Р¤СѓРЅРєС†РёРё РґР»СЏ СЃРІРѕР№СЃС‚РІ
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР»СЏ
 bool TINYLayout::SetPadding(TINYPADDING padding)
 {
 	_padding=padding;
-	return Update();//Обновить компоновшик
+	return Update();//РћР±РЅРѕРІРёС‚СЊ РєРѕРјРїРѕРЅРѕРІС€РёРє
 }
-//Получить поля
+//РџРѕР»СѓС‡РёС‚СЊ РїРѕР»СЏ
 TINYPADDING TINYLayout::GetPadding() {return _padding;}
-//Установить расстояние между элементами
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё
 bool TINYLayout::SetSpacing(int spacing)
 {
 	_spacing=spacing;
-	return Update();//Обновить компоновшик
+	return Update();//РћР±РЅРѕРІРёС‚СЊ РєРѕРјРїРѕРЅРѕРІС€РёРє
 }
-//Получить расстояние между элементами
+//РџРѕР»СѓС‡РёС‚СЊ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ СЌР»РµРјРµРЅС‚Р°РјРё
 int TINYLayout::GetSpacing() {return _spacing;}
-//Обработчик растягивания
+//РћР±СЂР°Р±РѕС‚С‡РёРє СЂР°СЃС‚СЏРіРёРІР°РЅРёСЏ
 void TINYLayout::OnAlign()
 {
 	Update();

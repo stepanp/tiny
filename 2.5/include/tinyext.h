@@ -1,12 +1,12 @@
-//---------------------------------
+п»ї//---------------------------------
 //tiny 2.5
-//tinyext.h - дополнительные классы
-//© 2009-2010 Stepan Prokofjev
+//tinyext.h - РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РєР»Р°СЃСЃС‹
+//В© 2009-2010 Stepan Prokofjev
 //---------------------------------
 
 #pragma once
 
 #include "tinybase.h"
-#include "tinymenu.h"//Меню
-#include "tinytrayicon.h"//Иконка в трее
-#include "tinyfiledialog.h"//Диалог открытия/сохранения
+#include "tinymenu.h"//РњРµРЅСЋ
+#include "tinytrayicon.h"//РРєРѕРЅРєР° РІ С‚СЂРµРµ
+#include "tinyfiledialog.h"//Р”РёР°Р»РѕРі РѕС‚РєСЂС‹С‚РёСЏ/СЃРѕС…СЂР°РЅРµРЅРёСЏ

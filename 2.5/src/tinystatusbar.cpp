@@ -1,7 +1,7 @@
-//-----------------------------
+п»ї//-----------------------------
 //tiny 2.5
-//tinystatusbar.cpp - Статусбар
-//© 2009-2010 Stepan Prokofjev
+//tinystatusbar.cpp - РЎС‚Р°С‚СѓСЃР±Р°СЂ
+//В© 2009-2010 Stepan Prokofjev
 //-----------------------------
 
 #include "tinystatusbar.h"
@@ -11,32 +11,32 @@ using namespace tiny;
 bool TINYStatusBar::Attach(HWND hwnd)
 {
 	if(!TINYBaseWnd::Attach(hwnd)) return false;
-	//Кол-во частей
+	//РљРѕР»-РІРѕ С‡Р°СЃС‚РµР№
 	int count=GetPartCount();
 	int *wparts=new int[count];
-	//Получение частей
+	//РџРѕР»СѓС‡РµРЅРёРµ С‡Р°СЃС‚РµР№
 	if(!SendMessage(_hwnd,SB_GETPARTS,
 		WPARAM(count),LPARAM(wparts))) return false;
 	_parts.Clear();
 	_parts.Resize(count);
-	//Заполнение массива
+	//Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР°
 	int allw=0;
 	for(int i=0;i<count;i++)
 	{
-		//Преобразовывание ширины
+		//РџСЂРµРѕР±СЂР°Р·РѕРІС‹РІР°РЅРёРµ С€РёСЂРёРЅС‹
 		allw=allw+wparts[i];
 		TINYSTATUS part;
 		part.w=allw;
-		//Получение текста
+		//РџРѕР»СѓС‡РµРЅРёРµ С‚РµРєСЃС‚Р°
 		wchar_t *text=new wchar_t[MAX_PATH];
 		GetPartText(i,text);
 		part.text=text;
 		delete[] text;
-		//Получение иконки
+		//РџРѕР»СѓС‡РµРЅРёРµ РёРєРѕРЅРєРё
 		part.icon=GetPartIcon(i);
-		//Показывать часть
+		//РџРѕРєР°Р·С‹РІР°С‚СЊ С‡Р°СЃС‚СЊ
 		part.hide=false;
-		//Добаваление части
+		//Р”РѕР±Р°РІР°Р»РµРЅРёРµ С‡Р°СЃС‚Рё
 		_parts[i]=part;
 	}
 	return true;
@@ -44,55 +44,55 @@ bool TINYStatusBar::Attach(HWND hwnd)
 bool TINYStatusBar::Create(TINYBaseWnd *parent)
 {
 	return TINYControlEx::Create(parent,ICC_BAR_CLASSES,STATUSCLASSNAME,0,0,
-		SBARS_SIZEGRIP|//Ресайзер в углу окна
+		SBARS_SIZEGRIP|//Р РµСЃР°Р№Р·РµСЂ РІ СѓРіР»Сѓ РѕРєРЅР°
 		0,0,0,0,0);
 }
-//Вставить часть
+//Р’СЃС‚Р°РІРёС‚СЊ С‡Р°СЃС‚СЊ
 bool TINYStatusBar::InsertPart(int index,int w,LPCWSTR text,HICON icon)
 {
 	int count=_parts.GetCount();
-	//Определение индекса
+	//РћРїСЂРµРґРµР»РµРЅРёРµ РёРЅРґРµРєСЃР°
 	if(index<-1) return false;
 	int nindex=0;
 	if((index==-1)||(index>count)) nindex=count;
 	else nindex=index;
-	//Заполнение структуры TINYSTATUS
+	//Р—Р°РїРѕР»РЅРµРЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ TINYSTATUS
 	TINYSTATUS part;
 	part.w=w;
 	part.text=text;
 	part.icon=icon;
 	part.hide=true;
-	//Добавление части в массив
+	//Р”РѕР±Р°РІР»РµРЅРёРµ С‡Р°СЃС‚Рё РІ РјР°СЃСЃРёРІ
 	_parts.Insert(nindex,part);
-	//Обновить части
+	//РћР±РЅРѕРІРёС‚СЊ С‡Р°СЃС‚Рё
 	return _UpdateParts();
 }
-//Добавить часть
+//Р”РѕР±Р°РІРёС‚СЊ С‡Р°СЃС‚СЊ
 bool TINYStatusBar::AddPart(int w,LPCWSTR text,HICON icon)
 {
 	return InsertPart(-1,w,text,icon);
 }
-//Обновить части
+//РћР±РЅРѕРІРёС‚СЊ С‡Р°СЃС‚Рё
 bool TINYStatusBar::_UpdateParts()
 {
 	int count=_parts.GetCount();
 	if(!count) return false;
-	//Создание массива ширин
+	//РЎРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР° С€РёСЂРёРЅ
 	int *wparts=new int[count];
 	int allw=0;
-	//Определение ширины
+	//РћРїСЂРµРґРµР»РµРЅРёРµ С€РёСЂРёРЅС‹
 	for(int i=0;i<count;i++)
 	{
-		if(_parts[i].hide)//Если часть скрыта, не показывать
+		if(_parts[i].hide)//Р•СЃР»Рё С‡Р°СЃС‚СЊ СЃРєСЂС‹С‚Р°, РЅРµ РїРѕРєР°Р·С‹РІР°С‚СЊ
 		{
 			allw=allw+_parts[i].w;
 			wparts[i]=allw;
 		}
 	}
-	//Установка частей
+	//РЈСЃС‚Р°РЅРѕРІРєР° С‡Р°СЃС‚РµР№
 	if(!SendMessage(_hwnd,SB_SETPARTS,WPARAM(count),LPARAM(wparts))) return false;
 	delete[] wparts;
-	//Установка текста иконок и подсказок
+	//РЈСЃС‚Р°РЅРѕРІРєР° С‚РµРєСЃС‚Р° РёРєРѕРЅРѕРє Рё РїРѕРґСЃРєР°Р·РѕРє
 	for(int i=0;i<count;i++)
 	{
 		if(!SetPartText(i,_parts[i].text)) return false;
@@ -100,98 +100,98 @@ bool TINYStatusBar::_UpdateParts()
 	}
 	return true;		
 }
-//Удалить часть
+//РЈРґР°Р»РёС‚СЊ С‡Р°СЃС‚СЊ
 bool TINYStatusBar::DeletePart(int index)
 {
 	if(!_CheckIndex(index)) return false;
 	_parts.Delete(index);
 	return _UpdateParts();
 }
-//Передвинуть часть
+//РџРµСЂРµРґРІРёРЅСѓС‚СЊ С‡Р°СЃС‚СЊ
 bool TINYStatusBar::MovePart(int index,int nindex)
 {
 	if(!_CheckIndex(index)) return false;
-	//Скопировать часть
+	//РЎРєРѕРїРёСЂРѕРІР°С‚СЊ С‡Р°СЃС‚СЊ
 	TINYSTATUS part=_parts[index];
-	_parts.Delete(index);//Удалить часть
-	//Вставить в новое место
+	_parts.Delete(index);//РЈРґР°Р»РёС‚СЊ С‡Р°СЃС‚СЊ
+	//Р’СЃС‚Р°РІРёС‚СЊ РІ РЅРѕРІРѕРµ РјРµСЃС‚Рѕ
 	InsertPart(nindex,
 		part.w,
 		part.text,
 		part.icon);
 	return _UpdateParts();
 }
-//Скрыть/показать часть
+//РЎРєСЂС‹С‚СЊ/РїРѕРєР°Р·Р°С‚СЊ С‡Р°СЃС‚СЊ
 bool TINYStatusBar::ShowPart(int index,bool show)
 {
 	if(!_CheckIndex(index)) return false;
 	_parts[index].hide=!show;
 	return _UpdateParts();
 }
-//Проверить показана ли часть
+//РџСЂРѕРІРµСЂРёС‚СЊ РїРѕРєР°Р·Р°РЅР° Р»Рё С‡Р°СЃС‚СЊ
 bool TINYStatusBar::GetShowPart(int index)
 {
 	if(!_CheckIndex(index)) return false;
 	return !_parts[index].hide;
 }
-//Удалить все части
+//РЈРґР°Р»РёС‚СЊ РІСЃРµ С‡Р°СЃС‚Рё
 bool TINYStatusBar::Clear()
 {
-	//Очистка частей в статусбаре
+	//РћС‡РёСЃС‚РєР° С‡Р°СЃС‚РµР№ РІ СЃС‚Р°С‚СѓСЃР±Р°СЂРµ
 	int *wparts=new int[1];
 	wparts[0]=0;
 	if(!SendMessage(_hwnd,SB_SETPARTS,WPARAM(1),LPARAM(wparts))) return false;
 	delete[] wparts;
-	//Очистка массива частей
+	//РћС‡РёСЃС‚РєР° РјР°СЃСЃРёРІР° С‡Р°СЃС‚РµР№
 	_parts.Clear();
 	return true;
 }
-//Получить кол-во частей
+//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ С‡Р°СЃС‚РµР№
 int TINYStatusBar::GetPartCount()
 {
 	return SendMessage(_hwnd,SB_GETPARTS,0,0);
 }
-//Установить ширину части
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С€РёСЂРёРЅСѓ С‡Р°СЃС‚Рё
 bool TINYStatusBar::SetPartW(int index,int w)
 {
 	if((!_CheckIndex(index))||(w<0)) return false;
 	_parts[index].w=w;
 	return _UpdateParts();
 }
-//Получить ширину части
+//РџРѕР»СѓС‡РёС‚СЊ С€РёСЂРёРЅСѓ С‡Р°СЃС‚Рё
 int TINYStatusBar::GetPartW(int index)
 {
 	if(!_CheckIndex(index)) return false;
 	return _parts[index].w;
 }
-//Установить иконку для части
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РёРєРѕРЅРєСѓ РґР»СЏ С‡Р°СЃС‚Рё
 bool TINYStatusBar::SetPartIcon(int index,HICON icon)
 {
 	if(!SendMessage(_hwnd,SB_SETICON,WPARAM(index),LPARAM(icon))) return false;
 	return true;
 }
-//Получить иконку части
+//РџРѕР»СѓС‡РёС‚СЊ РёРєРѕРЅРєСѓ С‡Р°СЃС‚Рё
 HICON TINYStatusBar::GetPartIcon(int index)
 {
 	return HICON(SendMessage(_hwnd,SB_GETICON,WPARAM(index),0));
 }
-//Установить текст части
+//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ С‡Р°СЃС‚Рё
 bool TINYStatusBar::SetPartText(int index,PCWSTR text)
 {
 	if(!SendMessage(_hwnd,SB_SETTEXT,MAKEWPARAM(index,0),LPARAM(text))) return false;
 	return true;
 }
-//Получить текст части
+//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ С‡Р°СЃС‚Рё
 int TINYStatusBar::GetPartText(int index,LPWSTR text)
 {
 	return SendMessage(_hwnd,SB_GETTEXT,WPARAM(index),LPARAM(text));
 }
-//Получить длину текста
+//РџРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ С‚РµРєСЃС‚Р°
 int TINYStatusBar::GetPartTextLen(int index)
 {
 	return SendMessage(_hwnd,SB_GETTEXTLENGTH,WPARAM(index),0);
 }
-//Проверка индекса
+//РџСЂРѕРІРµСЂРєР° РёРЅРґРµРєСЃР°
 bool TINYStatusBar::_CheckIndex(int index)
 {
 	if((index<-1)||(index>_parts.GetCount())) return false;

@@ -1,7 +1,7 @@
-//------------------------------------------
+п»ї//------------------------------------------
 //tiny 2.5
-//tinycontrol.cpp - Базовые классы контролов
-//© 2009-2010 Stepan Prokofjev
+//tinycontrol.cpp - Р‘Р°Р·РѕРІС‹Рµ РєР»Р°СЃСЃС‹ РєРѕРЅС‚СЂРѕР»РѕРІ
+//В© 2009-2010 Stepan Prokofjev
 //------------------------------------------
 
 #include "tinycontrol.h"
@@ -9,12 +9,12 @@
 using namespace tiny;
 
 //--------------
-//Класс контрола
+//РљР»Р°СЃСЃ РєРѕРЅС‚СЂРѕР»Р°
 //--------------
 
 TINYControl::TINYControl() 
 {
-	_isctrl=true;//Это контрол
+	_isctrl=true;//Р­С‚Рѕ РєРѕРЅС‚СЂРѕР»
 }
 
 bool TINYControl::Attach(HWND hwnd)
@@ -27,42 +27,42 @@ bool TINYControl::Attach(HWND hwnd)
 bool TINYControl::Create(TINYBaseWnd *parent,LPCWSTR classname,LPCWSTR text,
 		DWORD exstyle,DWORD style,int x,int y,int w,int h)
 {
-	//Получение HWND родительского окна
+	//РџРѕР»СѓС‡РµРЅРёРµ HWND СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РѕРєРЅР°
 	HWND hparent=0;
 	if(parent) hparent=parent->GetHWND();
 
-	//Создание контрола
+	//РЎРѕР·РґР°РЅРёРµ РєРѕРЅС‚СЂРѕР»Р°
 	_hwnd=CreateWindowEx(exstyle,classname,text,
 		WS_CHILD|WS_VISIBLE|style,
 		x,y,w,h,hparent,0,GetModuleHandle(0),0);	
 	if(!_hwnd) return false;
 
-	TinySetDefaultFont(_hwnd);//Установка стандартного шрифта
-	_SubClass();//Сабклассинг
+	TinySetDefaultFont(_hwnd);//РЈСЃС‚Р°РЅРѕРІРєР° СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ С€СЂРёС„С‚Р°
+	_SubClass();//РЎР°Р±РєР»Р°СЃСЃРёРЅРі
 
-	//Запуск обработчика oncreate
+	//Р—Р°РїСѓСЃРє РѕР±СЂР°Р±РѕС‚С‡РёРєР° oncreate
 	oncreate(this,0);
 	return true;
 }
-//Сабклассинг
+//РЎР°Р±РєР»Р°СЃСЃРёРЅРі
 void TINYControl::_SubClass()
 {
-	//Сохранение указателя на экземпляр класса в GWL_USERDATA
-	SetWindowLong(_hwnd,GWL_USERDATA,LONG(this)/*Указатель на экземпляр класса*/);
-	//Сабклассинг окна
+	//РЎРѕС…СЂР°РЅРµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РІ GWL_USERDATA
+	SetWindowLong(_hwnd,GWL_USERDATA,LONG(this)/*РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°*/);
+	//РЎР°Р±РєР»Р°СЃСЃРёРЅРі РѕРєРЅР°
 	_PrevProc=WNDPROC(SetWindowLong(_hwnd,GWL_WNDPROC,LONG(_WndProc)));	
 }
 
 LRESULT CALLBACK TINYControl::_WndProc(HWND hwnd,UINT message,WPARAM wparam,LPARAM lparam)
 {
-	//Получение указателя на экземпляр класса
+	//РџРѕР»СѓС‡РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°
 	TINYControl *ctrl=0;	
 	ctrl=(TINYControl*)TinyGetPointer(hwnd);
-	if(ctrl)//Проверка указателя
+	if(ctrl)//РџСЂРѕРІРµСЂРєР° СѓРєР°Р·Р°С‚РµР»СЏ
 	{
-		//Запуск функции обработки сообщений		
+		//Р—Р°РїСѓСЃРє С„СѓРЅРєС†РёРё РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёР№		
 		LRESULT result=ctrl->_OnMessage(ctrl,message,wparam,lparam);
-		//Если result не равен 0, то вернуть result
+		//Р•СЃР»Рё result РЅРµ СЂР°РІРµРЅ 0, С‚Рѕ РІРµСЂРЅСѓС‚СЊ result
 		if(result) return result;
 	}
 	return CallWindowProc(ctrl->_PrevProc,hwnd,message,wparam,lparam);
@@ -70,13 +70,13 @@ LRESULT CALLBACK TINYControl::_WndProc(HWND hwnd,UINT message,WPARAM wparam,LPAR
 
 
 //--------------------------------------
-//Класс расширенного контрола (commctrl)
+//РљР»Р°СЃСЃ СЂР°СЃС€РёСЂРµРЅРЅРѕРіРѕ РєРѕРЅС‚СЂРѕР»Р° (commctrl)
 //--------------------------------------
 
 bool TINYControlEx::Create(TINYBaseWnd *parent,DWORD icc,LPCWSTR classname,LPCWSTR text,
 		DWORD exstyle,DWORD style,int x,int y,int w,int h)
 {
-	//Инитиализация commctrl
+	//РРЅРёС‚РёР°Р»РёР·Р°С†РёСЏ commctrl
 	INITCOMMONCONTROLSEX init;
 	init.dwSize=sizeof(INITCOMMONCONTROLSEX);
 	init.dwICC=icc;
@@ -84,7 +84,7 @@ bool TINYControlEx::Create(TINYBaseWnd *parent,DWORD icc,LPCWSTR classname,LPCWS
 	return TINYControl::Create(parent,classname,text,exstyle,style,x,y,w,h);
 }
 
-//Установка стандартного шрифта для контрола
+//РЈСЃС‚Р°РЅРѕРІРєР° СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ С€СЂРёС„С‚Р° РґР»СЏ РєРѕРЅС‚СЂРѕР»Р°
 bool tiny::TinySetDefaultFont(HWND hwnd)
 {
 	if(!SendMessage(hwnd,WM_SETFONT,

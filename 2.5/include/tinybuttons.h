@@ -1,8 +1,8 @@
-//--------------------------------------
+п»ї//--------------------------------------
 //tiny 2.5
-//tinybuttons.h - Кнопка, чекбокс и т.п.
-//© 2009-2010 Stepan Prokofjev
-///--------------------------------------
+//tinybuttons.h - РљРЅРѕРїРєР°, С‡РµРєР±РѕРєСЃ Рё С‚.Рї.
+//В© 2009-2010 Stepan Prokofjev
+//--------------------------------------
 
 #pragma once
 
@@ -12,39 +12,39 @@ namespace tiny{
 
 
 //------
-//Кнопка
+//РљРЅРѕРїРєР°
 //------
 class TINYButton: public TINYControl
 {
 public:
 	TINYButton();
-	//События
-	TINYEvent onclick;//При клике
+	//РЎРѕР±С‹С‚РёСЏ
+	TINYEvent onclick;//РџСЂРё РєР»РёРєРµ
 public:
 	bool Create(TINYBaseWnd *parent);
 protected:
-	LRESULT _OnCustomCmd(TINYBaseWnd* wnd,TINYParams params);//Кастомная обработка команд
+	LRESULT _OnCustomCmd(TINYBaseWnd* wnd,TINYParams params);//РљР°СЃС‚РѕРјРЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґ
 
 };
 
 //-------
-//Чекбокс
+//Р§РµРєР±РѕРєСЃ
 //-------
 class TINYCheckBox: public TINYButton
 {
 public:
 	TINYCheckBox();
-	//Свойства
-	TINYBoolProperty propcheck;//Стоит ли галочка
+	//РЎРІРѕР№СЃС‚РІР°
+	TINYBoolProperty propcheck;//РЎС‚РѕРёС‚ Р»Рё РіР°Р»РѕС‡РєР°
 public:
 	bool Create(TINYBaseWnd *parent);
-	bool SetCheck(bool check);//Установить галочку
-	bool GetCheck();//Проверить галочку
+	bool SetCheck(bool check);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РіР°Р»РѕС‡РєСѓ
+	bool GetCheck();//РџСЂРѕРІРµСЂРёС‚СЊ РіР°Р»РѕС‡РєСѓ
 
 };
 
 //-----------
-//Радиокнопка
+//Р Р°РґРёРѕРєРЅРѕРїРєР°
 //-----------
 class TINYRadioButton: public TINYCheckBox
 {
@@ -53,7 +53,7 @@ public:
 };
 
 //--------
-//Групбокс
+//Р“СЂСѓРїР±РѕРєСЃ
 //--------
 class TINYGroupBox: public TINYButton
 {

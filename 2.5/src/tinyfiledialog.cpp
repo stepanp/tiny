@@ -1,7 +1,7 @@
-//-----------------------------------------------
+п»ї//-----------------------------------------------
 //tiny 2.5
-//tinyfiledialog.cpp - Диалог открытия/сохранения
-//© 2009-2010 Stepan Prokofjev
+//tinyfiledialog.cpp - Р”РёР°Р»РѕРі РѕС‚РєСЂС‹С‚РёСЏ/СЃРѕС…СЂР°РЅРµРЅРёСЏ
+//В© 2009-2010 Stepan Prokofjev
 //-----------------------------------------------
 
 #include "tinyfiledialog.h"
@@ -10,32 +10,32 @@ using namespace tiny;
 
 void TINYFileDialog::Create(TINYBaseWnd *parent,LPCWSTR filter,DWORD flags)
 {
-	ZeroMemory(namebuf,MAX_PATH);//Обнулить буфер пути файла
-	ZeroMemory(&ofn,sizeof(OPENFILENAME));//Обнулить структуру диалога
-	//Заполнение структуры диалога
+	ZeroMemory(namebuf,MAX_PATH);//РћР±РЅСѓР»РёС‚СЊ Р±СѓС„РµСЂ РїСѓС‚Рё С„Р°Р№Р»Р°
+	ZeroMemory(&ofn,sizeof(OPENFILENAME));//РћР±РЅСѓР»РёС‚СЊ СЃС‚СЂСѓРєС‚СѓСЂСѓ РґРёР°Р»РѕРіР°
+	//Р—Р°РїРѕР»РЅРµРЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ РґРёР°Р»РѕРіР°
 	ofn.lStructSize=sizeof(OPENFILENAME);
-	ofn.lpstrFile=namebuf;//Буфер пути файла
+	ofn.lpstrFile=namebuf;//Р‘СѓС„РµСЂ РїСѓС‚Рё С„Р°Р№Р»Р°
 	ofn.nMaxFile=MAX_PATH;
-	ofn.lpstrFilter=filter;//Фильтр
-	ofn.nFilterIndex=0;//Индекс выбранного фильтра по умолчанию
+	ofn.lpstrFilter=filter;//Р¤РёР»СЊС‚СЂ
+	ofn.nFilterIndex=0;//РРЅРґРµРєСЃ РІС‹Р±СЂР°РЅРЅРѕРіРѕ С„РёР»СЊС‚СЂР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	ofn.Flags=OFN_EXPLORER|flags;
 	HWND hparent=0;
 	if(parent) hparent=parent->GetHWND();
-	ofn.hwndOwner=hparent;//HWND родительского окна
+	ofn.hwndOwner=hparent;//HWND СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РѕРєРЅР°
 }
-//Создать диалог открытия
+//РЎРѕР·РґР°С‚СЊ РґРёР°Р»РѕРі РѕС‚РєСЂС‹С‚РёСЏ
 bool TINYFileDialog::DoOpen()
 {
 	if(!GetOpenFileName(&ofn)) return false;
 	return true;
 }
-//Создать диалог сохранения
+//РЎРѕР·РґР°С‚СЊ РґРёР°Р»РѕРі СЃРѕС…СЂР°РЅРµРЅРёСЏ
 bool TINYFileDialog::DoSave()
 {
 	if(!GetSaveFileName(&ofn)) return false;
 	return true;
 }
-//Получить имя файла
+//РџРѕР»СѓС‡РёС‚СЊ РёРјСЏ С„Р°Р№Р»Р°
 TINYStr TINYFileDialog::GetFilename()
 {
 	TINYStr str=namebuf;

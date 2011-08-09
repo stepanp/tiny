@@ -1,14 +1,14 @@
-//-----------------------------
+п»ї//-----------------------------
 //tiny 2.5
-//tinyimagelist.cpp - Имаджлист
-//© 2009-2010 Stepan Prokofjev
+//tinyimagelist.cpp - РРјР°РґР¶Р»РёСЃС‚
+//В© 2009-2010 Stepan Prokofjev
 //-----------------------------
 
 #include "tinyimagelist.h"
 
 using namespace tiny;
 
-//Получить HIMAGELSIT
+//РџРѕР»СѓС‡РёС‚СЊ HIMAGELSIT
 HIMAGELIST TINYImageList::GetHIMAGELIST()
 {
 	return _hlist;
@@ -19,38 +19,38 @@ bool TINYImageList::Create(DWORD flags,int w,int h)
 	if(_hlist) return false;
 	return true;
 }
-//Добавить иконку
+//Р”РѕР±Р°РІРёС‚СЊ РёРєРѕРЅРєСѓ
 int TINYImageList::AddIcon(HICON icon)
 {
 	return ImageList_AddIcon(_hlist,icon);
 }
-//Добавить битмап
+//Р”РѕР±Р°РІРёС‚СЊ Р±РёС‚РјР°Рї
 int TINYImageList::AddBitmap(HBITMAP bmp)
 {
 	return ImageList_Add(_hlist,bmp,0);
 }
-//Добавить битмап с маской
+//Р”РѕР±Р°РІРёС‚СЊ Р±РёС‚РјР°Рї СЃ РјР°СЃРєРѕР№
 int TINYImageList::AddMasked(HBITMAP bmp,COLORREF mask)
 {
 	return ImageList_AddMasked(_hlist,bmp,mask);
 }
-//Удалить картинку
+//РЈРґР°Р»РёС‚СЊ РєР°СЂС‚РёРЅРєСѓ
 bool TINYImageList::Delete(int index)
 {
 	if(!ImageList_Remove(_hlist,index)) return false;
 	return true;
 }
-//Получить кол-во картинок
+//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РєР°СЂС‚РёРЅРѕРє
 int TINYImageList::GetCount()
 {
 	return ImageList_GetImageCount(_hlist);
 }
-//Очистить
+//РћС‡РёСЃС‚РёС‚СЊ
 bool TINYImageList::Clear()
 {
 	return Delete(-1);
 }
-//Получит иконку
+//РџРѕР»СѓС‡РёС‚ РёРєРѕРЅРєСѓ
 HICON TINYImageList::GetIcon(int index)
 {
 	return ImageList_GetIcon(_hlist,index,ILD_NORMAL);

@@ -1,7 +1,7 @@
-//----------------------------
+ï»¿//----------------------------
 //tiny 2.5
-//tinydialog.cpp - Äèàëîã
-//© 2009-2010 Stepan Prokofjev
+//tinydialog.cpp - Ğ”Ğ¸Ğ°Ğ»Ğ¾Ğ³
+//Â© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #include "tinydialog.h"
@@ -10,25 +10,25 @@ using namespace tiny;
 
 bool TINYDialog::Create(TINYBaseWnd *parent,UINT dialog)
 {
-	//Ïğîâåğêà óêàçàòåëÿ íà êëàññ ğîäèòåëüñêîãî îêíà
+	//ĞŸÑ€Ğ¾Ğ²ĞµÑ€ĞºĞ° ÑƒĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»Ñ Ğ½Ğ° ĞºĞ»Ğ°ÑÑ Ñ€Ğ¾Ğ´Ğ¸Ñ‚ĞµĞ»ÑŒÑĞºĞ¾Ğ³Ğ¾ Ğ¾ĞºĞ½Ğ°
 	HWND hparent=0;
 	if(parent) hparent=parent->GetHWND();
-	//Ñîçäàíèå äèàëîãà
+	//Ğ¡Ğ¾Ğ·Ğ´Ğ°Ğ½Ğ¸Ğµ Ğ´Ğ¸Ğ°Ğ»Ğ¾Ğ³Ğ°
 	if(!DialogBoxParam(GetModuleHandle(0),MAKEINTRESOURCE(dialog),hparent,_WndProc,
-		LPARAM(this)/*Óêàçàòåëü íà ıêçåìïëÿğ êëàññà*/)) return false;
+		LPARAM(this)/*Ğ£ĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»ÑŒ Ğ½Ğ° ÑĞºĞ·ĞµĞ¼Ğ¿Ğ»ÑÑ€ ĞºĞ»Ğ°ÑÑĞ°*/)) return false;
 	return true;
 }
-//Ïîëó÷èòü HWND êîíòğîëà
+//ĞŸĞ¾Ğ»ÑƒÑ‡Ğ¸Ñ‚ÑŒ HWND ĞºĞ¾Ğ½Ñ‚Ñ€Ğ¾Ğ»Ğ°
 HWND TINYDialog::GetItemHWND(UINT id)
 {
 	return GetDlgItem(_hwnd,id);
 }
-//Çàêğûòü äèàëîã
+//Ğ—Ğ°ĞºÑ€Ñ‹Ñ‚ÑŒ Ğ´Ğ¸Ğ°Ğ»Ğ¾Ğ³
 void TINYDialog::End()
 {
 	EndDialog(_hwnd,TRUE);
 }
-//Ïîëó÷èòü òåêñò êîíòğîëà
+//ĞŸĞ¾Ğ»ÑƒÑ‡Ğ¸Ñ‚ÑŒ Ñ‚ĞµĞºÑÑ‚ ĞºĞ¾Ğ½Ñ‚Ñ€Ğ¾Ğ»Ğ°
 TINYStr TINYDialog::GetItemText(UINT id)
 {
 	wchar_t *text=new wchar_t[GetItemTextLen(id)+1];
@@ -37,60 +37,60 @@ TINYStr TINYDialog::GetItemText(UINT id)
 	delete[] text;
 	return str;
 }
-//Óñòàíîâèòü òåêñò êîíòğîëà
+//Ğ£ÑÑ‚Ğ°Ğ½Ğ¾Ğ²Ğ¸Ñ‚ÑŒ Ñ‚ĞµĞºÑÑ‚ ĞºĞ¾Ğ½Ñ‚Ñ€Ğ¾Ğ»Ğ°
 bool TINYDialog::SetItemText(LPCWSTR text,UINT id)
 {
 	if(!SetDlgItemText(_hwnd,id,text)) return false;
 	return true;
 }
-//Ïîëó÷èòü äëèíó òåêñòà êîíòğîëà
+//ĞŸĞ¾Ğ»ÑƒÑ‡Ğ¸Ñ‚ÑŒ Ğ´Ğ»Ğ¸Ğ½Ñƒ Ñ‚ĞµĞºÑÑ‚Ğ° ĞºĞ¾Ğ½Ñ‚Ñ€Ğ¾Ğ»Ğ°
 int TINYDialog::GetItemTextLen(UINT id)
 {
 	return GetWindowTextLength(GetDlgItem(_hwnd,id));
 }
-//Ïğîâåğèòü ñòîèò ëè ãàëî÷êà
+//ĞŸÑ€Ğ¾Ğ²ĞµÑ€Ğ¸Ñ‚ÑŒ ÑÑ‚Ğ¾Ğ¸Ñ‚ Ğ»Ğ¸ Ğ³Ğ°Ğ»Ğ¾Ñ‡ĞºĞ°
 int TINYDialog::GetItemCheck(UINT id)
 {
 	return IsDlgButtonChecked(_hwnd,id);
 }
-//Óñòàíîâèòü ãàëî÷êó
+//Ğ£ÑÑ‚Ğ°Ğ½Ğ¾Ğ²Ğ¸Ñ‚ÑŒ Ğ³Ğ°Ğ»Ğ¾Ñ‡ĞºÑƒ
 bool TINYDialog::SetItemCheck(UINT id,int check)
 {
 	if(!CheckDlgButton(_hwnd,id,check)) return false;
 	return true;
 }
-//Ïîëó÷èòü çíà÷åíèå êîíòğîëà
+//ĞŸĞ¾Ğ»ÑƒÑ‡Ğ¸Ñ‚ÑŒ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ğµ ĞºĞ¾Ğ½Ñ‚Ñ€Ğ¾Ğ»Ğ°
 int TINYDialog::GetItemInt(UINT id)
 {
 	return GetDlgItemInt(_hwnd,id,0,0);
 }
-//Óñòàíîâèòü çíà÷åíèå êîíòğîëà
+//Ğ£ÑÑ‚Ğ°Ğ½Ğ¾Ğ²Ğ¸Ñ‚ÑŒ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ğµ ĞºĞ¾Ğ½Ñ‚Ñ€Ğ¾Ğ»Ğ°
 bool TINYDialog::SetItemInt(int value,UINT id)
 {
 	if(!SetDlgItemInt(_hwnd,id,value,0)) return false;
 	return true;
 }
 
-//Îêîííàÿ ôóíêöèÿ
+//ĞĞºĞ¾Ğ½Ğ½Ğ°Ñ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ñ
 INT_PTR CALLBACK TINYDialog::_WndProc(HWND hwnd,UINT message,WPARAM wparam,LPARAM lparam)
 {
 	TINYDialog *dlg=0;
 	if(message==WM_INITDIALOG)
 	{
-		//Ïîëó÷åíèå óêàçàòåëÿ íà ıêçåìïëÿğ êëàññà
+		//ĞŸĞ¾Ğ»ÑƒÑ‡ĞµĞ½Ğ¸Ğµ ÑƒĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»Ñ Ğ½Ğ° ÑĞºĞ·ĞµĞ¼Ğ¿Ğ»ÑÑ€ ĞºĞ»Ğ°ÑÑĞ°
 		dlg=(TINYDialog*)(lparam);
-		dlg->_hwnd=hwnd;//Ñîõğàíåíèå HWND
-		//Ñîõğàíåíèå óêàçàòåëÿ íà ıêçåìïëÿğ êëàññà â GWL_USERDATA îêíà
+		dlg->_hwnd=hwnd;//Ğ¡Ğ¾Ñ…Ñ€Ğ°Ğ½ĞµĞ½Ğ¸Ğµ HWND
+		//Ğ¡Ğ¾Ñ…Ñ€Ğ°Ğ½ĞµĞ½Ğ¸Ğµ ÑƒĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»Ñ Ğ½Ğ° ÑĞºĞ·ĞµĞ¼Ğ¿Ğ»ÑÑ€ ĞºĞ»Ğ°ÑÑĞ° Ğ² GWL_USERDATA Ğ¾ĞºĞ½Ğ°
 		SetWindowLong(hwnd,GWL_USERDATA,LONG(dlg));
-		//Çàïóñê ôóíêöèè îáğàáîòêè ñîîáùåíèé
+		//Ğ—Ğ°Ğ¿ÑƒÑĞº Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸ Ğ¾Ğ±Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ¸ ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ğ¹
 		dlg->_OnMessage(dlg,message,wparam,lparam);
 		return TRUE;
 	}
-	//Ïîëó÷åíèå óêàçàòåëÿ íà ıêçåìïëÿğ êëàññà èç GWL_USERDATA
+	//ĞŸĞ¾Ğ»ÑƒÑ‡ĞµĞ½Ğ¸Ğµ ÑƒĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»Ñ Ğ½Ğ° ÑĞºĞ·ĞµĞ¼Ğ¿Ğ»ÑÑ€ ĞºĞ»Ğ°ÑÑĞ° Ğ¸Ğ· GWL_USERDATA
 	dlg=(TINYDialog*)TinyGetPointer(hwnd);
-	if(dlg)//Ïğîâåğêà óêàçàòåëÿ
+	if(dlg)//ĞŸÑ€Ğ¾Ğ²ĞµÑ€ĞºĞ° ÑƒĞºĞ°Ğ·Ğ°Ñ‚ĞµĞ»Ñ
 	{
-		//Çàïóñê ôóíêöèè îáğàáîòêè ñîîáùåíèé
+		//Ğ—Ğ°Ğ¿ÑƒÑĞº Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸ Ğ¾Ğ±Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ¸ ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ğ¹
 		dlg->_OnMessage(dlg,message,wparam,lparam);
 	}
 	return FALSE;

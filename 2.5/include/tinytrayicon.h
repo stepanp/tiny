@@ -1,7 +1,7 @@
-//------------------------------
+п»ї//------------------------------
 //tiny 2.5
-//tinytrayicon.h - Иконка в трее
-//© 2009-2010 Stepan Prokofjev
+//tinytrayicon.h - РРєРѕРЅРєР° РІ С‚СЂРµРµ
+//В© 2009-2010 Stepan Prokofjev
 //------------------------------
 
 #pragma once
@@ -12,7 +12,7 @@
 
 namespace tiny{
 
-#define TINY_TRAYICON TINY_MESSAGE+2//Сообщение от иконки в трее
+#define TINY_TRAYICON TINY_MESSAGE+2//РЎРѕРѕР±С‰РµРЅРёРµ РѕС‚ РёРєРѕРЅРєРё РІ С‚СЂРµРµ
 
 class TINYTrayIcon: public TINYObject
 {
@@ -20,8 +20,8 @@ protected:
 	NOTIFYICONDATA _data;
 public:
 	bool Create(TINYBaseWnd *parent,HICON icon,LPCWSTR tip,UINT id);
-	bool Delete();//Убрать иконку из трея
-	bool Modify(HICON icon,LPCWSTR tip);//Изменить иконку иконку
+	bool Delete();//РЈР±СЂР°С‚СЊ РёРєРѕРЅРєСѓ РёР· С‚СЂРµСЏ
+	bool Modify(HICON icon,LPCWSTR tip);//РР·РјРµРЅРёС‚СЊ РёРєРѕРЅРєСѓ РёРєРѕРЅРєСѓ
 };
 
 };

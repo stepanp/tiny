@@ -1,7 +1,7 @@
-//----------------------------
+п»ї//----------------------------
 //tiny 2.5
-//tinylistbox.h - Листбокс
-//© 2009-2010 Stepan Prokofjev
+//tinylistbox.h - Р›РёСЃС‚Р±РѕРєСЃ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------
 
 #pragma once
@@ -15,26 +15,26 @@ class TINYListBox: public TINYControl
 public:
 	bool Create(TINYBaseWnd *parent,DWORD exstyle,DWORD style,
 		int x,int y,int w,int h);
-	int InsertItem(int index,LPCWSTR text);//Вставить итем
-	int AddItem(LPCWSTR text);//Добавить итем
-	bool DeleteItem(int index);//Удалить итем
-	int GetCount();//Получить кол-во итемов
-	bool SetSel(int index);//Выделить итем
-	int GetSel();//Получить текущий выделенный итем
-	bool SetItemData(int index,LPARAM data);//Установить дополнительное значение
-	LPARAM GetItemData(int index);//Получить дополнительное значение
-	bool Clear();//Очистить
-	bool SetItemText(int index,LPCWSTR text);//Установить текст итема
-	TINYStr GetItemText(int index);//Получить текст итема
-	int GetItemTextLen(int index);//Получить длину текста итема
-	int GetItemFromPoint(int x,int y);//Получить индекс итема по координатам
+	int InsertItem(int index,LPCWSTR text);//Р’СЃС‚Р°РІРёС‚СЊ РёС‚РµРј
+	int AddItem(LPCWSTR text);//Р”РѕР±Р°РІРёС‚СЊ РёС‚РµРј
+	bool DeleteItem(int index);//РЈРґР°Р»РёС‚СЊ РёС‚РµРј
+	int GetCount();//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РёС‚РµРјРѕРІ
+	bool SetSel(int index);//Р’С‹РґРµР»РёС‚СЊ РёС‚РµРј
+	int GetSel();//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСѓС‰РёР№ РІС‹РґРµР»РµРЅРЅС‹Р№ РёС‚РµРј
+	bool SetItemData(int index,LPARAM data);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
+	LPARAM GetItemData(int index);//РџРѕР»СѓС‡РёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
+	bool Clear();//РћС‡РёСЃС‚РёС‚СЊ
+	bool SetItemText(int index,LPCWSTR text);//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
+	TINYStr GetItemText(int index);//РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РёС‚РµРјР°
+	int GetItemTextLen(int index);//РџРѕР»СѓС‡РёС‚СЊ РґР»РёРЅСѓ С‚РµРєСЃС‚Р° РёС‚РµРјР°
+	int GetItemFromPoint(int x,int y);//РџРѕР»СѓС‡РёС‚СЊ РёРЅРґРµРєСЃ РёС‚РµРјР° РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј
 
-	//Функции выделения нескольких итемов (LBS_MULTIPLESEL)
-	int GetMultiSelCount();//Получить кол-во выделенных итемов 
-	bool SetMultiSel(int index,bool sel/*Выделить/Снять выдление*/);//Выделить итем
-	bool CheckMultiSel(int index);//Проверить выделен ли итем
-	TINYArr<int> GetMultiSel();//Получить массив индексов выделенных итемов
-	bool ClearMultiSel();//Снять выделение
+	//Р¤СѓРЅРєС†РёРё РІС‹РґРµР»РµРЅРёСЏ РЅРµСЃРєРѕР»СЊРєРёС… РёС‚РµРјРѕРІ (LBS_MULTIPLESEL)
+	int GetMultiSelCount();//РџРѕР»СѓС‡РёС‚СЊ РєРѕР»-РІРѕ РІС‹РґРµР»РµРЅРЅС‹С… РёС‚РµРјРѕРІ 
+	bool SetMultiSel(int index,bool sel/*Р’С‹РґРµР»РёС‚СЊ/РЎРЅСЏС‚СЊ РІС‹РґР»РµРЅРёРµ*/);//Р’С‹РґРµР»РёС‚СЊ РёС‚РµРј
+	bool CheckMultiSel(int index);//РџСЂРѕРІРµСЂРёС‚СЊ РІС‹РґРµР»РµРЅ Р»Рё РёС‚РµРј
+	TINYArr<int> GetMultiSel();//РџРѕР»СѓС‡РёС‚СЊ РјР°СЃСЃРёРІ РёРЅРґРµРєСЃРѕРІ РІС‹РґРµР»РµРЅРЅС‹С… РёС‚РµРјРѕРІ
+	bool ClearMultiSel();//РЎРЅСЏС‚СЊ РІС‹РґРµР»РµРЅРёРµ
 };
 
 };

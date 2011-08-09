@@ -1,25 +1,25 @@
-//------------------------------------
+п»ї//------------------------------------
 //tiny 2.5
-//tinydesignwnd.h - Окно для дизайнера
-//© 2009-2010 Stepan Prokofjev
+//tinydesignwnd.h - РћРєРЅРѕ РґР»СЏ РґРёР·Р°Р№РЅРµСЂР°
+//В© 2009-2010 Stepan Prokofjev
 //------------------------------------
 
 #pragma once
 
 #include "tinyappwnd.h"
 
-//Макросы для генераатора
-#define TINY_GEN_CTRLS(TINYDesignWnd)//Начало объявления контролов
-#define TINY_GEN_CTRLS_END//Конец объявления контролов
-#define TINY_GEN_CREATE(TINYDesignWnd)//Начало создания контролов
-#define TINY_GEN_CREATE_END//Конец создания контролов
+//РњР°РєСЂРѕСЃС‹ РґР»СЏ РіРµРЅРµСЂР°Р°С‚РѕСЂР°
+#define TINY_GEN_CTRLS(TINYDesignWnd)//РќР°С‡Р°Р»Рѕ РѕР±СЉСЏРІР»РµРЅРёСЏ РєРѕРЅС‚СЂРѕР»РѕРІ
+#define TINY_GEN_CTRLS_END//РљРѕРЅРµС† РѕР±СЉСЏРІР»РµРЅРёСЏ РєРѕРЅС‚СЂРѕР»РѕРІ
+#define TINY_GEN_CREATE(TINYDesignWnd)//РќР°С‡Р°Р»Рѕ СЃРѕР·РґР°РЅРёСЏ РєРѕРЅС‚СЂРѕР»РѕРІ
+#define TINY_GEN_CREATE_END//РљРѕРЅРµС† СЃРѕР·РґР°РЅРёСЏ РєРѕРЅС‚СЂРѕР»РѕРІ
 
 namespace tiny{
 
 class TINYDesignWnd: public TINYAppWnd
 {
 public:
-	//Установить параметры окна
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РѕРєРЅР°
 	void SetDesignParams(LPCWSTR text,UINT icon,
 		DWORD exstyle,DWORD style,int x,int y,int w,int h);
 };

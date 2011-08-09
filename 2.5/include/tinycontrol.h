@@ -1,7 +1,7 @@
-//----------------------------------------
+п»ї//----------------------------------------
 //tiny 2.5
-//tinycontrol.h - Базовые классы контролов
-//© 2009-2010 Stepan Prokofjev
+//tinycontrol.h - Р‘Р°Р·РѕРІС‹Рµ РєР»Р°СЃСЃС‹ РєРѕРЅС‚СЂРѕР»РѕРІ
+//В© 2009-2010 Stepan Prokofjev
 //----------------------------------------
 
 #pragma once
@@ -11,27 +11,27 @@
 namespace tiny{
 
 //--------------
-//Класс контрола
+//РљР»Р°СЃСЃ РєРѕРЅС‚СЂРѕР»Р°
 //--------------
 class TINYControl: public TINYBaseWnd
 {
 public:
 	TINYControl();
 protected:
-	WNDPROC _PrevProc;//Оконная функция для сабклассинга
+	WNDPROC _PrevProc;//РћРєРѕРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ СЃР°Р±РєР»Р°СЃСЃРёРЅРіР°
 public:
 	bool Attach(HWND hwnd);
 	bool Create(TINYBaseWnd *parent,LPCWSTR classname,LPCWSTR text,
 		DWORD exstyle,DWORD style,int x,int y,int w,int h);
-	void _SubClass();//Сабклассинг окна
+	void _SubClass();//РЎР°Р±РєР»Р°СЃСЃРёРЅРі РѕРєРЅР°
 protected:
-	//Оконная функция
+	//РћРєРѕРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ
 	static LRESULT CALLBACK _WndProc(HWND hwnd,UINT message,WPARAM wparam,LPARAM lparam);
 };
 
 
 //--------------------------------------
-//Класс расширенного контрола (commctrl)
+//РљР»Р°СЃСЃ СЂР°СЃС€РёСЂРµРЅРЅРѕРіРѕ РєРѕРЅС‚СЂРѕР»Р° (commctrl)
 //--------------------------------------
 class TINYControlEx: public TINYControl
 {
@@ -40,7 +40,7 @@ public:
 		DWORD exstyle,DWORD style,int x,int y,int w,int h);
 };
 
-//Установка стандартного шрифта для контрола
+//РЈСЃС‚Р°РЅРѕРІРєР° СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ С€СЂРёС„С‚Р° РґР»СЏ РєРѕРЅС‚СЂРѕР»Р°
 bool TinySetDefaultFont(HWND hwnd);
 
 };

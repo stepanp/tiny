@@ -1,7 +1,7 @@
-//---------------------------------
+п»ї//---------------------------------
 //tiny 2.5
-//tinymisc.h - Разные мелкие классы
-//© 2009-2010 Stepan Prokofjev
+//tinymisc.h - Р Р°Р·РЅС‹Рµ РјРµР»РєРёРµ РєР»Р°СЃСЃС‹
+//В© 2009-2010 Stepan Prokofjev
 //---------------------------------
 
 #pragma once
@@ -12,7 +12,7 @@ namespace tiny
 {
 
 //------
-//Иконка
+//РРєРѕРЅРєР°
 //------
 class TINYIcon: public TINYObject
 {
@@ -23,16 +23,16 @@ public:
 protected:
 	HICON _hicon;
 public:
-	HICON GetHICON();//Получить HICON
-	void Attach(HICON icon);//Связать HICON
-	bool LoadIcon(UINT icon);//Загрузить иконку
-	bool LoadIconEx(UINT icon,int w,int h);//Загрузить иконку по размеру
-	bool Destroy();//Уничтожить иконку
+	HICON GetHICON();//РџРѕР»СѓС‡РёС‚СЊ HICON
+	void Attach(HICON icon);//РЎРІСЏР·Р°С‚СЊ HICON
+	bool LoadIcon(UINT icon);//Р—Р°РіСЂСѓР·РёС‚СЊ РёРєРѕРЅРєСѓ
+	bool LoadIconEx(UINT icon,int w,int h);//Р—Р°РіСЂСѓР·РёС‚СЊ РёРєРѕРЅРєСѓ РїРѕ СЂР°Р·РјРµСЂСѓ
+	bool Destroy();//РЈРЅРёС‡С‚РѕР¶РёС‚СЊ РёРєРѕРЅРєСѓ
 	operator HICON();
 };
 
 //----
-//Рект
+//Р РµРєС‚
 //----
 class TINYRect: public TINYObject
 {
@@ -44,7 +44,7 @@ public:
 public:
 	int x,y,w,h;
 public:
-	//Операторы копирования
+	//РћРїРµСЂР°С‚РѕСЂС‹ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	TINYRect& operator=(TINYRect& rect);
 	TINYRect& operator=(RECT& rect);
 	operator RECT();
